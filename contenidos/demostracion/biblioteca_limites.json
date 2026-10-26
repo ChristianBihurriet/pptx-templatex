@@ -1,0 +1,165 @@
+{
+  "titulo": "Prueba de capacidad de las composiciones",
+  "modulo": "Prueba de límites",
+  "curso": "DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato",
+      "subtitulo": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato",
+      "contenido": "dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato d"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato",
+      "contenido": "dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato d"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato",
+      "codigo": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato d",
+      "lenguaje": "dato dato dato dato dato dato "
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "contenido": "dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato",
+      "ejemplo": "dato dato dato dato dat\ndato dato dato dato dat\ndato dato dato dato dat\ndato dato dato dato da\ndato dato dato dato da\ndato dato dato dato da"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "situacion": "dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato",
+      "problema": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato",
+      "pregunta": "dato dato dato dato dato da\ndato dato dato dato dato da\ndato dato dato dato dato da\ndato dato dato dato dato d"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "codigo": "dato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato da",
+      "explicacion": "dato dato dato dato dato dat\ndato dato dato dato dato dat\ndato dato dato dato dato dat\ndato dato dato dato dato dat\ndato dato dato dato dato dat\ndato dato dato dato dato da\ndato dato dato dato dato da"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "lenguaje": "dato dato dato dato dato",
+      "codigo": "dato dato dato dato dato dato dato dato dato dato dato dato dato d\ndato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato ",
+      "resultado": "dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "izquierda_titulo": "dato dato dato dato d\ndato dato dato dato ",
+      "izquierda_contenido": "dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato",
+      "derecha_titulo": "dato dato dato dato d\ndato dato dato dato ",
+      "derecha_contenido": "dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato\ndato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "antes_despues",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "antes_titulo": "dato dato dato dato dato dato dato d",
+      "antes_contenido": "dato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da",
+      "despues_titulo": "dato dato dato dato dato dato dato d",
+      "despues_contenido": "dato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da",
+      "conclusion": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "codigo_error": "dato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da",
+      "codigo_correcto": "dato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da\ndato dato dato dato dato dato da",
+      "explicacion": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "paso_1": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato",
+      "paso_2": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato",
+      "paso_3": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato",
+      "paso_4": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato",
+      "paso_5": "dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "encabezado_1": "dato dato dato d\ndato dato dato ",
+      "encabezado_2": "dato dato dato d\ndato dato dato ",
+      "encabezado_3": "dato dato dato d\ndato dato dato ",
+      "fila_1_col_1": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_1_col_2": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_1_col_3": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_2_col_1": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_2_col_2": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_2_col_3": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_3_col_1": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_3_col_2": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_3_col_3": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_4_col_1": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_4_col_2": "dato dato dato dato d\ndato dato dato dato ",
+      "fila_4_col_3": "dato dato dato dato d\ndato dato dato dato ",
+      "nota": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato "
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "contexto": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato dato",
+      "etapa_1": "dato dato dat\ndato dato da",
+      "etapa_2": "dato dato dat\ndato dato da",
+      "etapa_3": "dato dato dat\ndato dato da",
+      "etapa_4": "dato dato dat\ndato dato da",
+      "conclusion": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "relaciones_clases",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "clase_base": "dato dato dato dato dato dat",
+      "miembros_base": "dato dato dato dato dato da\ndato dato dato dato dato d",
+      "clase_izquierda": "dato dato dato dato dato dat",
+      "miembros_izquierda": "dato dato dato dato dato dato da\ndato dato dato dato dato dato d",
+      "clase_derecha": "dato dato dato dato dato dat",
+      "miembros_derecha": "dato dato dato dato dato dato da\ndato dato dato dato dato dato d"
+    },
+    {
+      "tipo": "caso_practico",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "contexto": "dato dato dato dato dato \ndato dato dato dato dato \ndato dato dato dato dato \ndato dato dato dato dato \ndato dato dato dato dato \ndato dato dato dato dato \ndato dato dato dato dato",
+      "requisitos": "dato dato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato dato dat\ndato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato da",
+      "objetivo": "dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "error": "dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato",
+      "motivo": "dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato",
+      "recomendacion": "dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "idea_1": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato",
+      "idea_2": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato",
+      "idea_3": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato",
+      "recuerda": "dato dato dato dat\ndato dato dato da\ndato dato dato da\ndato dato dato da\ndato dato dato da"
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "comandos": "dato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato da\ndato dato dato dato dato dato dato dato dato dato dato d",
+      "salida": "dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato dato dato dato dato\ndato dato dato dato dato dato dato dato dato dato dato dato dato",
+      "nota": "dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato dato "
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato",
+      "concepto": "dato dato dato dato dato dat",
+      "explicacion": "dato dato dato dato dato dato dato dato dato dato dato dato dato \ndato dato dato dato dato dato dato dato dato dato dato dato dato",
+      "apoyo_1": "dato dato dato dato da\ndato dato dato dato d",
+      "apoyo_2": "dato dato dato dato da\ndato dato dato dato d",
+      "apoyo_3": "dato dato dato dato da\ndato dato dato dato d"
+    }
+  ]
+}

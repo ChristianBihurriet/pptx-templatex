@@ -1,0 +1,48 @@
+{
+  "titulo": "Introducción a la herencia",
+  "modulo": "Programación",
+  "curso": "1DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Herencia en Java",
+      "subtitulo": "Compartir comportamiento entre clases relacionadas"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Dónde pondrías un comportamiento compartido?",
+      "contenido": "Una aplicación de una clínica registra perros y gatos.\nAmbos tienen nombre y pueden comer.\nSi copiamos ese código en dos clases, ¿cuántos lugares debemos revisar cuando cambia?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Primero, recuerda qué es una clase",
+      "contenido": "Una clase describe los datos y las operaciones de un tipo de objeto.\nUn método es una operación definida en esa clase.\nAquí usaremos un método que imprime un mensaje."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Herencia: una relación «es un»",
+      "contenido": "Un perro es un animal.\nEn Java, extends permite que una clase herede comportamiento de otra.\nAnimal será la superclase y Perro la subclase.\nLa subclase puede reutilizar los métodos accesibles de la superclase."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Guarda este ejemplo como Main.java",
+      "codigo": "class Animal {\n    void comer() {\n        System.out.println(\"El animal come\");\n    }\n}\n\nclass Perro extends Animal {}\n\npublic class Main {\n    public static void main(String[] args) {\n        Perro perro = new Perro();\n        perro.comer();\n    }\n}",
+      "lenguaje": "java"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Por qué puede llamar a comer()?",
+      "contenido": "Perro no declara comer(), pero lo hereda de Animal.\nnew Perro() crea el objeto; perro guarda una referencia a él.\nCompila con javac Main.java y ejecuta java Main.\nLa salida será: El animal come."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Compartir código siempre justifica heredar?",
+      "contenido": "Un coche tiene un motor, pero no es un motor.\nHeredar de Motor para evitar duplicar código expresaría una relación incorrecta.\nLa herencia encaja cuando la relación «es un» tiene sentido; otras relaciones requieren otro diseño."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Un error habitual al empezar",
+      "contenido": "extends no permite acceder directamente a todo.\nUn miembro private solo es accesible dentro de la clase que lo declara.\nIntentar usarlo directamente desde la subclase provoca un error de compilación.\nAntes de ampliar el ejemplo, revisaremos los modificadores de acceso."
+    }
+  ]
+}

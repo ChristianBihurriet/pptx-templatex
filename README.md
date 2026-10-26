@@ -1,5 +1,10 @@
 # pptx-templatex
 
+Este fork incorpora **pptgen**, un generador local de presentaciones docentes para
+DAM desde JSON. Consulta [la guía en español](README.docente.md) para instalarlo,
+generar el ejemplo de herencia y crear temas editables en PowerPoint. Conserva el
+motor, la CLI original y los créditos de SpringMT descritos a continuación.
+
 A PowerPoint template engine for Python that provides slide copying and placeholder replacement functionality.
 
 [日本語README](README.ja.md)

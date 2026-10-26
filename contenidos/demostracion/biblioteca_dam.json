@@ -1,0 +1,165 @@
+{
+  "titulo": "Biblioteca docente DAM",
+  "modulo": "Diseños para informática",
+  "curso": "DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Biblioteca docente DAM",
+      "subtitulo": "20 composiciones editables para explicar, razonar y comprobar"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Dónde pondrías un comportamiento compartido?",
+      "contenido": "Una aplicación de una clínica registra perros y gatos.\nAmbos tienen nombre y pueden comer.\nSi copiamos ese código en dos clases, ¿cuántos lugares debemos revisar cuando cambia?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Primero, recuerda qué es una clase",
+      "contenido": "Una clase describe los datos y las operaciones de un tipo de objeto.\nUn método es una operación definida en esa clase.\nAquí usaremos un método que imprime un mensaje."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Guarda este ejemplo como Main.java",
+      "codigo": "class Animal {\n    void comer() {\n        System.out.println(\"El animal come\");\n    }\n}\n\nclass Perro extends Animal {}\n\npublic class Main {\n    public static void main(String[] args) {\n        Perro perro = new Perro();\n        perro.comer();\n    }\n}",
+      "lenguaje": "java"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Una lista crece con los datos",
+      "contenido": "ArrayList almacena elementos en orden y ajusta su capacidad interna.\nEl tamaño indica cuántos elementos contiene, no cuántos podría alojar.\nUsa el tipo genérico para que el compilador compruebe los valores.",
+      "ejemplo": "List<String> nombres =\n    new ArrayList<>();\nnombres.add(\"Ana\");\nnombres.size(); // 1"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Por qué perdemos actualizaciones?",
+      "situacion": "Dos hilos incrementan el mismo contador de peticiones.",
+      "problema": "Cada hilo lee, suma y escribe.\nUna escritura puede sobrescribir el cálculo del otro hilo.",
+      "pregunta": "¿Cómo protegerías la operación completa, no solo la variable?"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Recuperar datos con JDBC",
+      "codigo": "String sql = \"SELECT nombre FROM alumno\";\ntry (var st = cn.prepareStatement(sql);\n     var rs = st.executeQuery()) {\n    while (rs.next()) {\n        System.out.println(\n            rs.getString(\"nombre\"));\n    }\n}",
+      "explicacion": "La conexión cn ya está abierta.\nEl statement ejecuta la consulta.\nnext() mueve el cursor.\ntry cierra los dos recursos, incluso si se lanza una excepción."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "El orden importa en una lista",
+      "lenguaje": "JAVA 21",
+      "codigo": "var valores = new ArrayList<Integer>();\nvalores.add(10);\nvalores.add(0, 5);\nSystem.out.println(valores);",
+      "resultado": "[5, 10]"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Herencia frente a composición",
+      "izquierda_titulo": "Herencia: es un",
+      "izquierda_contenido": "Una subclase especializa un tipo.\nComparte su contrato y puede redefinir comportamiento.\nEjemplo: Perro es un Animal.",
+      "derecha_titulo": "Composición: tiene un",
+      "derecha_contenido": "Un objeto colabora con otros objetos.\nDelega trabajo sin pertenecer a su jerarquía.\nEjemplo: Coche tiene un Motor."
+    },
+    {
+      "tipo": "antes_despues",
+      "titulo": "Separar una decisión de su resultado",
+      "antes_titulo": "Condición repetida",
+      "antes_contenido": "if (edad >= 18) {\n    permitirAcceso();\n}\nif (edad >= 18) {\n    mostrarPanel();\n}",
+      "despues_titulo": "Intención explícita",
+      "despues_contenido": "boolean esMayor = edad >= 18;\nif (esMayor) {\n    permitirAcceso();\n    mostrarPanel();\n}",
+      "conclusion": "El nombre expresa la intención; comprueba que agrupar las acciones conserva el comportamiento."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "Un tipo incompatible no se convierte solo",
+      "codigo_error": "String edadTexto = \"18\";\nint edad = edadTexto;\n// Error de compilación",
+      "codigo_correcto": "String edadTexto = \"18\";\nint edad =\n    Integer.parseInt(edadTexto);",
+      "explicacion": "String e int son tipos distintos. parseInt interpreta el texto y puede fallar si no representa un entero."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "De un cambio local a una entrega revisada",
+      "paso_1": "Revisa los cambios con git diff y ejecuta las pruebas.",
+      "paso_2": "Añade únicamente los archivos pertinentes con git add.",
+      "paso_3": "Crea un commit con un mensaje que explique la intención.",
+      "paso_4": "Publica la rama y abre una solicitud de integración.",
+      "paso_5": "Comprueba la revisión y el resultado de CI antes de integrar."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Una clave foránea relaciona filas",
+      "encabezado_1": "Columna",
+      "encabezado_2": "Tipo SQL",
+      "encabezado_3": "Restricción",
+      "fila_1_col_1": "id",
+      "fila_1_col_2": "INTEGER",
+      "fila_1_col_3": "PRIMARY KEY",
+      "fila_2_col_1": "alumno_id",
+      "fila_2_col_2": "INTEGER",
+      "fila_2_col_3": "FK a alumno(id)",
+      "fila_3_col_1": "curso_id",
+      "fila_3_col_2": "INTEGER",
+      "fila_3_col_3": "FK a curso(id)",
+      "fila_4_col_1": "nota",
+      "fila_4_col_2": "DECIMAL(4,2)",
+      "fila_4_col_3": "CHECK entre 0 y 10",
+      "nota": "Ejemplo de una tabla matricula: cada clave foránea referencia una clave de otra tabla."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "Del fuente al programa en ejecución",
+      "contexto": "El compilador y la máquina virtual cumplen funciones distintas.",
+      "etapa_1": "Fuente\n.java",
+      "etapa_2": "Compilar\njavac",
+      "etapa_3": "Bytecode\n.class",
+      "etapa_4": "Ejecutar\nJVM",
+      "conclusion": "Compilar comprueba y transforma el fuente; ejecutar pone en marcha el bytecode."
+    },
+    {
+      "tipo": "relaciones_clases",
+      "titulo": "Una base común, comportamientos distintos",
+      "clase_base": "Animal",
+      "miembros_base": "+ nombre: String\n+ emitirSonido(): void",
+      "clase_izquierda": "Perro",
+      "miembros_izquierda": "+ emitirSonido(): void\n+ traerPelota(): void",
+      "clase_derecha": "Gato",
+      "miembros_derecha": "+ emitirSonido(): void\n+ trepar(): void"
+    },
+    {
+      "tipo": "caso_practico",
+      "titulo": "Guardar pedidos sin perder sus líneas",
+      "contexto": "Una tienda registra un pedido y sus líneas en tablas distintas.\nUn fallo no debe dejar medio pedido guardado.",
+      "requisitos": "Insertar cabecera y líneas en una transacción.\nConfirmar solo si todas las operaciones terminan.\nDeshacer los cambios ante un error.\nCerrar los recursos JDBC.",
+      "objetivo": "Demostrar que un fallo en una línea no deja datos parciales."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Capturar una excepción no es resolverla",
+      "error": "Usar un catch vacío para que el programa continúe.",
+      "motivo": "El fallo desaparece de la vista, pero el estado puede quedar incompleto y la causa sin registrar.",
+      "recomendacion": "Captura solo lo que puedas tratar. Informa del contexto y conserva la causa al propagar."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Normalizar es decidir dónde vive cada dato",
+      "idea_1": "La clave identifica una fila; no basta con que un valor parezca único en los ejemplos.",
+      "idea_2": "Las dependencias ayudan a detectar datos repetidos y anomalías de actualización.",
+      "idea_3": "Descomponer exige conservar la información y comprobar cómo se reconstruirá mediante consultas.",
+      "recuerda": "Cada hecho en su lugar, con claves que permitan relacionarlo."
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Inspeccionar antes de confirmar cambios",
+      "comandos": "git status --short\ngit diff --stat\ngit log -1 --oneline",
+      "salida": " M src/Alumno.java\n src/Alumno.java | 2 +-\n8a3c120 Validar la nota antes de guardarla",
+      "nota": "Salida ilustrativa de un repositorio local; los identificadores de commit dependen del historial."
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "Un documento, tres formas de estructurar datos",
+      "concepto": "Estructura y significado",
+      "explicacion": "La sintaxis organiza los datos; el contrato permite interpretarlos y comprobar si son válidos.",
+      "apoyo_1": "HTML\nContenido y semántica",
+      "apoyo_2": "XML\nElementos y atributos",
+      "apoyo_3": "JSON\nObjetos y listas"
+    }
+  ]
+}

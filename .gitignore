@@ -27,7 +27,10 @@ ENV/
 
 # Testing
 .pytest_cache/
+.ruff_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 .tox/
 
@@ -47,3 +50,11 @@ examples/output*.pptx
 examples/template.pptx
 *.pptx
 !tests/fixtures/*.pptx
+!plantillas/**/*.pptx
+.venv/
+.package-check/
+salida/*
+!salida/.gitkeep
+
+# Office lock files (after the PPTX exceptions above)
+~$*

@@ -1,2 +1,10 @@
 include README.ja.md
+include README.docente.md
 recursive-include examples *.py *.json
+recursive-include plantillas *.json *.pptx
+recursive-include prompts *.md
+recursive-include prompts *.json
+recursive-include docs *.md
+recursive-include contexto *.md
+recursive-include contenidos *.json
+recursive-include tools *.py

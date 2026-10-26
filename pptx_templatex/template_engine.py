@@ -51,7 +51,7 @@ class TemplateEngine:
         engine.process(config, "output.pptx")
     """
 
-    def __init__(self, template_path: Union[str, Path]):
+    def __init__(self, template_path: Union[str, Path], *, render_rich_text: bool = True):
         """
         Initialize the template engine with a source PowerPoint file.
 
@@ -62,6 +62,9 @@ class TemplateEngine:
             TemplateError: If template file cannot be loaded
         """
         self.template_path = Path(template_path)
+        # Opt out for literal text (e.g. Java multiplication and comments).
+        # The existing API and CLI retain their original rich-text behaviour.
+        self.render_rich_text = render_rich_text
         if not self.template_path.exists():
             raise TemplateError(f"Template file not found: {template_path}")
 
@@ -504,7 +507,7 @@ class TemplateEngine:
             }
 
             # --- Rich text path ---
-            if is_rich_text(new_text):
+            if self.render_rich_text and is_rich_text(new_text):
                 rich_paras = parse_rich_text(new_text)
                 self._expand_rich_paragraphs(paragraph, rich_paras, base_fmt)
                 continue

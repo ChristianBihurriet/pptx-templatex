@@ -1,0 +1,95 @@
+{
+  "titulo": "Introducción a las Excepciones en Java",
+  "modulo": "Programación",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Introducción a las Excepciones en Java",
+      "subtitulo": "Gestión de errores en tiempo de ejecución y validación de argumentos"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Qué ocurre si recibimos datos no válidos?",
+      "situacion": "Un método calcula el precio final de un pedido multiplicando precio y cantidad.",
+      "problema": "Si la cantidad es -5, el cálculo se realiza y devuelve un valor absurdo sin avisar.",
+      "pregunta": "¿Cómo evitamos que el programa continúe trabajando con datos incorrectos?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Error de compilación frente a excepción",
+      "izquierda_titulo": "Error de compilación",
+      "izquierda_contenido": "Ocurre antes de ejecutar el programa.\nEl compilador detecta errores sintácticos o incoherencias de tipos.",
+      "derecha_titulo": "Excepción en ejecución",
+      "derecha_contenido": "Ocurre mientras el programa se ejecuta.\nAparece cuando los datos o el estado rompen la lógica esperada."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué es una excepción en Java?",
+      "contenido": "Una excepción es un evento imprevisto durante la ejecución que interrumpe el flujo normal del programa.\nEn Java, las excepciones se representan mediante objetos que contienen información sobre el error."
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "Anatomía de una excepción",
+      "concepto": "Objeto Excepción",
+      "explicacion": "Al detectar un fallo, Java crea un objeto que describe el problema y detiene el flujo.",
+      "apoyo_1": "Tipo de error\nClase de la excepción",
+      "apoyo_2": "Mensaje\nDescripción del fallo",
+      "apoyo_3": "Interrupción\nDetiene la ejecución"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Validar argumentos con IllegalArgumentException",
+      "contenido": "IllegalArgumentException es una clase estándar de Java.\nSe lanza para indicar que un método ha recibido un argumento no válido para su lógica.",
+      "ejemplo": "throw new\nIllegalArgumentException(\n    \"Edad negativa\"\n);"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Lanzar una excepción con throw",
+      "codigo": "if (edad < 0) {\n    throw new IllegalArgumentException(\n        \"La edad no puede ser negativa\"\n    );\n}",
+      "explicacion": "La palabra clave throw lanza el objeto de excepción.\nSi la condición se cumple, la ejecución del método se interrumpe inmediatamente."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "Proteger el estado del objeto",
+      "codigo_error": "void setEdad(int edad) {\n    // Sin validación\n    this.edad = edad;\n}",
+      "codigo_correcto": "void setEdad(int edad) {\n    if (edad < 0) {\n        throw new IllegalArgumentException(\"Edad no válida\");\n    }\n    this.edad = edad;\n}",
+      "explicacion": "Validar el parámetro antes de la asignación evita que el objeto guarde un estado incoherente."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ejemplo práctico: Clase Persona.java",
+      "codigo": "public class Persona {\n    private int edad;\n\n    public Persona(int edad) {\n        if (edad < 0) {\n            throw new IllegalArgumentException(\"Edad no válida: \" + edad);\n        }\n        this.edad = edad;\n    }\n\n    public static void main(String[] args) {\n        Persona p1 = new Persona(20);\n        System.out.println(\"Persona creada correctamente\");\n        Persona p2 = new Persona(-5);\n    }\n}",
+      "lenguaje": "java"
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Ejecución y traza de error en consola",
+      "comandos": "javac Persona.java\njava Persona",
+      "salida": "Persona creada correctamente\nException in thread \"main\" java.lang.IllegalArgumentException: Edad no válida: -5\n\tat Persona.<init>(Persona.java:6)\n\tat Persona.main(Persona.java:14)",
+      "nota": "La excepción detiene la ejecución en la línea 14 y señala el throw de la línea 6."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Pasos para validar argumentos en un método",
+      "paso_1": "Comprueba los parámetros recibidos mediante una condición if.",
+      "paso_2": "Crea y lanza una IllegalArgumentException si el valor es incorrecto.",
+      "paso_3": "Asigna el valor al atributo solo si la validación ha sido superada."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Imprimir un mensaje no detiene el programa",
+      "error": "Mostrar un aviso con System.out.println y continuar la ejecución.",
+      "motivo": "El objeto se crea con datos inválidos y los errores se propagan por la aplicación.",
+      "recomendacion": "Lanza una excepción con throw para interrumpir la ejecución y notificar el problema."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Resumen de la sesión",
+      "idea_1": "Una excepción interrumpe el flujo normal cuando ocurre una situación anómala en ejecución.",
+      "idea_2": "IllegalArgumentException indica que un parámetro recibido no es aceptable.",
+      "idea_3": "La sentencia throw permite lanzar excepciones para proteger la integridad de los objetos.",
+      "recuerda": "Valida siempre los argumentos antes de modificar el estado interno de un objeto."
+    }
+  ]
+}

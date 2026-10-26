@@ -47,13 +47,17 @@ dev = [
 
 [project.scripts]
 pptx-templatex = "pptx_templatex.cli:main"
+pptgen = "pptgen.cli:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
 
 [tool.setuptools]
-packages = ["pptx_templatex"]
+packages = ["pptx_templatex", "pptgen", "plantillas"]
+
+[tool.setuptools.package-data]
+plantillas = ["*/*.json", "*/*.pptx"]
 
 [tool.ruff]
 line-length = 120

@@ -1,0 +1,1223 @@
+{
+  "catalogo_version": 1,
+  "tema": "dam_oscuro",
+  "origen_sha256": "999161d5fe7dcfab9b7ea922d39d0240d0086122ff27f5566c8261de6ad09ba3",
+  "tipos": {
+    "portada": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "portada",
+      "proposito": "Presentar el tema y orientar al alumnado al comienzo de la clase.",
+      "campos": {
+        "titulo": {
+          "marcador": "titulo",
+          "obligatorio": true,
+          "max_caracteres": 100,
+          "max_lineas": 2,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo titulo."
+        },
+        "subtitulo": {
+          "marcador": "subtitulo",
+          "max_caracteres": 180,
+          "max_lineas": 3,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo subtitulo."
+        }
+      },
+      "ejemplo": {
+        "tipo": "portada",
+        "titulo": "Herencia en Java",
+        "subtitulo": "Compartir comportamiento entre clases relacionadas"
+      },
+      "restricciones": [
+        "Texto literal; sin Markdown.",
+        "Diseño fijo; revisar el ajuste visual en PowerPoint."
+      ],
+      "pagina": 1
+    },
+    "pregunta": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "pregunta",
+      "proposito": "Plantear un problema cercano para construir intuición antes de la teoría.",
+      "campos": {
+        "titulo": {
+          "marcador": "titulo",
+          "obligatorio": true,
+          "max_caracteres": 100,
+          "max_lineas": 2,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo titulo."
+        },
+        "contenido": {
+          "marcador": "contenido",
+          "obligatorio": true,
+          "max_caracteres": 500,
+          "max_lineas": 8,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo contenido."
+        }
+      },
+      "ejemplo": {
+        "tipo": "pregunta",
+        "titulo": "¿Dónde pondrías un comportamiento compartido?",
+        "contenido": "Una aplicación de una clínica registra perros y gatos.\nAmbos tienen nombre y pueden comer.\nSi copiamos ese código en dos clases, ¿cuántos lugares debemos revisar cuando cambia?"
+      },
+      "restricciones": [
+        "Texto literal; sin Markdown.",
+        "Diseño fijo; revisar el ajuste visual en PowerPoint."
+      ],
+      "pagina": 2
+    },
+    "definicion": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "definicion",
+      "proposito": "Explicar un concepto y relacionarlo con un problema o ejemplo práctico.",
+      "campos": {
+        "titulo": {
+          "marcador": "titulo",
+          "obligatorio": true,
+          "max_caracteres": 100,
+          "max_lineas": 2,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo titulo."
+        },
+        "contenido": {
+          "marcador": "contenido",
+          "obligatorio": true,
+          "max_caracteres": 500,
+          "max_lineas": 8,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo contenido."
+        }
+      },
+      "ejemplo": {
+        "tipo": "definicion",
+        "titulo": "Primero, recuerda qué es una clase",
+        "contenido": "Una clase describe los datos y las operaciones de un tipo de objeto.\nUn método es una operación definida en esa clase.\nAquí usaremos un método que imprime un mensaje."
+      },
+      "restricciones": [
+        "Texto literal; sin Markdown.",
+        "Diseño fijo; revisar el ajuste visual en PowerPoint."
+      ],
+      "pagina": 3
+    },
+    "codigo": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "codigo",
+      "proposito": "Mostrar código legible y explicar su comportamiento sin ejecutarlo automáticamente.",
+      "campos": {
+        "titulo": {
+          "marcador": "titulo",
+          "obligatorio": true,
+          "max_caracteres": 100,
+          "max_lineas": 2,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo titulo."
+        },
+        "codigo": {
+          "marcador": "codigo",
+          "obligatorio": true,
+          "max_caracteres": 1400,
+          "max_lineas": 18,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo codigo."
+        },
+        "lenguaje": {
+          "marcador": "lenguaje",
+          "max_caracteres": 30,
+          "max_lineas": 1,
+          "tipo_dato": "string",
+          "descripcion": "Texto del campo lenguaje."
+        }
+      },
+      "ejemplo": {
+        "tipo": "codigo",
+        "titulo": "Guarda este ejemplo como Main.java",
+        "codigo": "class Animal {\n    void comer() {\n        System.out.println(\"El animal come\");\n    }\n}\n\nclass Perro extends Animal {}\n\npublic class Main {\n    public static void main(String[] args) {\n        Perro perro = new Perro();\n        perro.comer();\n    }\n}",
+        "lenguaje": "java"
+      },
+      "restricciones": [
+        "Texto literal; sin Markdown.",
+        "Diseño fijo; revisar el ajuste visual en PowerPoint."
+      ],
+      "pagina": 4
+    },
+    "explicacion": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "explicacion",
+      "proposito": "Desarrollar una idea y concretarla con un ejemplo breve, sin convertirla en una lista de definiciones.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "contenido": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 360,
+          "max_lineas": 8,
+          "descripcion": "Explicación principal en frases cortas; introduce los términos antes de utilizarlos.",
+          "marcador": "contenido"
+        },
+        "ejemplo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 140,
+          "max_lineas": 6,
+          "descripcion": "Ejemplo corto, dato, expresión o fragmento; columna monoespaciada estrecha.",
+          "marcador": "ejemplo"
+        }
+      },
+      "ejemplo": {
+        "tipo": "explicacion",
+        "titulo": "Una lista crece con los datos",
+        "contenido": "ArrayList almacena elementos en orden y ajusta su capacidad interna.\nEl tamaño indica cuántos elementos contiene, no cuántos podría alojar.\nUsa el tipo genérico para que el compilador compruebe los valores.",
+        "ejemplo": "List<String> nombres =\n    new ArrayList<>();\nnombres.add(\"Ana\");\nnombres.size(); // 1"
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Ejemplo en Consolas 20 pt; recomienda no superar 22 caracteres por línea. No hay resaltado de sintaxis."
+      ],
+      "pagina": 5
+    },
+    "problema": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "problema",
+      "proposito": "Crear una necesidad de aprendizaje a partir de una situación, su dificultad y una pregunta investigable.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "situacion": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 130,
+          "max_lineas": 2,
+          "descripcion": "Contexto cercano al alumnado, antes de introducir la solución.",
+          "marcador": "situacion"
+        },
+        "problema": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 200,
+          "max_lineas": 5,
+          "descripcion": "Dificultad observable y consecuencias; no adelantes el mecanismo que la resuelve.",
+          "marcador": "problema"
+        },
+        "pregunta": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 110,
+          "max_lineas": 4,
+          "descripcion": "Pregunta concreta que orienta el razonamiento del grupo.",
+          "marcador": "pregunta"
+        }
+      },
+      "ejemplo": {
+        "tipo": "problema",
+        "titulo": "¿Por qué perdemos actualizaciones?",
+        "situacion": "Dos hilos incrementan el mismo contador de peticiones.",
+        "problema": "Cada hilo lee, suma y escribe.\nUna escritura puede sobrescribir el cálculo del otro hilo.",
+        "pregunta": "¿Cómo protegerías la operación completa, no solo la variable?"
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas."
+      ],
+      "pagina": 6
+    },
+    "codigo_explicado": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "codigo_explicado",
+      "proposito": "Relacionar un fragmento de código legible con la explicación de sus decisiones y efectos.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "codigo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 420,
+          "max_lineas": 11,
+          "descripcion": "Fragmento autocontenido, con indentación de espacios; evita líneas largas.",
+          "marcador": "codigo"
+        },
+        "explicacion": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 200,
+          "max_lineas": 7,
+          "descripcion": "Explica el flujo y el motivo de las instrucciones; no repitas literalmente el código.",
+          "marcador": "explicacion"
+        }
+      },
+      "ejemplo": {
+        "tipo": "codigo_explicado",
+        "titulo": "Recuperar datos con JDBC",
+        "codigo": "String sql = \"SELECT nombre FROM alumno\";\ntry (var st = cn.prepareStatement(sql);\n     var rs = st.executeQuery()) {\n    while (rs.next()) {\n        System.out.println(\n            rs.getString(\"nombre\"));\n    }\n}",
+        "explicacion": "La conexión cn ya está abierta.\nEl statement ejecuta la consulta.\nnext() mueve el cursor.\ntry cierra los dos recursos, incluso si se lanza una excepción."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Código en Consolas 20 pt; recomienda hasta 40 caracteres por línea. No ejecuta ni colorea el código."
+      ],
+      "pagina": 7
+    },
+    "codigo_resultado": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "codigo_resultado",
+      "proposito": "Predecir la salida y contrastarla con la ejecución mental de un fragmento corto.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "lenguaje": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 24,
+          "max_lineas": 1,
+          "descripcion": "Etiqueta de lenguaje o entorno, sin efecto en el motor.",
+          "marcador": "lenguaje"
+        },
+        "codigo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 330,
+          "max_lineas": 5,
+          "descripcion": "Programa o consulta breve; los datos de entrada deben quedar claros.",
+          "marcador": "codigo"
+        },
+        "resultado": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 130,
+          "max_lineas": 2,
+          "descripcion": "Salida literal, sin mezclar explicaciones dentro del bloque de resultado.",
+          "marcador": "resultado"
+        }
+      },
+      "ejemplo": {
+        "tipo": "codigo_resultado",
+        "titulo": "El orden importa en una lista",
+        "lenguaje": "JAVA 21",
+        "codigo": "var valores = new ArrayList<Integer>();\nvalores.add(10);\nvalores.add(0, 5);\nSystem.out.println(valores);",
+        "resultado": "[5, 10]"
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Código en Consolas 21 pt, hasta 65 columnas recomendadas; salida en Consolas 22 pt."
+      ],
+      "pagina": 8
+    },
+    "comparacion": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "comparacion",
+      "proposito": "Contrastar dos conceptos siguiendo el mismo criterio y evitando falsas equivalencias.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "izquierda_titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Nombre de la primera alternativa.",
+          "marcador": "izquierda_titulo"
+        },
+        "izquierda_contenido": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 210,
+          "max_lineas": 6,
+          "descripcion": "Características de la primera alternativa según un criterio común.",
+          "marcador": "izquierda_contenido"
+        },
+        "derecha_titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Nombre de la segunda alternativa.",
+          "marcador": "derecha_titulo"
+        },
+        "derecha_contenido": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 210,
+          "max_lineas": 6,
+          "descripcion": "Características comparables con las de la columna izquierda.",
+          "marcador": "derecha_contenido"
+        }
+      },
+      "ejemplo": {
+        "tipo": "comparacion",
+        "titulo": "Herencia frente a composición",
+        "izquierda_titulo": "Herencia: es un",
+        "izquierda_contenido": "Una subclase especializa un tipo.\nComparte su contrato y puede redefinir comportamiento.\nEjemplo: Perro es un Animal.",
+        "derecha_titulo": "Composición: tiene un",
+        "derecha_contenido": "Un objeto colabora con otros objetos.\nDelega trabajo sin pertenecer a su jerarquía.\nEjemplo: Coche tiene un Motor."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas."
+      ],
+      "pagina": 9
+    },
+    "antes_despues": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "antes_despues",
+      "proposito": "Mostrar qué cambia tras una refactorización o transformación y qué propiedad se conserva.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "antes_titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 36,
+          "max_lineas": 1,
+          "descripcion": "Estado de partida o limitación inicial.",
+          "marcador": "antes_titulo"
+        },
+        "antes_contenido": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 230,
+          "max_lineas": 7,
+          "descripcion": "Código o texto del estado inicial.",
+          "marcador": "antes_contenido"
+        },
+        "despues_titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 36,
+          "max_lineas": 1,
+          "descripcion": "Estado transformado o mejora conseguida.",
+          "marcador": "despues_titulo"
+        },
+        "despues_contenido": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 230,
+          "max_lineas": 7,
+          "descripcion": "Versión comparable con el estado inicial.",
+          "marcador": "despues_contenido"
+        },
+        "conclusion": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 140,
+          "max_lineas": 2,
+          "descripcion": "Síntesis de la transformación y sus límites.",
+          "marcador": "conclusion"
+        }
+      },
+      "ejemplo": {
+        "tipo": "antes_despues",
+        "titulo": "Separar una decisión de su resultado",
+        "antes_titulo": "Condición repetida",
+        "antes_contenido": "if (edad >= 18) {\n    permitirAcceso();\n}\nif (edad >= 18) {\n    mostrarPanel();\n}",
+        "despues_titulo": "Intención explícita",
+        "despues_contenido": "boolean esMayor = edad >= 18;\nif (esMayor) {\n    permitirAcceso();\n    mostrarPanel();\n}",
+        "conclusion": "El nombre expresa la intención; comprueba que agrupar las acciones conserva el comportamiento."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Ambos bloques usan Consolas 19 pt; hasta 33 caracteres por línea recomendados."
+      ],
+      "pagina": 10
+    },
+    "error_correccion": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "error_correccion",
+      "proposito": "Identificar un error concreto, explicar su causa y mostrar la corrección mínima.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "codigo_error": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 230,
+          "max_lineas": 7,
+          "descripcion": "Fragmento incorrecto, sin ambigüedad sobre la línea que falla.",
+          "marcador": "codigo_error"
+        },
+        "codigo_correcto": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 230,
+          "max_lineas": 7,
+          "descripcion": "Corrección del mismo ejemplo, no un programa distinto.",
+          "marcador": "codigo_correcto"
+        },
+        "explicacion": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 150,
+          "max_lineas": 2,
+          "descripcion": "Causa del error y principio que evita repetirlo.",
+          "marcador": "explicacion"
+        }
+      },
+      "ejemplo": {
+        "tipo": "error_correccion",
+        "titulo": "Un tipo incompatible no se convierte solo",
+        "codigo_error": "String edadTexto = \"18\";\nint edad = edadTexto;\n// Error de compilación",
+        "codigo_correcto": "String edadTexto = \"18\";\nint edad =\n    Integer.parseInt(edadTexto);",
+        "explicacion": "String e int son tipos distintos. parseInt interpreta el texto y puede fallar si no representa un entero."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Código en Consolas 19 pt; hasta 34 caracteres por línea recomendados."
+      ],
+      "pagina": 11
+    },
+    "pasos": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "pasos",
+      "proposito": "Explicar un procedimiento de tres a cinco acciones secuenciales sin ocultar sus comprobaciones.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "paso_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 2,
+          "descripcion": "Acción 1: comienza con un verbo y describe un resultado verificable.",
+          "marcador": "paso_1"
+        },
+        "paso_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 2,
+          "descripcion": "Acción 2: comienza con un verbo y describe un resultado verificable.",
+          "marcador": "paso_2"
+        },
+        "paso_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 2,
+          "descripcion": "Acción 3: comienza con un verbo y describe un resultado verificable.",
+          "marcador": "paso_3"
+        },
+        "paso_4": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 120,
+          "max_lineas": 2,
+          "descripcion": "Acción 4: comienza con un verbo y describe un resultado verificable.",
+          "marcador": "paso_4"
+        },
+        "paso_5": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 120,
+          "max_lineas": 2,
+          "descripcion": "Acción 5: comienza con un verbo y describe un resultado verificable.",
+          "marcador": "paso_5"
+        }
+      },
+      "ejemplo": {
+        "tipo": "pasos",
+        "titulo": "De un cambio local a una entrega revisada",
+        "paso_1": "Revisa los cambios con git diff y ejecuta las pruebas.",
+        "paso_2": "Añade únicamente los archivos pertinentes con git add.",
+        "paso_3": "Crea un commit con un mensaje que explique la intención.",
+        "paso_4": "Publica la rama y abre una solicitud de integración.",
+        "paso_5": "Comprueba la revisión y el resultado de CI antes de integrar."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Cinco filas fijas numeradas. Los pasos 1–3 son obligatorios; 4–5 son opcionales y dejan la fila vacía al omitirse.",
+        "No cambia el número de filas ni renumera pasos. Para tres pasos deja vacíos ambos últimos; no omitas uno intermedio."
+      ],
+      "pagina": 12
+    },
+    "tabla": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "tabla",
+      "proposito": "Explicar datos o correspondencias mediante una tabla nativa editable de estructura constante.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "encabezado_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 32,
+          "max_lineas": 2,
+          "descripcion": "Cabecera de la columna 1.",
+          "marcador": "encabezado_1"
+        },
+        "encabezado_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 32,
+          "max_lineas": 2,
+          "descripcion": "Cabecera de la columna 2.",
+          "marcador": "encabezado_2"
+        },
+        "encabezado_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 32,
+          "max_lineas": 2,
+          "descripcion": "Cabecera de la columna 3.",
+          "marcador": "encabezado_3"
+        },
+        "fila_1_col_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 1, columna 1; dos líneas como máximo.",
+          "marcador": "fila_1_col_1"
+        },
+        "fila_1_col_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 1, columna 2; dos líneas como máximo.",
+          "marcador": "fila_1_col_2"
+        },
+        "fila_1_col_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 1, columna 3; dos líneas como máximo.",
+          "marcador": "fila_1_col_3"
+        },
+        "fila_2_col_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 2, columna 1; dos líneas como máximo.",
+          "marcador": "fila_2_col_1"
+        },
+        "fila_2_col_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 2, columna 2; dos líneas como máximo.",
+          "marcador": "fila_2_col_2"
+        },
+        "fila_2_col_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 2, columna 3; dos líneas como máximo.",
+          "marcador": "fila_2_col_3"
+        },
+        "fila_3_col_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 3, columna 1; dos líneas como máximo.",
+          "marcador": "fila_3_col_1"
+        },
+        "fila_3_col_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 3, columna 2; dos líneas como máximo.",
+          "marcador": "fila_3_col_2"
+        },
+        "fila_3_col_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 3, columna 3; dos líneas como máximo.",
+          "marcador": "fila_3_col_3"
+        },
+        "fila_4_col_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 4, columna 1; dos líneas como máximo.",
+          "marcador": "fila_4_col_1"
+        },
+        "fila_4_col_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 4, columna 2; dos líneas como máximo.",
+          "marcador": "fila_4_col_2"
+        },
+        "fila_4_col_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 42,
+          "max_lineas": 2,
+          "descripcion": "Texto de la fila 4, columna 3; dos líneas como máximo.",
+          "marcador": "fila_4_col_3"
+        },
+        "nota": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 100,
+          "max_lineas": 1,
+          "descripcion": "Aclaración de lectura, no una fila adicional.",
+          "marcador": "nota"
+        }
+      },
+      "ejemplo": {
+        "tipo": "tabla",
+        "titulo": "Una clave foránea relaciona filas",
+        "encabezado_1": "Columna",
+        "encabezado_2": "Tipo SQL",
+        "encabezado_3": "Restricción",
+        "fila_1_col_1": "id",
+        "fila_1_col_2": "INTEGER",
+        "fila_1_col_3": "PRIMARY KEY",
+        "fila_2_col_1": "alumno_id",
+        "fila_2_col_2": "INTEGER",
+        "fila_2_col_3": "FK a alumno(id)",
+        "fila_3_col_1": "curso_id",
+        "fila_3_col_2": "INTEGER",
+        "fila_3_col_3": "FK a curso(id)",
+        "fila_4_col_1": "nota",
+        "fila_4_col_2": "DECIMAL(4,2)",
+        "fila_4_col_3": "CHECK entre 0 y 10",
+        "nota": "Ejemplo de una tabla matricula: cada clave foránea referencia una clave de otra tabla."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Tabla fija de tres columnas, una cabecera y cuatro filas de datos. Todas las celdas son campos de texto obligatorios.",
+        "No admite listas JSON, inserción de filas ni celdas combinadas. Celdas Aptos 20 pt; recomienda hasta 26 caracteres por línea."
+      ],
+      "pagina": 13
+    },
+    "diagrama_flujo": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "diagrama_flujo",
+      "proposito": "Representar una secuencia lineal de cuatro etapas con cajas y conectores nativos editables.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "contexto": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 140,
+          "max_lineas": 2,
+          "descripcion": "Entrada o contexto necesario para interpretar el proceso.",
+          "marcador": "contexto"
+        },
+        "etapa_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 26,
+          "max_lineas": 2,
+          "descripcion": "Nombre y resultado breve de la etapa 1.",
+          "marcador": "etapa_1"
+        },
+        "etapa_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 26,
+          "max_lineas": 2,
+          "descripcion": "Nombre y resultado breve de la etapa 2.",
+          "marcador": "etapa_2"
+        },
+        "etapa_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 26,
+          "max_lineas": 2,
+          "descripcion": "Nombre y resultado breve de la etapa 3.",
+          "marcador": "etapa_3"
+        },
+        "etapa_4": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 26,
+          "max_lineas": 2,
+          "descripcion": "Nombre y resultado breve de la etapa 4.",
+          "marcador": "etapa_4"
+        },
+        "conclusion": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 160,
+          "max_lineas": 2,
+          "descripcion": "Idea final sobre el flujo, sus dependencias o su resultado.",
+          "marcador": "conclusion"
+        }
+      },
+      "ejemplo": {
+        "tipo": "diagrama_flujo",
+        "titulo": "Del fuente al programa en ejecución",
+        "contexto": "El compilador y la máquina virtual cumplen funciones distintas.",
+        "etapa_1": "Fuente\n.java",
+        "etapa_2": "Compilar\njavac",
+        "etapa_3": "Bytecode\n.class",
+        "etapa_4": "Ejecutar\nJVM",
+        "conclusion": "Compilar comprueba y transforma el fuente; ejecutar pone en marcha el bytecode."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Cuatro etapas obligatorias y tres flechas izquierda → derecha. No admite decisiones, bucles ni topología variable.",
+        "Las cajas, textos y conectores están desagrupados. Para otro número de etapas diseña otro tipo en PowerPoint."
+      ],
+      "pagina": 14
+    },
+    "relaciones_clases": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "relaciones_clases",
+      "proposito": "Explicar una jerarquía pequeña: dos clases especializan una base común y comparten un contrato.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "clase_base": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 28,
+          "max_lineas": 1,
+          "descripcion": "Nombre de la clase base; sin lista de clases.",
+          "marcador": "clase_base"
+        },
+        "miembros_base": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 54,
+          "max_lineas": 2,
+          "descripcion": "Dos atributos u operaciones significativos de la clase base.",
+          "marcador": "miembros_base"
+        },
+        "clase_izquierda": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 28,
+          "max_lineas": 1,
+          "descripcion": "Nombre de la clase izquierda; sin lista de clases.",
+          "marcador": "clase_izquierda"
+        },
+        "miembros_izquierda": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 64,
+          "max_lineas": 2,
+          "descripcion": "Dos atributos u operaciones significativos de la clase izquierda.",
+          "marcador": "miembros_izquierda"
+        },
+        "clase_derecha": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 28,
+          "max_lineas": 1,
+          "descripcion": "Nombre de la clase derecha; sin lista de clases.",
+          "marcador": "clase_derecha"
+        },
+        "miembros_derecha": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 64,
+          "max_lineas": 2,
+          "descripcion": "Dos atributos u operaciones significativos de la clase derecha.",
+          "marcador": "miembros_derecha"
+        }
+      },
+      "ejemplo": {
+        "tipo": "relaciones_clases",
+        "titulo": "Una base común, comportamientos distintos",
+        "clase_base": "Animal",
+        "miembros_base": "+ nombre: String\n+ emitirSonido(): void",
+        "clase_izquierda": "Perro",
+        "miembros_izquierda": "+ emitirSonido(): void\n+ traerPelota(): void",
+        "clase_derecha": "Gato",
+        "miembros_derecha": "+ emitirSonido(): void\n+ trepar(): void"
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Jerarquía fija de tres clases: las dos inferiores heredan de la superior. Las flechas apuntan a la base.",
+        "Esquema didáctico con flechas sólidas, no notación UML completa. No representa composición ni multiplicidades.",
+        "Miembros en Consolas 18 pt: hasta 27 caracteres por línea en la base y 32 en las especializaciones. No genera cajas ni relaciones adicionales."
+      ],
+      "pagina": 15
+    },
+    "caso_practico": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "caso_practico",
+      "proposito": "Plantear una tarea aplicable con contexto, requisitos observables y un criterio de éxito.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "contexto": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 180,
+          "max_lineas": 7,
+          "descripcion": "Situación, usuarios y necesidad real; no presupongas tecnología no explicada.",
+          "marcador": "contexto"
+        },
+        "requisitos": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 260,
+          "max_lineas": 6,
+          "descripcion": "Condiciones verificables separadas por saltos; no uses una lista JSON.",
+          "marcador": "requisitos"
+        },
+        "objetivo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 90,
+          "max_lineas": 2,
+          "descripcion": "Qué podrá demostrarse al terminar, no una solución completa.",
+          "marcador": "objetivo"
+        }
+      },
+      "ejemplo": {
+        "tipo": "caso_practico",
+        "titulo": "Guardar pedidos sin perder sus líneas",
+        "contexto": "Una tienda registra un pedido y sus líneas en tablas distintas.\nUn fallo no debe dejar medio pedido guardado.",
+        "requisitos": "Insertar cabecera y líneas en una transacción.\nConfirmar solo si todas las operaciones terminan.\nDeshacer los cambios ante un error.\nCerrar los recursos JDBC.",
+        "objetivo": "Demostrar que un fallo en una línea no deja datos parciales."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas."
+      ],
+      "pagina": 16
+    },
+    "advertencia": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "advertencia",
+      "proposito": "Prevenir un error frecuente explicando su causa y una práctica alternativa concreta.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "error": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 110,
+          "max_lineas": 2,
+          "descripcion": "Conducta o idea equivocada descrita sin culpabilizar al alumno.",
+          "marcador": "error"
+        },
+        "motivo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 110,
+          "max_lineas": 2,
+          "descripcion": "Consecuencia y causa técnica que justifican la advertencia.",
+          "marcador": "motivo"
+        },
+        "recomendacion": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 110,
+          "max_lineas": 2,
+          "descripcion": "Acción concreta y realizable que evita el problema.",
+          "marcador": "recomendacion"
+        }
+      },
+      "ejemplo": {
+        "tipo": "advertencia",
+        "titulo": "Capturar una excepción no es resolverla",
+        "error": "Usar un catch vacío para que el programa continúe.",
+        "motivo": "El fallo desaparece de la vista, pero el estado puede quedar incompleto y la causa sin registrar.",
+        "recomendacion": "Captura solo lo que puedas tratar. Informa del contexto y conserva la causa al propagar."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas."
+      ],
+      "pagina": 17
+    },
+    "resumen": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "resumen",
+      "proposito": "Cerrar una explicación con tres ideas conectadas y un principio transferible a otros problemas.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "idea_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 3,
+          "descripcion": "Idea clave 1, expresada como una afirmación comprensible.",
+          "marcador": "idea_1"
+        },
+        "idea_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 3,
+          "descripcion": "Idea clave 2, expresada como una afirmación comprensible.",
+          "marcador": "idea_2"
+        },
+        "idea_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 120,
+          "max_lineas": 3,
+          "descripcion": "Idea clave 3, expresada como una afirmación comprensible.",
+          "marcador": "idea_3"
+        },
+        "recuerda": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 90,
+          "max_lineas": 5,
+          "descripcion": "Principio breve que conecta las tres ideas y orienta su aplicación.",
+          "marcador": "recuerda"
+        }
+      },
+      "ejemplo": {
+        "tipo": "resumen",
+        "titulo": "Normalizar es decidir dónde vive cada dato",
+        "idea_1": "La clave identifica una fila; no basta con que un valor parezca único en los ejemplos.",
+        "idea_2": "Las dependencias ayudan a detectar datos repetidos y anomalías de actualización.",
+        "idea_3": "Descomponer exige conservar la información y comprobar cómo se reconstruirá mediante consultas.",
+        "recuerda": "Cada hecho en su lugar, con claves que permitan relacionarlo."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas."
+      ],
+      "pagina": 18
+    },
+    "terminal": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "terminal",
+      "proposito": "Leer una sesión de consola distinguiendo instrucciones escritas y respuestas de la herramienta.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "comandos": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 230,
+          "max_lineas": 4,
+          "descripcion": "Comandos en orden; incluye el prompt solo si ayuda a distinguir el entorno.",
+          "marcador": "comandos"
+        },
+        "salida": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 260,
+          "max_lineas": 4,
+          "descripcion": "Salida representativa de los comandos, sin inventar resultados que contradigan el ejemplo.",
+          "marcador": "salida"
+        },
+        "nota": {
+          "tipo_dato": "string",
+          "obligatorio": false,
+          "max_caracteres": 110,
+          "max_lineas": 1,
+          "descripcion": "Aclaración sobre el estado previo o el entorno.",
+          "marcador": "nota"
+        }
+      },
+      "ejemplo": {
+        "tipo": "terminal",
+        "titulo": "Inspeccionar antes de confirmar cambios",
+        "comandos": "git status --short\ngit diff --stat\ngit log -1 --oneline",
+        "salida": " M src/Alumno.java\n src/Alumno.java | 2 +-\n8a3c120 Validar la nota antes de guardarla",
+        "nota": "Salida ilustrativa de un repositorio local; los identificadores de commit dependen del historial."
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Comandos Consolas 20 pt y salida Consolas 19 pt; hasta 65 caracteres por línea recomendados. No se ejecutan comandos."
+      ],
+      "pagina": 19
+    },
+    "concepto_visual": {
+      "metadatos_version": 1,
+      "contrato_version": 1,
+      "tipo": "concepto_visual",
+      "proposito": "Fijar una idea central con tres anclajes visuales breves en lugar de un párrafo largo.",
+      "campos": {
+        "titulo": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 80,
+          "max_lineas": 2,
+          "descripcion": "Título breve que anticipa la idea de la diapositiva.",
+          "marcador": "titulo"
+        },
+        "concepto": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 28,
+          "max_lineas": 1,
+          "descripcion": "Concepto o relación central, no una frase explicativa larga.",
+          "marcador": "concepto"
+        },
+        "explicacion": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 130,
+          "max_lineas": 2,
+          "descripcion": "Explicación breve que conecta el concepto con sus tres apoyos.",
+          "marcador": "explicacion"
+        },
+        "apoyo_1": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 44,
+          "max_lineas": 2,
+          "descripcion": "Apoyo visual 1: ejemplo, propiedad o consecuencia del concepto.",
+          "marcador": "apoyo_1"
+        },
+        "apoyo_2": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 44,
+          "max_lineas": 2,
+          "descripcion": "Apoyo visual 2: ejemplo, propiedad o consecuencia del concepto.",
+          "marcador": "apoyo_2"
+        },
+        "apoyo_3": {
+          "tipo_dato": "string",
+          "obligatorio": true,
+          "max_caracteres": 44,
+          "max_lineas": 2,
+          "descripcion": "Apoyo visual 3: ejemplo, propiedad o consecuencia del concepto.",
+          "marcador": "apoyo_3"
+        }
+      },
+      "ejemplo": {
+        "tipo": "concepto_visual",
+        "titulo": "Un documento, tres formas de estructurar datos",
+        "concepto": "Estructura y significado",
+        "explicacion": "La sintaxis organiza los datos; el contrato permite interpretarlos y comprobar si son válidos.",
+        "apoyo_1": "HTML\nContenido y semántica",
+        "apoyo_2": "XML\nElementos y atributos",
+        "apoyo_3": "JSON\nObjetos y listas"
+      },
+      "restricciones": [
+        "Composición fija y texto literal. Divide el contenido en varias diapositivas si no cabe.",
+        "Los máximos cuentan caracteres y saltos explícitos, no el ajuste visual. Revisa las líneas largas.",
+        "Tres apoyos fijos de texto; no son imágenes variables ni una lista JSON."
+      ],
+      "pagina": 20
+    }
+  }
+}
