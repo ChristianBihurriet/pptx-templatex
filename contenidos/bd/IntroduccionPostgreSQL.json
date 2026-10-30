@@ -1,0 +1,278 @@
+{
+  "titulo": "Introducción a PostgreSQL",
+  "modulo": "Bases de Datos",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Introducción a PostgreSQL",
+      "subtitulo": "Bases de Datos · 1.º DAM\nDel modelo relacional a nuestras primeras tablas\nDuración orientativa: 60 minutos"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una academia necesita organizar sus datos",
+      "situacion": "Una academia guarda alumnos, profesores y cursos en varios archivos.",
+      "problema": "Hay nombres repetidos, datos desactualizados y cursos con profesores que ya no aparecen en los archivos.",
+      "pregunta": "¿Cómo guardaríamos la información para mantenerla organizada y coherente?"
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "El recorrido de hoy",
+      "paso_1": "Qué son una base de datos, un SGBD y PostgreSQL · 10 min.",
+      "paso_2": "Servidor, base de datos, esquema y tabla · 10 min.",
+      "paso_3": "Elegir tipos de datos adecuados · 10 min.",
+      "paso_4": "Crear una tabla con claves y restricciones · 15 min.",
+      "paso_5": "Relacionar profesores y cursos · 15 min."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Una base de datos organiza información",
+      "contenido": "Una base de datos es un conjunto organizado de información.\nEn nuestra academia guardaremos datos de alumnos, profesores y cursos.\nEn el modelo relacional, los datos se representan en tablas relacionadas mediante claves.\nEs el modelo que ya habéis trabajado sobre el papel."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "¿Quién gestiona esa información?",
+      "contenido": "Un sistema gestor de bases de datos, o SGBD, es el software que permite almacenar, consultar y gestionar los datos.\nTambién controla accesos y comprueba reglas para mantener la información coherente.",
+      "ejemplo": "Base de datos:\nacademia\n\nSGBD:\nPostgreSQL"
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "PostgreSQL será nuestro SGBD",
+      "concepto": "PostgreSQL",
+      "explicacion": "Un SGBD relacional, libre y de código abierto con el que llevaremos nuestros diseños a tablas reales.",
+      "apoyo_1": "Relacional\nTablas y claves",
+      "apoyo_2": "Libre\nUso y modificación",
+      "apoyo_3": "Código abierto\nCódigo accesible"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "PostgreSQL y SQL cumplen funciones distintas",
+      "izquierda_titulo": "PostgreSQL: el sistema",
+      "izquierda_contenido": "Gestiona las bases de datos.\nAlmacena la información.\nEjecuta instrucciones y comprueba restricciones.",
+      "derecha_titulo": "SQL: el lenguaje",
+      "derecha_contenido": "Expresa instrucciones para el SGBD.\nPermite crear tablas, guardar datos y consultarlos.\nLo utilizaremos para comunicarnos con PostgreSQL."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Del diseño a las instrucciones",
+      "contenido": "Hasta ahora hemos decidido qué datos guardar y cómo relacionarlos.\nHoy describiremos esas decisiones mediante SQL.\nCREATE TABLE crea una tabla: define sus columnas, tipos y reglas.\nCrear la estructura no añade alumnos ni cursos; inicialmente, la tabla estará vacía."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "Organización: de lo general a lo concreto",
+      "contexto": "Cada nivel contiene u organiza elementos del siguiente. Las flechas representan esta jerarquía.",
+      "etapa_1": "Servidor\nPostgreSQL",
+      "etapa_2": "Base de datos\nacademia",
+      "etapa_3": "Esquema\npublic",
+      "etapa_4": "Tablas\nalumnos, cursos",
+      "conclusion": "El servidor gestiona bases de datos; cada base contiene esquemas y cada esquema organiza tablas y otros objetos."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "El esquema public",
+      "contenido": "Un esquema organiza y agrupa tablas y otros objetos dentro de una base de datos.\nUsaremos el esquema public, habitual al empezar.\nEl nombre completo public.alumnos indica en qué esquema está la tabla.\npublic es un nombre de esquema: no significa que los datos sean públicos.",
+      "ejemplo": "Base: academia\nEsquema: public\nTabla: alumnos\n\npublic.alumnos"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Una tabla tiene columnas y filas",
+      "encabezado_1": "id",
+      "encabezado_2": "nombre",
+      "encabezado_3": "edad",
+      "fila_1_col_1": "1",
+      "fila_1_col_2": "Ana",
+      "fila_1_col_3": "18",
+      "fila_2_col_1": "2",
+      "fila_2_col_2": "Luis",
+      "fila_2_col_3": "20",
+      "fila_3_col_1": "3",
+      "fila_3_col_2": "Marta",
+      "fila_3_col_3": "19",
+      "fila_4_col_1": "4",
+      "fila_4_col_2": "Pablo",
+      "fila_4_col_3": "18",
+      "nota": "Tabla alumnos: cada fila representa un alumno y cada columna, un atributo."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Columnas, filas y valores",
+      "contenido": "Columna o atributo: un dato que guardamos de todos los alumnos, como nombre.\nFila o registro: los datos de un alumno concreto.\nUna celda contiene el valor de una columna en una fila.\nCada columna tiene un tipo de datos: decide qué clase de valores admite."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Tipos básicos: números y texto",
+      "encabezado_1": "Tipo",
+      "encabezado_2": "Uso",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "INTEGER",
+      "fila_1_col_2": "Números enteros",
+      "fila_1_col_3": "edad: 18",
+      "fila_2_col_1": "VARCHAR(100)",
+      "fila_2_col_2": "Texto de hasta 100 caracteres",
+      "fila_2_col_3": "nombre: Ana",
+      "fila_3_col_1": "TEXT",
+      "fila_3_col_2": "Texto sin límite declarado",
+      "fila_3_col_3": "descripcion: Curso inicial",
+      "fila_4_col_1": "NUMERIC(10,2)",
+      "fila_4_col_2": "Decimales exactos",
+      "fila_4_col_3": "precio: 149.90",
+      "nota": "El tipo se elige según el significado y las operaciones que necesitamos."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Tipos básicos: estados, fechas y horas",
+      "encabezado_1": "Tipo o valor",
+      "encabezado_2": "Uso",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "BOOLEAN",
+      "fila_1_col_2": "Verdadero o falso",
+      "fila_1_col_3": "activo: TRUE",
+      "fila_2_col_1": "DATE",
+      "fila_2_col_2": "Fecha sin hora",
+      "fila_2_col_3": "2026-10-27",
+      "fila_3_col_1": "TIMESTAMP",
+      "fila_3_col_2": "Fecha y hora, sin zona horaria",
+      "fila_3_col_3": "2026-10-27 09:30:00",
+      "fila_4_col_1": "NULL",
+      "fila_4_col_2": "Ausencia de valor; no es un tipo",
+      "fila_4_col_3": "fecha todavía desconocida",
+      "nota": "TIMESTAMP equivale aquí a TIMESTAMP WITHOUT TIME ZONE."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "NUMERIC(10,2): ¿qué significan esos números?",
+      "contenido": "NUMERIC almacena números decimales exactos, útiles para precios.\n10 indica el máximo total de dígitos y 2, los decimales.\nQuedan hasta 8 dígitos antes del separador decimal.\nEn SQL escribiremos los decimales con punto.",
+      "ejemplo": "NUMERIC(10,2)\n\n149.90\n99999999.99"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Cómo guardarías un número de teléfono?",
+      "contenido": "¿Elegirías INTEGER o VARCHAR?\nPiensa en estos valores:\n+34 612 345 678\n0112345678\n¿Necesitamos sumar o multiplicar teléfonos?\n¿Qué ocurriría con los ceros iniciales y el prefijo?"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Un teléfono es un identificador, no una cantidad",
+      "contenido": "Usamos VARCHAR porque queremos conservar el teléfono como texto.\nPuede incluir prefijos, espacios y ceros iniciales.\nQue un dato contenga dígitos no significa que debamos tratarlo como un número para hacer cálculos.",
+      "ejemplo": "telefono VARCHAR(25)\n\n'+34 612 345 678'\n'0112345678'"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Las restricciones protegen los datos",
+      "contenido": "Un tipo indica qué clase de valor cabe en una columna.\nUna restricción añade una regla que los datos deben respetar.\nINTEGER admite enteros negativos, pero una edad no debería ser negativa.\nPostgreSQL rechaza las operaciones que incumplen una restricción: la regla vive en la base de datos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "PRIMARY KEY y FOREIGN KEY",
+      "izquierda_titulo": "PK: identifica una fila",
+      "izquierda_contenido": "PRIMARY KEY evita duplicados y NULL.\nCada tabla tiene como máximo una PK.\nPuede estar formada por una o varias columnas.",
+      "derecha_titulo": "FK: relaciona tablas",
+      "derecha_contenido": "FOREIGN KEY referencia una clave de otra tabla.\nUn valor no nulo debe existir en la clave referenciada.\nVarios cursos pueden repetir el mismo profesor_id."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "NOT NULL y UNIQUE",
+      "izquierda_titulo": "NOT NULL: debe haber un valor",
+      "izquierda_contenido": "Impide almacenar NULL.\nNULL representa un valor ausente o desconocido.\nNo impide por sí solo que un texto sea una cadena vacía.",
+      "derecha_titulo": "UNIQUE: evita duplicados",
+      "derecha_contenido": "Impide repetir valores no nulos.\nPor defecto, permite varios NULL en PostgreSQL.\nPara exigir un valor único y presente: UNIQUE y NOT NULL."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "CHECK comprueba una condición",
+      "contenido": "CHECK permite expresar una regla sobre los valores.\nLa condición edad >= 0 rechaza edades negativas.\nSi edad es NULL, esta comprobación no lo rechaza.\nPara exigir una edad conocida y no negativa, combinamos NOT NULL con CHECK.",
+      "ejemplo": "edad INTEGER\n    NOT NULL\n    CHECK (edad >= 0)"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Nuestra primera tabla: alumnos",
+      "lenguaje": "SQL · PostgreSQL",
+      "codigo": "CREATE TABLE alumnos (\n    id INTEGER PRIMARY KEY,\n    nombre VARCHAR(100) NOT NULL,\n    email VARCHAR(150) UNIQUE,\n    edad INTEGER CHECK (edad >= 0)\n);"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Leer la estructura de CREATE TABLE",
+      "codigo": "CREATE TABLE alumnos (\n    id INTEGER PRIMARY KEY,\n    nombre VARCHAR(100) NOT NULL,\n    email VARCHAR(150) UNIQUE,\n    edad INTEGER CHECK (edad >= 0)\n);",
+      "explicacion": "CREATE TABLE indica qué crear.\nalumnos es el nombre.\nLos paréntesis agrupan las columnas.\nLas comas separan definiciones.\nEl punto y coma termina la instrucción."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Leer cada columna de alumnos",
+      "encabezado_1": "Columna",
+      "encabezado_2": "Tipo",
+      "encabezado_3": "Regla",
+      "fila_1_col_1": "id",
+      "fila_1_col_2": "INTEGER",
+      "fila_1_col_3": "Identificador único y no nulo",
+      "fila_2_col_1": "nombre",
+      "fila_2_col_2": "VARCHAR(100)",
+      "fila_2_col_3": "Valor obligatorio",
+      "fila_3_col_1": "email",
+      "fila_3_col_2": "VARCHAR(150)",
+      "fila_3_col_3": "No repetir valores no nulos",
+      "fila_4_col_1": "edad",
+      "fila_4_col_2": "INTEGER",
+      "fila_4_col_3": "No admitir números negativos",
+      "nota": "En este ejemplo, email y edad pueden ser NULL; el id se proporciona manualmente."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué aceptará PostgreSQL?",
+      "contenido": "Imagina cada caso por separado:\nDos alumnos con el mismo id.\nUn alumno con nombre NULL.\nDos alumnos con el mismo email no nulo.\nUn alumno con edad -1.\nDos alumnos con email NULL.\n¿Qué regla se aplica en cada caso?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Comprobamos las predicciones",
+      "contenido": "Mismo id: rechazado por PRIMARY KEY.\nNombre NULL: rechazado por NOT NULL.\nMismo email no nulo: rechazado por UNIQUE.\nEdad -1: rechazada por CHECK.\nVarios emails NULL: permitidos por UNIQUE, tal como está declarada.\nEdad NULL: permitida porque no hemos añadido NOT NULL."
+    },
+    {
+      "tipo": "antes_despues",
+      "titulo": "Del dato repetido a una relación",
+      "antes_titulo": "Nombre en cada curso",
+      "antes_contenido": "Curso: Java\nProfesor: Ana Ruiz\n\nCurso: Bases de Datos\nProfesor: Ana Ruiz",
+      "despues_titulo": "Profesor en su propia tabla",
+      "despues_contenido": "Profesores: 7, Ana Ruiz\n\nCurso: Java, profesor_id: 7\nCurso: Bases de Datos, profesor_id: 7",
+      "conclusion": "El nombre se guarda una sola vez. Los cursos guardan una referencia al profesor."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Primero creamos la tabla referenciada",
+      "codigo": "CREATE TABLE profesores (\n    id INTEGER PRIMARY KEY,\n    nombre VARCHAR(100) NOT NULL\n);",
+      "explicacion": "Cada fila representa un profesor.\nid es su clave primaria.\nEl nombre es obligatorio.\nCreamos esta tabla antes de crear la FK que la referencia."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Después creamos cursos y su clave foránea",
+      "codigo": "CREATE TABLE cursos (\n    id INTEGER PRIMARY KEY,\n    nombre VARCHAR(100) NOT NULL,\n    profesor_id INTEGER\n        REFERENCES profesores(id)\n);",
+      "explicacion": "profesor_id es la clave foránea.\nREFERENCES indica la tabla y columna de destino.\nTodo profesor_id no nulo debe existir en profesores.id."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Interpreta la relación entre profesores y cursos",
+      "contenido": "¿Qué relación existe entre profesores y cursos?\n¿Dónde está la clave foránea?\n¿Por qué guardamos profesor_id y no el nombre del profesor en cada curso?\n¿Qué ocurriría si asignamos un profesor_id inexistente?\n¿Podemos dejar profesor_id en NULL con esta definición?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Una relación de uno a muchos",
+      "contenido": "Un profesor puede tener cero, uno o muchos cursos.\nCada curso referencia como máximo a un profesor.\nLa FK está en cursos, en el lado de muchos.\nComo profesor_id admite NULL, un curso puede estar sin asignar.\nSi todos los cursos deben tener profesor, añadimos NOT NULL a profesor_id."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Integridad referencial: referencias válidas",
+      "contenido": "Supongamos que profesores solo contiene los identificadores 7 y 9.\nUn curso puede referenciar al 7 o al 9; ambos existen.\nSi intentamos asignarle el 99, PostgreSQL rechaza la operación.\nLa FK evita que aparezcan referencias a profesores inexistentes.",
+      "ejemplo": "profesor_id = 7\nVálido\n\nprofesor_id = 99\nRechazado"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Conexión con la normalización",
+      "contenido": "Los datos del profesor dependen de su identificador y se guardan en profesores.\nLos datos de cada curso se guardan en cursos.\nSi cambia el nombre de un profesor, se modifica en una sola fila.\nLa FK conserva el vínculo entre ambos: convertir el modelo en SQL mantiene las decisiones del diseño."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Lo que ya sabemos llevar a PostgreSQL",
+      "idea_1": "PostgreSQL es el SGBD; SQL es el lenguaje. Las tablas se organizan dentro de esquemas y bases de datos.",
+      "idea_2": "Cada columna tiene un tipo. Las restricciones comprueban las reglas de nuestro modelo.",
+      "idea_3": "La PK identifica filas. La FK relaciona tablas y protege la integridad referencial.",
+      "recuerda": "Primero diseñamos los datos y las reglas; después los expresamos en SQL."
+    }
+  ]
+}
