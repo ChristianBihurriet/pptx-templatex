@@ -22,10 +22,47 @@ python -m venv .venv
 .\.venv\Scripts\pptgen.exe contenidos/programacion/herencia.json --tema dam_oscuro --nombre "Herencia en Java"
 ```
 
+También puedes preparar y verificar automáticamente un clon nuevo con el script
+correspondiente al sistema operativo:
+
+```powershell
+.\scripts\setup-windows.ps1
+```
+
+```bash
+./scripts/setup-ubuntu.sh
+```
+
+Cada sistema debe crear su propio `.venv`; los entornos virtuales no se comparten
+entre Windows y Ubuntu. `.gitattributes` y `.editorconfig` mantienen estables los
+finales de línea del código y tratan los PPTX como archivos binarios.
+
 Resultado: `salida/Herencia en Java.pptx`. Si existe, elige otro nombre o directorio;
 no se sobrescribe. Para uso ordinario basta `pip install -e .`; `[dev]` añade pruebas
 y lint. También puedes usar `python -m pptgen.cli`. En Linux/macOS activa
 `.venv/bin/activate` y utiliza `pptgen`.
+
+### Menú interactivo
+
+Ejecuta `pptgen` sin argumentos para abrir el menú de uso diario:
+
+```text
+PPTGEN — Presentaciones docentes
+
+1. Generar presentaciones
+2. Validar contenidos
+3. Consultar contenidos
+4. Gestionar temas y documentación
+5. Abrir carpeta de salida
+0. Salir
+```
+
+Validar y generar comparten un selector que descubre recursivamente todos los
+archivos `contenidos/**/*.json`. Permite operar sobre un archivo o sobre todos,
+seleccionar tema y salida, y abrir el resultado. La gestión de temas lista tipos y
+campos, valida la plantilla y regenera los catálogos Markdown y JSON desde sus notas.
+El menú no sustituye la interfaz por argumentos: ambos modos utilizan la misma
+validación y generación.
 
 | Argumento | Uso |
 | --- | --- |
@@ -37,10 +74,16 @@ y lint. También puedes usar `python -m pptgen.cli`. En Linux/macOS activa
 | `--listar-temas` | Descubre temas locales e incluidos con el paquete |
 | `--listar-tipos` | Valida el tema y lista sus campos; `*` significa obligatorio |
 | `--documentar-tipos` | Genera `tipos_<tema>.md` y `tipos_<tema>.json` en `--salida` |
+| `--validar-todos` | Valida recursivamente todos los JSON de `contenidos/` |
+| `--generar-todos` | Genera todos los contenidos válidos sin sobrescribir resultados |
 
 Los modos validar/listar/documentar son excluyentes. Documentar no requiere contenido
 y regenera sus archivos derivados. Éxito devuelve 0; errores de datos/tema/archivo,
 1; argumentos incorrectos, 2. Los nombres de salida no pueden contener rutas.
+
+Los lotes continúan tras un error, muestran un resumen y devuelven 1 si falla algún
+contenido. `--generar-todos` usa el nombre de cada JSON para su PPTX y no admite
+`--nombre`.
 
 ## Preparar contenido con cualquier chatbot
 
@@ -143,3 +186,14 @@ silenciosamente. El bloque interno de metadatos no aparece en el archivo final.
 La investigación original está en
 [docs/PLANTILLAS_AUTODESCRIPTIVAS.md](docs/PLANTILLAS_AUTODESCRIPTIVAS.md), marcada
 como antecedente histórico. La guía de autoría describe el sistema vigente.
+
+## Checklist de pendientes
+
+- [ ] **Prompt maestro autogenerado:** unificar `profesor.md`, `formato_json.md` y el catálogo extraído del PPTX. Contenido de la clase por separado.
+- [ ] **Numeración automática:** mostrar `1/13`, `2/13`… en lugar de la posición de la plantilla en la biblioteca.
+- [ ] **Elementos opcionales:** ocultar pasos vacíos y sus elementos gráficos asociados cuando sea posible.
+- [ ] **Interfaz de terminal:** menú para seleccionar JSON, validar, generar PPTX, copiar prompt y abrir carpeta de salida.
+- [ ] **Empaquetado:** PyInstaller para Windows y, posteriormente, Ubuntu. Plantillas externas y editables.
+- [ ] **Documentación técnica:** `ARQUITECTURA.md` y `AGENTS.md` para mantenerlo con Codex o modelos locales.
+- [ ] **Pruebas con distintas IA:** probar ChatGPT, Gemini y Qwen con el mismo prompt y comparar validez del JSON.
+- [ ] **Pulido visual:** revisar las 20 plantillas, corregir diseños flojos y eliminar las que no aporten.
