@@ -1,0 +1,182 @@
+{
+  "titulo": "Tema 9. Colecciones y objetos",
+  "modulo": "Programación",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Tema 9. Colecciones y objetos",
+      "subtitulo": "Programación · 1.º DAM · Java 21\nSesión de 60 minutos\nGestionar listas de objetos y conocer sus alternativas"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "¿Array o lista?",
+      "izquierda_titulo": "Array",
+      "izquierda_contenido": "Longitud fija desde su creación.\nLos elementos sí pueden cambiar.\nEjemplo: doce posiciones para los meses.\nConsulta de longitud: array.length.",
+      "derecha_titulo": "List con ArrayList",
+      "derecha_contenido": "Tamaño variable al añadir o eliminar.\nMantiene una secuencia con posiciones.\nAdmite elementos repetidos.\nConsulta de tamaño: lista.size()."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "La declaración que ya conocemos",
+      "codigo": "import java.util.ArrayList;\nimport java.util.List;\n// Dentro de main:\nList<Producto> productos = new ArrayList<>();",
+      "explicacion": "List es la interfaz; ArrayList, la implementación.\n<Producto> limita el tipo de los elementos.\nNo usamos new List ni tipos crudos.\nCon números usaríamos Integer, no int."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Producto.java · modelo común",
+      "lenguaje": "Java 21",
+      "codigo": "class Producto {\n    private final String codigo;\n    private final String nombre;\n    private final int stock;\n    Producto(String codigo, String nombre, int stock) {\n        this.codigo = codigo;\n        this.nombre = nombre;\n        this.stock = stock;\n    }\n    String getCodigo() { return codigo; }\n    String getNombre() { return nombre; }\n    int getStock() { return stock; }\n}"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: añadir y consultar",
+      "codigo": "Producto teclado = new Producto(\"A1\", \"Teclado\", 5);\nproductos.add(teclado);\nproductos.add(new Producto(\"B2\", \"Raton\", 0));\nSystem.out.println(productos.size()); // 2\nSystem.out.println(productos.get(0).getNombre());",
+      "explicacion": "Partimos de una lista vacía de Producto.\nadd incorpora una referencia al final.\nget(0) devuelve el primer producto.\nsize cuenta elementos, no capacidad interna."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Índices y lista vacía",
+      "encabezado_1": "Operación",
+      "encabezado_2": "Índices válidos",
+      "encabezado_3": "Qué hace",
+      "fila_1_col_1": "get(i)",
+      "fila_1_col_2": "0 hasta size() - 1",
+      "fila_1_col_3": "Consulta una posición",
+      "fila_2_col_1": "set(i, producto)",
+      "fila_2_col_2": "0 hasta size() - 1",
+      "fila_2_col_3": "Sustituye una posición",
+      "fila_3_col_1": "remove(i)",
+      "fila_3_col_2": "0 hasta size() - 1",
+      "fila_3_col_3": "Elimina una posición",
+      "fila_4_col_1": "add(i, producto)",
+      "fila_4_col_2": "0 hasta size()",
+      "fila_4_col_3": "Inserta y desplaza",
+      "nota": "isEmpty() permite comprobar si hay elementos antes de consultar get(0)."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: sustituir no es añadir",
+      "codigo": "Producto anterior = productos.set(0,\n    new Producto(\"C3\", \"Monitor\", 2));\nSystem.out.println(anterior.getNombre());\nSystem.out.println(productos.size());",
+      "explicacion": "set devuelve el objeto anterior y conserva el tamaño.\nLa lista guarda referencias, no copias.\nAñadir dos veces el mismo objeto crea dos posiciones que apuntan a él."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos formas de recorrer",
+      "izquierda_titulo": "for-each: cada objeto",
+      "izquierda_contenido": "for (Producto p : productos) {\n    System.out.println(p.getNombre());\n}\n\nÚsalo si no necesitas la posición.",
+      "derecha_titulo": "for: también la posición",
+      "derecha_contenido": "for (int i = 0;\n        i < productos.size(); i++) {\n    Producto p = productos.get(i);\n    System.out.println(p.getNombre());\n}\nLa condición utiliza <, no <=."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Método: buscar por código",
+      "codigo": "static Producto buscar(\n        List<Producto> productos, String codigo) {\n    for (Producto producto : productos) {\n        if (producto.getCodigo().equals(codigo)) {\n            return producto;\n        }\n    }\n    return null;\n}",
+      "explicacion": "El código no es una posición.\nRecorremos hasta la primera coincidencia.\nreturn termina el método.\nnull significa que no se encontró.\nSe integra en Main.java al final."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: usar el resultado de una búsqueda",
+      "codigo": "Producto encontrado = buscar(productos, \"A1\");\nif (encontrado != null) {\n    System.out.println(encontrado.getNombre());\n} else {\n    System.out.println(\"No encontrado\");\n}",
+      "explicacion": "No llames a métodos sobre null.\ncontains(objeto) e indexOf(objeto) usan equals.\nindexOf devuelve -1 si falta.\nNo buscan automáticamente por el código del producto."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Eliminar: el argumento cambia el significado",
+      "contenido": "productos.remove(0) elimina por índice y devuelve el objeto retirado.\nproductos.remove(teclado) elimina la primera coincidencia según equals y devuelve boolean.\nproductos.clear() vacía la lista.\nCon List<Integer>, remove(1) borra el índice 1. Para borrar el valor 10: remove(Integer.valueOf(10)).\nSi solo borras uno, puedes buscarlo primero y eliminarlo después del recorrido."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: eliminar durante el recorrido",
+      "codigo": "Iterator<Producto> it = productos.iterator();\nwhile (it.hasNext()) {\n    Producto producto = it.next();\n    if (producto.getStock() == 0) {\n        it.remove();\n    }\n}",
+      "explicacion": "Importa java.util.Iterator.\nNo borres con productos.remove dentro de un for-each.\nUsa el remove del iterador tras next.\nOtra opción es recorrer índices desde el final."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: ordenar textos",
+      "codigo": "// Con una lista mutable de String llamada nombres:\nnombres.add(\"Omar\");\nnombres.add(\"Ana\");\nCollections.sort(nombres);\nSystem.out.println(nombres); // [Ana, Omar]",
+      "explicacion": "Importa java.util.Collections.\nList conserva una secuencia; sort la reordena.\nTextos y números tienen orden natural.\nOrdenar Producto requiere un criterio: lo veremos después."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: colección polimórfica",
+      "codigo": "List<Animal> animales = new ArrayList<>();\nanimales.add(new Perro());\nanimales.add(new Gato());\nfor (Animal animal : animales) {\n    animal.emitirSonido();\n}",
+      "explicacion": "Reutiliza Animal, Perro y Gato del tema 6.\nLa referencia es Animal.\nEl tipo real decide qué sonido se ejecuta.\nNo necesitamos preguntar por la clase con instanceof."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "La colección como estado de una clase",
+      "contenido": "Un Catalogo debe tener una lista privada y ofrecer agregar, buscar y eliminar.\nSi no admite códigos repetidos, comprobará esa regla antes de añadir.\nfinal en el atributo impide reasignar la lista, pero no impide add o remove.\nDevolver la lista interna permite saltarse las reglas. Una copia con new ArrayList<>(productos) protege su estructura, pero comparte las referencias a los objetos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Igualdad: identidad y contenido",
+      "izquierda_titulo": "==: mismo objeto",
+      "izquierda_contenido": "Compara referencias.\nDos productos creados con new son distintos aunque compartan código.\nProducto hereda esta igualdad en equals mientras no lo sobrescribamos.",
+      "derecha_titulo": "equals: regla de igualdad",
+      "derecha_contenido": "La clase puede definir equivalencia.\nEjemplo: Contacto reconoce el mismo teléfono.\ncontains, indexOf y remove(Object) dependen de equals.\nPara buscar por atributo podemos recorrer manualmente."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "equals y hashCode: la regla que hay que recordar",
+      "contenido": "Al sobrescribir equals, sobrescribe también hashCode de forma coherente.\nObjetos iguales deben producir el mismo hash; el mismo hash no garantiza igualdad.\nHashSet y las claves de HashMap dependen de ese contrato.\nElige una identidad estable, como teléfono o código, según el dominio.\nLa implementación detallada se trabaja con los ejemplos del README."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Introducción: Set impide duplicados",
+      "codigo": "Set<String> codigos = new HashSet<>();\nSystem.out.println(codigos.add(\"A1\")); // true\nSystem.out.println(codigos.add(\"A1\")); // false\nSystem.out.println(codigos.size()); // 1",
+      "explicacion": "Importa Set y HashSet de java.util.\nNo hay get por índice.\nHashSet no garantiza orden de inserción.\nCon objetos propios, define equals y hashCode según su identidad."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Introducción: Map relaciona claves y valores",
+      "codigo": "Map<String, Producto> porCodigo = new HashMap<>();\nporCodigo.put(\"A1\", teclado);\nProducto encontrado = porCodigo.get(\"A1\");\nboolean existe = porCodigo.containsKey(\"A1\");",
+      "explicacion": "Importa Map y HashMap de java.util.\nPresupone un Producto llamado teclado.\nput reemplaza el valor si la clave ya existe.\nAquí no guardamos null: get devuelve null si falta la clave."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Elección de la estructura",
+      "encabezado_1": "Necesidad",
+      "encabezado_2": "Estructura",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "Secuencia con posiciones",
+      "fila_1_col_2": "List",
+      "fila_1_col_3": "Lista de compra",
+      "fila_2_col_1": "Sin elementos equivalentes",
+      "fila_2_col_2": "Set",
+      "fila_2_col_3": "Códigos sin repetir",
+      "fila_3_col_1": "Recuperar por clave",
+      "fila_3_col_2": "Map",
+      "fila_3_col_3": "Producto por código",
+      "fila_4_col_1": "Número fijo de posiciones",
+      "fila_4_col_2": "Array",
+      "fila_4_col_3": "Doce posiciones mensuales",
+      "nota": "List y Set extienden Collection. Map forma parte del framework, pero no extiende Collection."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · ejemplo completo (1/2)",
+      "lenguaje": "Java 21",
+      "codigo": "import java.util.ArrayList;\nimport java.util.Iterator;\nimport java.util.List;\npublic class Main {\n    static Producto buscar(List<Producto> productos, String codigo) {\n        for (Producto producto : productos) {\n            if (producto.getCodigo().equals(codigo)) {\n                return producto;\n            }\n        }\n        return null;\n    }\n    public static void main(String[] args) {\n        List<Producto> productos = new ArrayList<>();\n        productos.add(new Producto(\"A1\", \"Teclado\", 5));\n        productos.add(new Producto(\"B2\", \"Raton\", 0));"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · ejemplo completo (2/2)",
+      "lenguaje": "Java 21",
+      "codigo": "        Producto encontrado = buscar(productos, \"A1\");\n        if (encontrado != null) {\n            System.out.println(encontrado.getNombre());\n        }\n        Iterator<Producto> it = productos.iterator();\n        while (it.hasNext()) {\n            Producto producto = it.next();\n            if (producto.getStock() == 0) {\n                it.remove();\n            }\n        }\n        System.out.println(productos.size());\n    }\n}"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué resultado esperas?",
+      "contenido": "Copia los dos bloques anteriores en Main.java y añade Producto.java.\nCompila: javac Producto.java Main.java\nEjecuta: java Main\n¿Qué nombre devuelve la búsqueda?\n¿Cuántos productos quedan después del borrado?\n¿Qué pasaría si la lista empezara vacía o si buscáramos Z9?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Lo esencial del tema 9",
+      "idea_1": "List organiza referencias a objetos. Sus índices van de 0 a size() - 1.",
+      "idea_2": "Recorre, busca y elimina con una estrategia adecuada. Comprueba vacío, null e índices.",
+      "idea_3": "La clase gestora protege las reglas. Set evita duplicados y Map permite asociar claves y valores.",
+      "recuerda": "Practica con List. Profundiza después en equals/hashCode, Set y Map."
+    }
+  ]
+}

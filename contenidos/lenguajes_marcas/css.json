@@ -1,0 +1,104 @@
+ {
+"titulo": "Introducción a CSS",
+"modulo": "Lenguajes de Marcas",
+"curso": "1º DAM",
+"diapositivas": [
+{
+"tipo": "portada",
+"titulo": "Introducción a CSS",
+"subtitulo": "Separando la estructura de la presentación en la web"
+},
+{
+"tipo": "problema",
+"titulo": "¿Por qué no basta con HTML?",
+"situacion": "HTML permite estructurar el texto, crear formularios y organizar el contenido de una página web.",
+"problema": "Sin estilos, todas las páginas se ven igual y desordenadas.\nModificar el diseño elemento por elemento en HTML duplica código y es inmantenible.",
+"pregunta": "¿Cómo cambiamos la apariencia de toda la web sin tocar la estructura HTML?"
+},
+{
+"tipo": "definicion",
+"titulo": "Qué es CSS y cómo funciona",
+"contenido": "CSS (Cascading Style Sheets) es el lenguaje que define la presentación visual de un documento HTML.\n\nPermite controlar colores, fuentes, tamaños y espaciados de forma centralizada.\n\nUna regla CSS consta de un selector que indica a qué elemento aplicar el diseño y un bloque de declaraciones con propiedades y valores."
+},
+{
+"tipo": "codigo",
+"titulo": "Sintaxis de tu primera regla CSS",
+"codigo": "/* Selector de etiqueta /\nh1 {\n    color: #2b6cb0;\n    font-size: 24px;\n    text-align: center;\n}\n\np {\n    color: #4a5568;\n    line-height: 1.5;\n}",
+"lenguaje": "css"
+},
+{
+"tipo": "comparacion",
+"titulo": "Estilos en línea frente a hoja externa",
+"izquierda_titulo": "Estilos en línea (style=...)",
+"izquierda_contenido": "Mezcla la estructura con la presentación.\nDificulta el mantenimiento y la reutilización.\nSolo se recomienda para pruebas rápidas.",
+"derecha_titulo": "Hoja externa ()",
+"derecha_contenido": "Separa totalmente el diseño del contenido.\nUn solo archivo aplica estilos a todo el sitio.\nEs la buena práctica profesional."
+},
+{
+"tipo": "pasos",
+"titulo": "Pasos para vincular un archivo CSS",
+"paso_1": "Crea un archivo llamado estilos.css en la misma carpeta que el documento HTML.",
+"paso_2": "Escribe las reglas de estilo necesarias dentro del archivo estilos.css.",
+"paso_3": "Añade la etiqueta <link rel=\"stylesheet\" href=\"estilos.css\"> dentro del <head>.",
+"paso_4": "Guarda ambos archivos y recarga la página para comprobar los cambios.",
+"paso_5": ""
+},
+{
+"tipo": "concepto_visual",
+"titulo": "Selectores básicos en CSS",
+"concepto": "Selección de elementos",
+"explicacion": "Los selectores permiten indicar con precisión a qué elementos de la página HTML se aplicarán las reglas de estilo.",
+"apoyo_1": "Etiqueta\nAfecta a todas las etiquetas p o h1",
+"apoyo_2": "Clase (.nombre)\nAplica a varias etiquetas",
+"apoyo_3": "ID (#nombre)\nAfecta a un único id=\"...\""
+},
+{
+"tipo": "codigo_explicado",
+"titulo": "Uso práctico de selectores",
+"codigo": "button { font-weight: bold; }\n\n/ Selector de clase /\n.campo-texto {\n    border: 1px solid #ccc;\n}\n\n/ Selector de ID */\n#btn-enviar {\n    background-color: green;\n}",
+"explicacion": "La etiqueta button aplica estilo a todos los botones.\nLa clase .campo-texto permite agrupar varios elementos.\nEl ID #btn-enviar modifica únicamente ese botón específico."
+},
+{
+"tipo": "error_correccion",
+"titulo": "Error común: Repetir un mismo ID",
+"codigo_error": "<input id=\"campo\" type=\"text\">\n<input id=\"campo\" type=\"email\">\n",
+"codigo_correcto": "<input class=\"campo\" type=\"text\">\n<input class=\"campo\" type=\"email\">\n",
+"explicacion": "Un ID debe ser único por documento. Para aplicar el mismo estilo a varios elementos se deben utilizar clases."
+}
+,
+{
+"tipo": "definicion",
+"titulo": "El Modelo de Caja (Box Model)",
+"contenido": "En CSS, cada elemento HTML se representa como una caja rectangular.\n\nEsta caja está formada por cuatro capas concéntricas:\n1. Contenido (Content): El texto o la imagen.\n2. Relleno (Padding): Espacio entre el contenido y el borde.\n3. Borde (Border): Línea que rodea el relleno.\n4. Margen (Margin): Espacio exterior entre la caja y otros elementos."
+},
+{
+"tipo": "codigo_resultado",
+"titulo": "Dimensiones y espacio de la caja",
+"lenguaje": "CSS3",
+"codigo": ".caja {\n    width: 200px; padding: 10px;\n    border: 2px solid black;\n    margin: 15px;\n}",
+"resultado": "Caja de 224px de ancho total (200 + 20 + 4) con 15px de margen exterior."
+},
+{
+"tipo": "advertencia",
+"titulo": "Confundir Padding y Margin",
+"error": "Usar margin para intentar separar el texto interior del borde de un botón o caja.",
+"motivo": "El margen desplaza la caja completa por fuera, mientras que el contenido interno sigue pegado al borde.",
+"recomendacion": "Usa padding para el espacio interior de un elemento y margin para distanciar elementos entre sí."
+},
+{
+"tipo": "caso_practico",
+"titulo": "Estilar el formulario de la sesión anterior",
+"contexto": "Tenemos un formulario de registro HTML con etiquetas form, input y button que carece de formato visual.",
+"requisitos": "Crear el archivo estilos.css y vincularlo en el head.\nDar tipo de letra y color de fondo al formulario.\nAñadir padding a los campos de texto.\nCambiar el color del botón al pasar el cursor.",
+"objetivo": "Obtener una interfaz clara y legible manteniendo el HTML 100% libre de estilos."
+},
+{
+"tipo": "resumen",
+"titulo": "Resumen de la sesión",
+"idea_1": "HTML proporciona la estructura y el significado; CSS controla exclusivamente la presentación visual.",
+"idea_2": "Separa los estilos en archivos .css externos y utiliza selectores de clase para crear código reutilizable.",
+"idea_3": "Comprender el Modelo de Caja (margin, border, padding, content) es esencial para maquetar elementos.",
+"recuerda": "Estructura semántica limpia en HTML y diseño profesional organizado en CSS."
+}
+]
+}

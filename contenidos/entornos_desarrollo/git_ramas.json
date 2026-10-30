@@ -1,0 +1,244 @@
+{
+  "titulo": "Git: ramas, merges y conflictos",
+  "modulo": "Entornos de Desarrollo",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Git: ramas, merges y conflictos",
+      "subtitulo": "Entornos de Desarrollo · 1.º DAM\nIntegrar cambios, entender el historial y resolver conflictos"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Cómo cambiar algo sin tocar la versión principal?",
+      "situacion": "La web de clase funciona. Queremos preparar una mejora y conservar una versión estable.",
+      "problema": "Si todos los cambios se hacen directamente en main, mezclamos trabajo terminado con cambios todavía incompletos.",
+      "pregunta": "¿Cómo desarrollaríamos la mejora por separado y la integraríamos cuando esté lista?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Una rama señala una línea de trabajo",
+      "contenido": "Una rama es un nombre que apunta a un commit.\nAl crearla, empieza en el commit desde el que la creamos.\nLos nuevos commits hacen avanzar la rama actual.\nPodemos trabajar en una mejora y después integrar sus cambios en otra rama.\nmain es un nombre habitual para la rama principal; no es una rama especial para Git."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "HEAD indica dónde estamos",
+      "contenido": "Normalmente, HEAD apunta a la rama actual.\nAl cambiar de rama, Git actualiza los archivos para mostrar su versión.\nEl asterisco de git branch señala la rama seleccionada.\nAntes de integrar, comprobamos qué rama va a recibir los cambios.",
+      "ejemplo": "git branch\n\n* main\n  mejora"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Crear una rama y cambiar de rama",
+      "izquierda_titulo": "Crear sin cambiar",
+      "izquierda_contenido": "git branch mejora\n\nCrea mejora en el commit actual.\nSeguimos en la rama en la que estábamos.",
+      "derecha_titulo": "Crear y cambiar",
+      "derecha_contenido": "git switch -c mejora\n\nCrea mejora y nos sitúa en ella.\nSi ya existe, usamos git switch mejora."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Cambiar de rama no guarda tu trabajo",
+      "error": "Editar un archivo y cambiar de rama suponiendo que el cambio ya está guardado en ella.",
+      "motivo": "Los cambios sin commit pueden acompañarte al cambiar de rama o impedir el cambio.",
+      "recomendacion": "En estos ejemplos, revisa git status y confirma los cambios antes de cambiar de rama."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Tres espacios que ya conocemos",
+      "contenido": "Directorio de trabajo: los archivos que editamos.\nÁrea de preparación: los cambios que seleccionamos con git add.\nHistorial: los commits creados con git commit.\nGuardar un archivo en el editor no crea un commit.\nPara integrar el trabajo de una rama, primero lo confirmamos en esa rama."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Preparar una integración",
+      "paso_1": "Comprueba con git status que no quedan cambios sin confirmar.",
+      "paso_2": "Cambia a la rama que recibirá los cambios: git switch main.",
+      "paso_3": "Integra la rama de origen: git merge mejora.",
+      "paso_4": "Revisa los archivos y comprueba su funcionamiento.",
+      "paso_5": "Consulta git status y el historial para entender el resultado."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "La rama actual recibe los cambios",
+      "codigo": "git switch main\ngit merge mejora",
+      "explicacion": "main recibe los cambios de mejora.\nEl merge no cambia a mejora.\nNo borra la rama de origen.\nHay que saber dónde estamos antes de integrar."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos formas de completar un merge",
+      "izquierda_titulo": "Fast-forward",
+      "izquierda_contenido": "La rama receptora no tiene commits propios desde la separación.\nGit adelanta su referencia hasta el commit de la otra rama.\nNo necesita crear un commit de merge.",
+      "derecha_titulo": "Merge con commit",
+      "derecha_contenido": "Las dos ramas tienen commits propios desde la separación.\nGit combina sus historiales y crea un commit con dos padres.\nPuede hacerlo solo o necesitar ayuda."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Ejemplo común para las demostraciones",
+      "contenido": "Usaremos un repositorio local y archivos de texto.\nUn .txt permite practicar los mismos merges que un archivo Java o HTML.\nLos tres casos se muestran en orden sobre el mismo repositorio.\nLos cambios de contenido se hacen en el editor y después se guardan y confirman.\nNo necesitamos GitHub para estos ejemplos."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Preparación: un primer commit en main",
+      "codigo": "git init -b main\n# Crea hola.txt con el texto: Hola\ngit add hola.txt\ngit commit -m \"Crear saludo inicial\"",
+      "explicacion": "Ejecuta esto en una carpeta nueva.\nCrea y guarda el archivo antes de git add.\nEl primer commit es el punto de partida común."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 1: solo avanza la rama de mejora",
+      "codigo": "git switch -c saludo\n# Cambia hola.txt a: Bienvenidos\ngit add hola.txt\ngit commit -m \"Mejorar saludo\"",
+      "explicacion": "saludo tiene un commit nuevo.\nmain sigue en el commit inicial.\nLa rama principal no ha recibido ningún cambio propio."
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Caso 1: integrar mediante fast-forward",
+      "comandos": "git switch main\ngit merge saludo",
+      "salida": "Updating <inicio>..<saludo>\nFast-forward\n hola.txt | 2 +-",
+      "nota": "Salida abreviada e ilustrativa. Los identificadores y el resumen pueden variar."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Por qué no ha aparecido un conflicto?",
+      "contenido": "main no tenía commits propios desde que creamos saludo.\nGit solo ha adelantado main hasta el commit de saludo.\n¿Ha tenido que elegir entre dos cambios incompatibles?\n¿Ha creado un nuevo commit de merge?\n¿Se ha borrado automáticamente la rama saludo?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Caso 1: qué queda después",
+      "contenido": "main y saludo apuntan ahora al mismo commit.\nEl archivo hola.txt contiene Bienvenidos.\nNo se creó un commit adicional de merge.\nLa rama saludo sigue existiendo.\nUn fast-forward es un resultado normal: Git ha podido integrar sin combinar cambios divergentes."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 2: preparar un cambio independiente",
+      "codigo": "git switch -c contacto\n# Crea contacto.txt con: aula@example.com\ngit add contacto.txt\ngit commit -m \"Agregar contacto\"",
+      "explicacion": "Partimos de main tras el caso 1.\ncontacto añade un archivo nuevo.\nTodavía no hemos integrado ese commit en main."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 2: main también avanza",
+      "codigo": "git switch main\n# Cambia hola.txt a: Bienvenidos a clase.\ngit add hola.txt\ngit commit -m \"Concretar saludo\"",
+      "explicacion": "Las ramas tienen commits propios.\nmain modificó hola.txt.\ncontacto añadió contacto.txt.\nLos cambios de este ejemplo no se pisan."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 2: combinar cambios automáticamente",
+      "codigo": "git merge contacto\ngit status",
+      "explicacion": "Git combina ambos cambios.\nCrea un commit de merge con dos padres.\nSi abre el editor, acepta y guarda el mensaje.\nNo hay conflictos: se conservan ambos archivos."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Dos ramas con cambios no implican un conflicto",
+      "error": "Pensar que cualquier merge entre ramas que han avanzado provocará un conflicto.",
+      "motivo": "Git puede combinar muchos cambios automáticamente, incluso dentro del mismo archivo.",
+      "recomendacion": "Para el siguiente ejemplo cambiaremos la misma línea de forma diferente en las dos ramas."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 3: cambiar el mensaje en otra rama",
+      "codigo": "git switch -c aviso\n# Sustituye la línea de hola.txt por:\n# Confirma tu asistencia por correo.\ngit add hola.txt\ngit commit -m \"Confirmar por correo\"",
+      "explicacion": "Partimos de main tras el caso 2.\nEdita el contenido sin el símbolo #.\nLa rama aviso cambia la línea del saludo por una instrucción."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caso 3: cambiar la misma línea en main",
+      "codigo": "git switch main\n# Sustituye la línea de hola.txt por:\n# Confirma tu asistencia por telefono.\ngit add hola.txt\ngit commit -m \"Confirmar por telefono\"",
+      "explicacion": "main cambia la misma línea.\nAhora hay dos modificaciones diferentes desde un antecesor común.\nLos cambios están confirmados en ambas ramas."
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Caso 3: Git necesita una decisión",
+      "comandos": "git merge aviso\ngit status",
+      "salida": "CONFLICT (content): Merge conflict in hola.txt\nAutomatic merge failed; fix conflicts and then commit the result.",
+      "nota": "Salida parcial e ilustrativa. El merge queda pendiente hasta resolverlo o cancelarlo."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Un conflicto pausa la integración",
+      "contenido": "Git ha encontrado cambios que no puede combinar automáticamente.\nEl repositorio no está roto: el merge está pendiente.\ngit status indica qué archivos necesitan resolución.\nUn merge puede tener varios archivos en conflicto.\nDebemos decidir cómo debe quedar cada uno antes de finalizar."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Leer los marcadores del conflicto",
+      "codigo": "<<<<<<< HEAD\nConfirma tu asistencia por telefono.\n=======\nConfirma tu asistencia por correo.\n>>>>>>> aviso",
+      "lenguaje": "hola.txt · conflicto"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Actual e incoming en este merge",
+      "izquierda_titulo": "Actual: HEAD",
+      "izquierda_contenido": "Es el contenido de main.\nEs la rama en la que ejecutamos el merge.\nEn este ejemplo propone confirmar por teléfono.",
+      "derecha_titulo": "Entrante: aviso",
+      "derecha_contenido": "Es el contenido de la rama que integramos.\nEn este ejemplo propone confirmar por correo.\nLos nombres dependen del merge concreto."
+    },
+    {
+      "tipo": "antes_despues",
+      "titulo": "Resolver significa decidir el contenido final",
+      "antes_titulo": "Dos propuestas incompatibles",
+      "antes_contenido": "main:\nConfirma tu asistencia por telefono.\n\naviso:\nConfirma tu asistencia por correo.",
+      "despues_titulo": "Una decisión revisada",
+      "despues_contenido": "Confirma tu asistencia por telefono\no por correo.",
+      "conclusion": "Podemos conservar una versión o redactar una combinación. Debemos eliminar todos los marcadores."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Resolver desde VS Code",
+      "contenido": "Accept Current Change conserva el bloque de la rama actual.\nAccept Incoming Change conserva el bloque entrante.\nAccept Both Changes conserva los dos bloques: revisa el resultado.\nTambién puedes editar el texto manualmente.\nEl contenido final debe tener sentido; los botones no deciden por nosotros."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Del conflicto al merge terminado",
+      "paso_1": "Lee git status y abre los archivos en conflicto.",
+      "paso_2": "Decide el contenido final y elimina los marcadores.",
+      "paso_3": "Guarda, revisa y prueba los archivos resultantes.",
+      "paso_4": "Marca cada archivo como resuelto con git add.",
+      "paso_5": "Cuando no quede ningún conflicto, finaliza con git commit."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Guardar y confirmar la resolución",
+      "codigo": "git add hola.txt\ngit status\ngit diff --cached\ngit commit -m \"Integrar aviso resuelto\"\ngit status",
+      "explicacion": "add prepara la versión resuelta.\nstatus permite detectar conflictos pendientes.\ndiff --cached muestra lo preparado.\ncommit termina el merge.\nDespués comprobamos el estado."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "git add no comprueba tu solución",
+      "error": "Dar por resuelto el conflicto sin revisar si quedaron marcadores o contenido incorrecto.",
+      "motivo": "git add prepara lo que hay en el archivo; no valida que la decisión sea correcta.",
+      "recomendacion": "Revisa el archivo completo y prueba su funcionamiento antes de confirmar el merge."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Cancelar un merge pendiente",
+      "codigo": "git merge --abort\ngit status",
+      "explicacion": "Úsalo si hay un merge en curso y quieres cancelarlo.\nNo deshace un merge ya confirmado.\nPartir de un árbol limpio facilita recuperar el estado previo."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Leer el historial después de integrar",
+      "contenido": "git log --oneline --graph --all --decorate\n\n--oneline resume cada commit.\n--graph dibuja las conexiones del historial.\n--all incluye las ramas locales y otras referencias.\n--decorate muestra nombres de ramas y etiquetas.\nBusca los commits propios de cada rama y el punto de integración."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Eliminar una rama que ya cumplió su función",
+      "codigo": "git switch main\ngit branch -d aviso\ngit branch",
+      "explicacion": "No puedes borrar la rama actual.\n-d comprueba que esté integrada.\nEliminar el nombre no quita los cambios de main.\nSi Git rechaza el borrado, revisa antes de forzarlo."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Merge local y colaboración remota",
+      "izquierda_titulo": "git merge",
+      "izquierda_contenido": "Integra un historial en la rama actual.\nPuede trabajar solo con ramas locales.\nNo descarga ni publica por sí mismo.",
+      "derecha_titulo": "git pull",
+      "derecha_contenido": "Descarga con fetch y después integra según la configuración.\nPuede usar merge o rebase.\nNo significa siempre lo mismo que git merge."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprueba si puedes explicar el resultado",
+      "contenido": "Solo avanza la rama de mejora: ¿puede haber fast-forward?\nAmbas ramas cambian archivos distintos: ¿debe aparecer un conflicto?\n¿En qué rama te sitúas para integrar aviso en main?\n¿Basta con editar un archivo para terminar el merge?\n¿Qué pasa con los cambios integrados si borramos aviso?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Integrar con criterio",
+      "idea_1": "Comprueba la rama actual y confirma el trabajo antes de integrar. La rama actual recibe los cambios.",
+      "idea_2": "Un merge puede ser fast-forward o crear un commit de merge. La divergencia no implica conflicto.",
+      "idea_3": "Resuelve los archivos, revisa, prepara con git add y confirma. Después inspecciona el historial.",
+      "recuerda": "Un conflicto requiere una decisión sobre el contenido final, no aceptar cambios a ciegas."
+    }
+  ]
+}

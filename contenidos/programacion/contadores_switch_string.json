@@ -1,0 +1,1063 @@
+{
+  "titulo": "Java: decisiones, texto y bucles",
+  "modulo": "Programación",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Java: decisiones, texto y bucles",
+      "subtitulo": "Programación · 1.º DAM · Java 21\nContadores, switch, cadenas y técnicas para programas interactivos\nChristian Bihurriet · CESUR"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Punto de partida",
+      "contenido": "Ya utilizamos variables, operadores, if, for y while.\nScanner y do-while también se han explicado. Los reutilizaremos sin repetir su introducción.\nTrabajaremos dentro de main, sin arrays, métodos propios, herencia ni dependencias externas."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Bloques de la presentación",
+      "paso_1": "Parte 1: contadores y acumuladores, switch, String y comparación de texto.",
+      "paso_2": "Parte 2: validación, centinelas y estadísticas con cantidad desconocida.",
+      "paso_3": "Bucles anidados y números aleatorios.",
+      "paso_4": "Juegos, break y continue.",
+      "paso_5": "Integración de las técnicas y depuración de programas."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Cómo leer los ejemplos",
+      "contenido": "Los fragmentos muestran una idea dentro de main.\nLos programas completos indican su archivo .java. Si ocupan varias diapositivas, sus bloques se copian en orden en el mismo archivo.\nCada programa tiene su propio main y se ejecuta por separado.\nLas entradas indicadas en los ejemplos son datos que escribe el usuario."
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Compilar y ejecutar un ejemplo",
+      "comandos": "javac Conteo.java\njava Conteo",
+      "salida": "Cantidad: 3\nSuma: 6\nMedia: 2.0",
+      "nota": "Ejemplo con entradas 3, 5 y -2. Guarda cada clase pública en su archivo del mismo nombre."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 1. Contadores y acumuladores",
+      "subtitulo": "Conservar información entre iteraciones y calcular medias"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una nota cada vez, un resultado al final",
+      "situacion": "Un programa recibe tres notas y debe mostrar cuántas ha leído y su media.",
+      "problema": "La variable de la nota cambia en cada lectura. Si solo guardamos ese valor, al terminar solo tenemos la última nota.",
+      "pregunta": "¿Qué información necesitamos conservar durante el recorrido?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Contador y acumulador",
+      "izquierda_titulo": "Contador",
+      "izquierda_contenido": "Responde: ¿cuántos?\nAumenta al ocurrir algo.\nEjemplo: cantidad de notas leídas.\nActualización: cantidad++.",
+      "derecha_titulo": "Acumulador",
+      "derecha_contenido": "Responde: ¿cuánto suman?\nAñade cada valor al total anterior.\nEjemplo: suma de las notas.\nActualización: suma += nota."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Una asignación conserva el resultado anterior",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "int suma = 0;\nsuma += 3;\nsuma += 5;\nSystem.out.println(suma);",
+      "resultado": "8"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "La abreviatura +=",
+      "contenido": "suma += numero equivale aquí a suma = suma + numero.\nPrimero se calcula el lado derecho y después se guarda el resultado.\nEl valor anterior participa en la siguiente suma.",
+      "ejemplo": "suma = 8;\nnumero = -2;\nsuma += numero;\n// suma vale 6"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: inicialización antes del bucle",
+      "codigo": "int suma = 0;\nint cantidad = 0;\nfor (int i = 1; i <= 3; i++) {\n    int numero =\n        Integer.parseInt(scanner.nextLine());\n    suma += numero;\n    cantidad++;\n}",
+      "explicacion": "Las variables viven durante todo el recorrido.\nCada vuelta incorpora un dato.\nEl programa completo es Conteo.java.\nAquí la entrada se supone entera y válida."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Seguimiento con entradas 3, 5 y -2",
+      "encabezado_1": "Dato",
+      "encabezado_2": "suma",
+      "encabezado_3": "cantidad",
+      "fila_1_col_1": "Estado inicial",
+      "fila_1_col_2": "0",
+      "fila_1_col_3": "0",
+      "fila_2_col_1": "3",
+      "fila_2_col_2": "3",
+      "fila_2_col_3": "1",
+      "fila_3_col_1": "5",
+      "fila_3_col_2": "8",
+      "fila_3_col_3": "2",
+      "fila_4_col_1": "-2",
+      "fila_4_col_2": "6",
+      "fila_4_col_3": "3",
+      "nota": "El contador cuenta valores. El acumulador suma sus contenidos."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "Reiniciar dentro del bucle pierde el total",
+      "codigo_error": "// Fragmento dentro de un for:\nint suma = 0;\nsuma += numero;\n// Empieza otra vez en cada vuelta.",
+      "codigo_correcto": "// Antes del for:\nint suma = 0;\n// Dentro del for:\nsuma += numero;",
+      "explicacion": "Inicializamos una vez antes del bucle y actualizamos dentro. El programa Conteo.java muestra la ubicación completa."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "División entera frente a división decimal",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "int suma = 7, cantidad = 2;\nSystem.out.println(suma / cantidad);\nSystem.out.println((double) suma / cantidad);",
+      "resultado": "3\n3.5"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "La conversión debe llegar antes de dividir",
+      "error": "Escribir (double) (suma / cantidad) esperando recuperar los decimales.",
+      "motivo": "La división entre enteros ya descartó la parte decimal antes de convertir el resultado.",
+      "recomendacion": "Convierte un operando: (double) suma / cantidad. Comprueba también cantidad > 0."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Conteo.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class Conteo {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int suma = 0;\n        int cantidad = 0;\n        for (int i = 1; i <= 3; i++) {\n            int numero = Integer.parseInt(scanner.nextLine());\n            suma += numero;\n            cantidad++;\n        }\n        System.out.println(\"Cantidad: \" + cantidad);\n        System.out.println(\"Suma: \" + suma);\n        if (cantidad > 0) {\n            double media = (double) suma / cantidad;\n            System.out.println(\"Media: \" + media);",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Conteo.java (2/2)",
+      "codigo": "        }\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Cuándo debe aumentar el contador?",
+      "contenido": "Si queremos contar solo las notas aprobadas, ¿incrementamos el contador en todas las vueltas?\n¿Dónde colocaríamos cantidadAprobados++?\n¿Qué diferencia hay entre contar aprobados y sumar sus notas?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Estado que se conserva entre vueltas",
+      "idea_1": "Inicializa los contadores y acumuladores antes del bucle.",
+      "idea_2": "Actualiza cada variable solo cuando corresponda al dato que quieres medir.",
+      "idea_3": "Para una media decimal, convierte antes de dividir y comprueba que hay datos.",
+      "recuerda": "Conexión con el repo: suma acumulada, tienda y gestión de notas."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 2. Selección con switch",
+      "subtitulo": "Elegir una acción según un valor concreto"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Un menú con varias opciones",
+      "situacion": "Un menú ofrece consultar un saldo, mostrar ayuda o salir.",
+      "problema": "La misma variable debe compararse con varios valores concretos. Queremos que cada opción tenga un bloque fácil de localizar.",
+      "pregunta": "¿Cómo expresaríamos una alternativa para cada valor de opcion?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "if y switch",
+      "izquierda_titulo": "if / else if",
+      "izquierda_contenido": "Adecuado para condiciones generales.\nPermite rangos y combinaciones.\nEjemplo: edad >= 18 && tieneEntrada.",
+      "derecha_titulo": "switch",
+      "derecha_contenido": "Selecciona según un valor.\nAquí usaremos int o String y casos concretos.\nEjemplo: opcion vale 1, 2 o 0."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: switch con flechas",
+      "codigo": "switch (opcion) {\n    case 1 -> System.out.println(\"Saldo\");\n    case 2 -> System.out.println(\"Ayuda\");\n    case 0 -> System.out.println(\"Salir\");\n    default -> System.out.println(\"No valida\");\n}",
+      "explicacion": "Cada case identifica un valor.\nLa flecha ejecuta su acción sin pasar al siguiente caso.\ndefault recoge valores no previstos.\nPrograma completo: Menu.java."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Casos concretos y opción por defecto",
+      "contenido": "switch (opcion) evalúa el valor de opcion.\ncase 1 corresponde al entero 1.\nEn este switch, default se ejecuta si ningún case coincide.\nUn case con flecha puede contener varias instrucciones entre llaves.\nNo usaremos pattern matching ni switch expressions en esta introducción."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: varias instrucciones en un caso",
+      "codigo": "switch (opcion) {\n    case 1 -> {\n        System.out.println(\"Saldo disponible\");\n        System.out.println(saldo);\n    }\n    default -> System.out.println(\"Otra opcion\");\n}",
+      "explicacion": "Las llaves agrupan las acciones del caso.\nNo hacen falta variables nuevas ni métodos propios.\nMenu.java integra esta forma con un bucle."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos sintaxis que puedes encontrar",
+      "izquierda_titulo": "Clásica: dos puntos",
+      "izquierda_contenido": "case 1:\n    System.out.println(\"Saldo\");\n    break;\n\nbreak evita continuar al siguiente caso.",
+      "derecha_titulo": "Con flecha",
+      "derecha_contenido": "case 1 ->\n    System.out.println(\"Saldo\");\n\nNo hay caída al siguiente caso.\nUsaremos esta sintaxis en los menús."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Menu.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class Menu {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int opcion;\n        double saldo = 50;\n        do {\n            System.out.println(\"1. Saldo | 2. Ayuda | 0. Salir\");\n            opcion = Integer.parseInt(scanner.nextLine());\n            switch (opcion) {\n                case 1 -> {\n                    System.out.println(\"Saldo disponible\");\n                    System.out.println(saldo);\n                }\n                case 2 -> System.out.println(\"Elige una opcion\");\n                case 0 -> System.out.println(\"Hasta pronto\");",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Menu.java (2/2)",
+      "codigo": "                default -> System.out.println(\"Opcion no valida\");\n            }\n        } while (opcion != 0);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Elegir una acción y repetir son tareas diferentes",
+      "error": "Suponer que el switch repite el menú o termina por sí mismo todo el programa.",
+      "motivo": "switch selecciona un caso. La condición del do-while decide si vuelve a mostrarse el menú.",
+      "recomendacion": "En Menu.java, case 0 imprime una despedida y opcion != 0 controla la salida."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 3. Cadenas de texto",
+      "subtitulo": "Consultar, transformar y recorrer String"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "String representa texto",
+      "contenido": "Una cadena contiene una secuencia de caracteres.\nLos literales de texto se escriben entre comillas dobles.\n\"123\" es texto y 123 es un entero.\nAunque ambos se vean parecidos al imprimirlos, sus operaciones tienen significados diferentes."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Texto numérico y número",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "System.out.println(\"123\" + 1);\nSystem.out.println(123 + 1);",
+      "resultado": "1231\n124"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Concatenación con +",
+      "contenido": "Concatenar significa unir textos.\nSi uno de los operandos de + es String, esa operación concatena.\nEl operador + se evalúa de izquierda a derecha, salvo que los paréntesis indiquen otra agrupación.\nConviene decidir qué parte del mensaje necesita primero un cálculo."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "El orden cambia el resultado",
+      "codigo": "System.out.println(\"Resultado: \" + 2 + 3);\nSystem.out.println(\"Resultado: \" + (2 + 3));\nSystem.out.println(2 + 3 + \" puntos\");",
+      "explicacion": "Salida:\nResultado: 23\nResultado: 5\n5 puntos"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Caracteres especiales dentro de un literal",
+      "codigo": "System.out.println(\"Primera\\nSegunda\");\nSystem.out.println(\"Dijo: \\\"Hola\\\"\");",
+      "explicacion": "Salida:\nPrimera\nSegunda\nDijo: \"Hola\""
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Barra inversa y secuencias de escape",
+      "contenido": "\\n representa un salto de línea.\n\\t representa una tabulación.\n\\\" permite incluir una comilla doble dentro del literal.\n\\\\ representa una barra inversa.\nEn el código fuente se escriben la barra y la letra. El salto real aparece al ejecutar el programa."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Métodos para consultar una cadena",
+      "encabezado_1": "Operación",
+      "encabezado_2": "Resultado",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "length()",
+      "fila_1_col_2": "int: longitud",
+      "fila_1_col_3": "\"Java\".length() vale 4",
+      "fila_2_col_1": "charAt(indice)",
+      "fila_2_col_2": "char: una posición",
+      "fila_2_col_3": "\"Java\".charAt(0) vale J",
+      "fila_3_col_1": "isEmpty()",
+      "fila_3_col_2": "boolean: longitud cero",
+      "fila_3_col_3": "\"\".isEmpty() vale true",
+      "fila_4_col_1": "trim()",
+      "fila_4_col_2": "String sin espacios extremos",
+      "fila_4_col_3": "\" Java \".trim() da Java",
+      "nota": "Los ejemplos usan letras sencillas. length y charAt trabajan con unidades char UTF-16."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Transformaciones que devuelven otro texto",
+      "encabezado_1": "Método",
+      "encabezado_2": "Entrada",
+      "encabezado_3": "Resultado",
+      "fila_1_col_1": "toUpperCase()",
+      "fila_1_col_2": "\"Java\"",
+      "fila_1_col_3": "\"JAVA\"",
+      "fila_2_col_1": "toLowerCase()",
+      "fila_2_col_2": "\"Java\"",
+      "fila_2_col_3": "\"java\"",
+      "fila_3_col_1": "trim()",
+      "fila_3_col_2": "\"  Java  \"",
+      "fila_3_col_3": "\"Java\"",
+      "fila_4_col_1": "trim()",
+      "fila_4_col_2": "\"Java inicial\"",
+      "fila_4_col_3": "\"Java inicial\"",
+      "nota": "trim no elimina los espacios interiores. Aquí trabajamos con texto sencillo."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Las cadenas son inmutables",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "String texto = \"  Java  \";\ntexto.trim();\nSystem.out.println(\"[\" + texto + \"]\");\ntexto = texto.trim();\nSystem.out.println(\"[\" + texto + \"]\");",
+      "resultado": "[  Java  ]\n[Java]"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Conservar la transformación",
+      "contenido": "trim() devuelve una cadena con el resultado.\nNo cambia el contenido del objeto original.\nPodemos guardar el resultado en otra variable o reasignar la variable existente.",
+      "ejemplo": "String limpio =\n    texto.trim();\n\ntexto = texto.trim();"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Cadena vacía y cadena con espacios",
+      "izquierda_titulo": "Cadena vacía",
+      "izquierda_contenido": "String texto = \"\";\n\nlength() devuelve 0.\nisEmpty() devuelve true.",
+      "derecha_titulo": "Cadena con espacios",
+      "derecha_contenido": "String texto = \"   \";\n\nlength() devuelve 3.\nisEmpty() devuelve false.\ntrim().isEmpty() devuelve true."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Índices de la cadena Java",
+      "encabezado_1": "Índice",
+      "encabezado_2": "charAt(indice)",
+      "encabezado_3": "¿Existe?",
+      "fila_1_col_1": "0",
+      "fila_1_col_2": "J",
+      "fila_1_col_3": "Sí",
+      "fila_2_col_1": "1",
+      "fila_2_col_2": "a",
+      "fila_2_col_3": "Sí",
+      "fila_3_col_1": "2",
+      "fila_3_col_2": "v",
+      "fila_3_col_3": "Sí",
+      "fila_4_col_1": "3",
+      "fila_4_col_2": "a",
+      "fila_4_col_3": "Sí",
+      "nota": "La primera posición es 0. El último índice válido es length() - 1."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: comprobar antes de usar charAt",
+      "codigo": "String limpio = scanner.nextLine().trim();\nif (limpio.isEmpty()) {\n    System.out.println(\"Texto vacio\");\n} else {\n    System.out.println(limpio.charAt(0));\n}",
+      "explicacion": "charAt(0) necesita al menos una posición.\nUna cadena vacía no tiene índice 0.\nEl programa completo es Analizador.java."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Analizador.java · programa completo",
+      "codigo": "import java.util.Scanner;\npublic class Analizador {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String limpio = scanner.nextLine().trim();\n        if (limpio.isEmpty()) {\n            System.out.println(\"Texto vacio\");\n        } else {\n            System.out.println(\"Texto: \" + limpio);\n            System.out.println(\"Longitud: \" + limpio.length());\n            System.out.println(\"Primera: \" + limpio.charAt(0));\n            System.out.println(\"Mayusculas: \" + limpio.toUpperCase());\n        }\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "char y String",
+      "contenido": "char almacena una unidad de carácter y usa comillas simples: 'a'.\nString representa texto y usa comillas dobles: \"a\".\ncharAt devuelve un char.\nPara comparar los char sencillos de nuestros ejemplos podemos usar ==.\nPara comparar el contenido de cadenas utilizaremos equals."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: recorrer las posiciones",
+      "codigo": "for (int i = 0; i < texto.length(); i++) {\n    char letra = texto.charAt(i);\n    System.out.println(letra);\n}",
+      "explicacion": "i empieza en cero y se detiene antes de length().\nSi usamos <=, acabaremos accediendo a una posición inexistente.\nEl recorrido aparece en Vocales.java."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Textos.java · programa completo",
+      "codigo": "public class Textos {\n    public static void main(String[] args) {\n        System.out.println(\"123\" + 1);\n        System.out.println(123 + 1);\n        System.out.println(\"Resultado: \" + 2 + 3);\n        System.out.println(\"Resultado: \" + (2 + 3));\n        System.out.println(2 + 3 + \" puntos\");\n        System.out.println(\"Primera\\nSegunda\");\n        System.out.println(\"Dijo: \\\"Hola\\\"\");\n        String texto = \"  Java  \";\n        texto.trim();\n        System.out.println(\"[\" + texto + \"]\");\n        texto = texto.trim();\n        System.out.println(\"[\" + texto + \"]\");\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Texto y operaciones básicas",
+      "idea_1": "String es inmutable. Guarda el resultado de las transformaciones que quieras conservar.",
+      "idea_2": "Antes de charAt, comprueba que la posición existe. El recorrido utiliza i < texto.length().",
+      "idea_3": "Distingue concatenación de suma y texto vacío de texto formado por espacios.",
+      "recuerda": "Conexión con el repo: analizador de texto y validador de nombre."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 4. Comparación del contenido",
+      "subtitulo": "equals, equalsIgnoreCase y respuestas de texto"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "La respuesta parece igual, pero la condición falla",
+      "situacion": "Un programa pregunta si queremos continuar y recibe el texto si.",
+      "problema": "Necesitamos comprobar el contenido introducido. Que dos variables contengan el mismo texto no implica que sean el mismo objeto.",
+      "pregunta": "¿Qué comparación expresa que los textos tienen el mismo contenido?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "== y equals en String",
+      "izquierda_titulo": "==",
+      "izquierda_contenido": "Comprueba si las referencias apuntan al mismo objeto.\nDos objetos distintos pueden tener el mismo texto.\nNo es la prueba de contenido que buscamos.",
+      "derecha_titulo": "equals()",
+      "derecha_contenido": "Compara el contenido de dos cadenas.\nDevuelve true o false.\nDistingue mayúsculas de minúsculas.\n\"Java\".equals(\"java\") devuelve false."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Mismo contenido, objetos diferentes",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "String a = new String(\"Java\");\nString b = new String(\"Java\");\nSystem.out.println(a == b);\nSystem.out.println(a.equals(b));",
+      "resultado": "false\ntrue"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Por qué == puede parecer que funciona",
+      "contenido": "Java puede reutilizar objetos para ciertos literales String.\nPor eso una prueba con dos literales iguales puede devolver true usando ==.\nEse resultado no convierte == en una comparación de contenido.\nCon texto leído del teclado, usa equals o equalsIgnoreCase según la regla del programa."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Mayúsculas y minúsculas",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "String respuesta = \"SI\";\nSystem.out.println(respuesta.equals(\"si\"));\nSystem.out.println(respuesta.equalsIgnoreCase(\"si\"));",
+      "resultado": "false\ntrue"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Ignorar mayúsculas no elimina las tildes",
+      "error": "Esperar que equalsIgnoreCase(\"si\") acepte también el texto \"sí\".",
+      "motivo": "El método ignora diferencias de mayúsculas y minúsculas, pero no elimina acentos.",
+      "recomendacion": "Si admites ambas respuestas, compara con \"si\" o con \"sí\" de forma explícita."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Respuesta.java · programa completo",
+      "codigo": "import java.util.Scanner;\npublic class Respuesta {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String respuesta = scanner.nextLine().trim();\n        boolean afirmativa = respuesta.equalsIgnoreCase(\"si\")\n            || respuesta.equalsIgnoreCase(\"sí\");\n        if (afirmativa) {\n            System.out.println(\"Continuamos\");\n        } else {\n            System.out.println(\"Respuesta no afirmativa\");\n        }\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Comparaciones.java · programa completo",
+      "codigo": "public class Comparaciones {\n    public static void main(String[] args) {\n        String a = new String(\"Java\");\n        String b = new String(\"Java\");\n        System.out.println(a == b);\n        System.out.println(a.equals(b));\n        String respuesta = \"SI\";\n        System.out.println(respuesta.equals(\"si\"));\n        System.out.println(respuesta.equalsIgnoreCase(\"si\"));\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Negar una comparación de contenido",
+      "contenido": "equals devuelve un boolean.\nPodemos negar el resultado con !.\n!clave.equals(\"java21\") significa que el contenido es diferente.\nEn un bucle de contraseña hay que leer la respuesta actual antes de compararla.\nAquí las entradas de teclado se suponen disponibles, sin estudiar todavía null ni fin de entrada."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Clave.java · programa completo",
+      "codigo": "import java.util.Scanner;\npublic class Clave {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String clave;\n        do {\n            System.out.println(\"Escribe la clave:\");\n            clave = scanner.nextLine();\n        } while (!clave.equals(\"java21\"));\n        System.out.println(\"Acceso permitido\");\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Vocales.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class Vocales {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        String texto = scanner.nextLine().toLowerCase();\n        int vocales = 0;\n        for (int i = 0; i < texto.length(); i++) {\n            char letra = texto.charAt(i);\n            if (letra == 'a' || letra == 'e' || letra == 'i'\n                    || letra == 'o' || letra == 'u') {\n                vocales++;\n            }\n        }\n        System.out.println(\"Vocales sin tilde: \" + vocales);\n        scanner.close();\n    }",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Vocales.java (2/2)",
+      "codigo": "}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Recorrido y contador en el mismo programa",
+      "contenido": "Vocales.java transforma el texto a minúsculas para comparar menos casos.\nRecorre una posición cada vez y aumenta el contador solo cuando coincide con a, e, i, o o u.\nEsta versión cuenta vocales sin tilde.\nConexión con el repo: comparación de respuestas, contraseña y contar vocales."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 5. Validación de entradas",
+      "subtitulo": "Comprobar formato y rango sin introducir try-catch"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos preguntas distintas sobre una entrada",
+      "izquierda_titulo": "Formato",
+      "izquierda_contenido": "¿Puede leerse como el tipo esperado?\n\"hola\" no es un entero.\n\"18\" sí puede interpretarse como entero.",
+      "derecha_titulo": "Rango",
+      "derecha_contenido": "¿El número cumple la regla del programa?\n-5 es un entero, pero no una edad válida.\nPara esta edad permitimos de 0 a 120."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Comprobar sin consumir",
+      "contenido": "scanner.hasNextInt() comprueba si el siguiente token puede interpretarse como int.\nDevuelve un boolean y no consume ese token.\nscanner.nextInt() sí lo lee y lo consume.\nSi la comprobación falla, debemos descartar la entrada incorrecta antes de repetir.\nLos ejemplos suponen que el usuario sigue proporcionando entrada."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: descartar una línea incorrecta",
+      "codigo": "if (scanner.hasNextInt()) {\n    int numero = scanner.nextInt();\n    scanner.nextLine();\n    System.out.println(numero);\n} else {\n    scanner.nextLine();\n    System.out.println(\"Escribe un entero\");\n}",
+      "explicacion": "La rama válida consume el número y el resto de línea.\nLa rama inválida descarta la línea.\nEl bucle completo aparece en EdadSegura.java."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Una entrada inválida que nunca desaparece",
+      "error": "Repetir hasNextInt() sin consumir el token incorrecto.",
+      "motivo": "Cada comprobación vuelve a encontrar la misma entrada. El programa puede repetir indefinidamente.",
+      "recomendacion": "En la rama inválida, usa nextLine() para descartar la línea y volver a preguntar."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Secuencia de validación de una edad",
+      "paso_1": "Pedir una edad y comprobar su formato con hasNextInt().",
+      "paso_2": "Si el formato falla, descartar la línea y volver a preguntar.",
+      "paso_3": "Si es entero, leer el número y consumir el resto de la línea.",
+      "paso_4": "Comprobar que esté entre 0 y 120, ambos incluidos.",
+      "paso_5": "Repetir mientras no haya una edad válida."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "EdadSegura.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class EdadSegura {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int edad = 0;\n        boolean valida = false;\n        while (!valida) {\n            System.out.println(\"Edad de 0 a 120:\");\n            if (scanner.hasNextInt()) {\n                edad = scanner.nextInt();\n                scanner.nextLine();\n                valida = edad >= 0 && edad <= 120;\n                if (!valida) {\n                    System.out.println(\"Fuera de rango\");\n                }\n            } else {",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "EdadSegura.java (2/2)",
+      "codigo": "                scanner.nextLine();\n                System.out.println(\"Formato incorrecto\");\n            }\n        }\n        System.out.println(\"Edad aceptada: \" + edad);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Seguimiento de la validación",
+      "encabezado_1": "Entrada",
+      "encabezado_2": "Comprobación",
+      "encabezado_3": "Resultado",
+      "fila_1_col_1": "hola",
+      "fila_1_col_2": "No es int",
+      "fila_1_col_3": "Descartar y repetir",
+      "fila_2_col_1": "-1",
+      "fila_2_col_2": "Es int, fuera de rango",
+      "fila_2_col_3": "Avisar y repetir",
+      "fila_3_col_1": "121",
+      "fila_3_col_2": "Es int, fuera de rango",
+      "fila_3_col_3": "Avisar y repetir",
+      "fila_4_col_1": "18",
+      "fila_4_col_2": "Es int y está en rango",
+      "fila_4_col_3": "Aceptar y terminar",
+      "nota": "Un formato válido no garantiza que el valor esté permitido."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Qué valida realmente hasNextInt",
+      "contenido": "hasNextInt comprueba el siguiente token, no toda la línea.\nSi se introduce 18 hola, el token 18 puede ser válido y nextLine descarta el resto.\nEn estos ejemplos pedimos un dato por línea.\nExigir que toda la línea contenga exclusivamente un entero necesita una validación adicional que dejamos fuera de esta unidad."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Decimales y configuración regional",
+      "contenido": "hasNextDouble y nextDouble dependen de la configuración regional de Scanner.\nPara que el ejemplo use punto decimal de forma predecible, indicaremos Locale.US.\nSe importa java.util.Locale y se llama a scanner.useLocale(Locale.US).\nEsto configura cómo se interpreta la entrada, no cómo se imprime el resultado."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "PrecioSeguro.java (1/2)",
+      "codigo": "import java.util.Locale;\nimport java.util.Scanner;\npublic class PrecioSeguro {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        scanner.useLocale(Locale.US);\n        double precio = 0;\n        boolean valido = false;\n        while (!valido) {\n            System.out.println(\"Precio no negativo con punto:\");\n            if (scanner.hasNextDouble()) {\n                precio = scanner.nextDouble();\n                scanner.nextLine();\n                valido = Double.isFinite(precio) && precio >= 0;\n                if (!valido) {\n                    System.out.println(\"Precio no permitido\");",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "PrecioSeguro.java (2/2)",
+      "codigo": "                }\n            } else {\n                scanner.nextLine();\n                System.out.println(\"Formato incorrecto\");\n            }\n        }\n        System.out.println(\"Precio: \" + precio);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Un precio debe ser un número finito",
+      "contenido": "double también puede representar valores especiales como NaN e infinito.\nDouble.isFinite(precio) devuelve true solo si el valor es finito.\nLo combinamos con precio >= 0 para expresar la regla del ejemplo.",
+      "ejemplo": "Double.isFinite(precio)\n    && precio >= 0"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Validar antes de procesar",
+      "idea_1": "Primero comprueba el formato y después las reglas del valor.",
+      "idea_2": "Consume la entrada incorrecta para que la siguiente vuelta pueda avanzar.",
+      "idea_3": "Solo los datos aceptados deben incorporarse a contadores y acumuladores.",
+      "recuerda": "Conexión con el repo: entrada segura y menú validado."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 6. Centinelas y estadísticas",
+      "subtitulo": "Procesar datos cuando no sabemos cuántos llegarán"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Temperaturas de una cantidad desconocida de días",
+      "situacion": "El usuario introduce temperaturas y decide cuándo terminar.",
+      "problema": "No sabemos cuántas lecturas habrá. Además, puede terminar sin introducir ninguna temperatura.",
+      "pregunta": "¿Cómo indicamos el final sin contar ese aviso como un dato?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Valor centinela",
+      "contenido": "Un centinela es un valor reservado para indicar el final de la entrada.\nEn nuestro ejemplo, -99 significa terminar.\nNo representa una temperatura válida en esta práctica y no se suma ni se cuenta.\nDebe elegirse un valor que no se confunda con un dato permitido.\nLas demás entradas del ejemplo se suponen enteras válidas."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: comprobar antes de acumular",
+      "codigo": "int temperatura = scanner.nextInt();\nwhile (temperatura != -99) {\n    suma += temperatura;\n    cantidad++;\n    temperatura = scanner.nextInt();\n}",
+      "explicacion": "El centinela se comprueba antes de procesar.\nUna lectura prepara la condición inicial.\nOtra lectura permite avanzar.\nPrograma completo: Temperaturas.java."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Seguimiento: -5, -2 y -99",
+      "encabezado_1": "Entrada",
+      "encabezado_2": "Suma y cantidad",
+      "encabezado_3": "Acción",
+      "fila_1_col_1": "Inicio",
+      "fila_1_col_2": "0 y 0",
+      "fila_1_col_3": "Esperar dato",
+      "fila_2_col_1": "-5",
+      "fila_2_col_2": "-5 y 1",
+      "fila_2_col_3": "Procesar",
+      "fila_3_col_1": "-2",
+      "fila_3_col_2": "-7 y 2",
+      "fila_3_col_3": "Procesar",
+      "fila_4_col_1": "-99",
+      "fila_4_col_2": "-7 y 2",
+      "fila_4_col_3": "Terminar sin procesar",
+      "nota": "La media es -3.5. El centinela no cuenta como tercera temperatura."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "Un máximo inicial de cero puede inventar un resultado",
+      "codigo_error": "// Datos: -5 y -2.\nint maximo = 0;\n// Ninguno supera cero.\n// El resultado quedaría en 0.",
+      "codigo_correcto": "// Primer dato real: -5.\nint maximo = -5;\n// Al leer -2, actualizamos.\n// El máximo correcto es -2.",
+      "explicacion": "Usa el primer dato real como referencia. Un cero arbitrario falla cuando todos los datos son negativos."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: el primer dato inicializa los extremos",
+      "codigo": "if (cantidad == 0) {\n    minimo = temperatura;\n    maximo = temperatura;\n} else {\n    if (temperatura < minimo) {\n        minimo = temperatura;\n    }\n    if (temperatura > maximo) {\n        maximo = temperatura;\n    }\n}",
+      "explicacion": "Este bloque va antes de cantidad++.\nLa primera lectura fija ambos extremos.\nLas demás comparan y actualizan.\nSe integra en Temperaturas.java."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Temperaturas.java (1/3)",
+      "codigo": "import java.util.Scanner;\npublic class Temperaturas {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int cantidad = 0;\n        double suma = 0;\n        int minimo = 0;\n        int maximo = 0;\n        int temperatura = scanner.nextInt();\n        while (temperatura != -99) {\n            if (cantidad == 0) {\n                minimo = temperatura;\n                maximo = temperatura;\n            } else {\n                if (temperatura < minimo) {\n                    minimo = temperatura;",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Temperaturas.java (2/3)",
+      "codigo": "                }\n                if (temperatura > maximo) {\n                    maximo = temperatura;\n                }\n            }\n            suma += temperatura;\n            cantidad++;\n            temperatura = scanner.nextInt();\n        }\n        if (cantidad == 0) {\n            System.out.println(\"Sin datos\");\n        } else {\n            System.out.println(\"Minimo: \" + minimo);\n            System.out.println(\"Maximo: \" + maximo);\n            System.out.println(\"Media: \" + suma / cantidad);\n        }",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Temperaturas.java (3/3)",
+      "codigo": "        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "El cero inicial de minimo y maximo no es un dato",
+      "contenido": "Java exige asignar valores antes de usarlos.\nEn Temperaturas.java, los ceros iniciales son provisionales.\nEl primer dato real los sustituye antes de comparar extremos.\nSi no hay datos, el programa muestra Sin datos y no presenta esos ceros como resultados.\nComo suma es double, suma / cantidad produce una división decimal."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Casos que comprueban la lógica",
+      "contenido": "¿Qué debe ocurrir si la primera entrada es -99?\n¿Y si solo se introduce una temperatura?\n¿Funcionan los extremos si todas son negativas?\n¿Dónde se evita incluir el centinela?\n¿Por qué comprobamos cantidad antes de calcular la media?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Estadísticas con cantidad desconocida",
+      "idea_1": "El centinela termina la entrada y queda fuera de los cálculos.",
+      "idea_2": "El primer dato válido inicializa mínimo y máximo.",
+      "idea_3": "Si no hay datos, no presentamos extremos ni calculamos una media.",
+      "recuerda": "Conexión con el repo: temperaturas y clasificación de resultados."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 7. Bucles anidados",
+      "subtitulo": "Un recorrido completo dentro de cada vuelta de otro"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Un rectángulo necesita filas y columnas",
+      "situacion": "Queremos imprimir un rectángulo de tres filas y cuatro columnas.",
+      "problema": "Un bucle puede repetir cuatro símbolos, pero también necesitamos repetir ese trabajo en cada fila.",
+      "pregunta": "¿Qué debe repetir el bucle exterior y qué debe repetir el interior?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Bucle exterior e interior",
+      "contenido": "Un bucle anidado es un bucle dentro de otro.\nPor cada vuelta del exterior, el interior empieza de nuevo y completa su recorrido.\nEn un rectángulo, fila controla el exterior y columna el interior.\nCon 3 filas y 4 columnas se imprimen 12 símbolos."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: dónde colocar el salto de línea",
+      "codigo": "for (int fila = 1; fila <= 3; fila++) {\n    for (int columna = 1; columna <= 4; columna++) {\n        System.out.print(\"* \");\n    }\n    System.out.println();\n}",
+      "explicacion": "print deja el cursor en la misma línea.\nprintln termina la fila.\nEl salto va después del bucle interior.\nPrograma completo: Rectangulo.java."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Cuántas veces se ejecuta el cuerpo interior",
+      "encabezado_1": "Fila",
+      "encabezado_2": "Columnas recorridas",
+      "encabezado_3": "Total acumulado",
+      "fila_1_col_1": "Inicio",
+      "fila_1_col_2": "Ninguna",
+      "fila_1_col_3": "0",
+      "fila_2_col_1": "1",
+      "fila_2_col_2": "1, 2, 3 y 4",
+      "fila_2_col_3": "4",
+      "fila_3_col_1": "2",
+      "fila_3_col_2": "1, 2, 3 y 4",
+      "fila_3_col_3": "8",
+      "fila_4_col_1": "3",
+      "fila_4_col_2": "1, 2, 3 y 4",
+      "fila_4_col_3": "12",
+      "nota": "columna vuelve a inicializarse cada vez que entramos al bucle interior."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Rectangulo.java · programa completo",
+      "codigo": "public class Rectangulo {\n    public static void main(String[] args) {\n        for (int fila = 1; fila <= 3; fila++) {\n            for (int columna = 1; columna <= 4; columna++) {\n                System.out.print(\"* \");\n            }\n            System.out.println();\n        }\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Triangulo.java · programa completo",
+      "codigo": "public class Triangulo {\n    public static void main(String[] args) {\n        for (int fila = 1; fila <= 4; fila++) {\n            for (int columna = 1; columna <= fila; columna++) {\n                System.out.print(\"* \");\n            }\n            System.out.println();\n        }\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Rectángulo y triángulo",
+      "izquierda_titulo": "Rectángulo",
+      "izquierda_contenido": "El límite interior es fijo.\ncolumna <= 4\n\nCada fila contiene cuatro símbolos.",
+      "derecha_titulo": "Triángulo",
+      "derecha_contenido": "El límite interior depende de fila.\ncolumna <= fila\n\nLas filas contienen 1, 2, 3 y 4 símbolos."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Tablas.java · programa completo",
+      "codigo": "public class Tablas {\n    public static void main(String[] args) {\n        for (int tabla = 1; tabla <= 3; tabla++) {\n            System.out.println(\"Tabla del \" + tabla);\n            for (int factor = 1; factor <= 10; factor++) {\n                System.out.println(tabla + \" x \" + factor\n                    + \" = \" + (tabla * factor));\n            }\n        }\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "La posición de una instrucción cambia su frecuencia",
+      "error": "Colocar println dentro del bucle interior al intentar dibujar una fila.",
+      "motivo": "Se imprime un salto después de cada símbolo y la figura se convierte en una columna.",
+      "recomendacion": "Decide si la acción ocurre por símbolo, por fila o una sola vez, y colócala en ese nivel."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Dos recorridos coordinados",
+      "idea_1": "El bucle exterior controla grupos como filas o tablas de multiplicar.",
+      "idea_2": "El interior completa su recorrido para cada vuelta del exterior.",
+      "idea_3": "El límite interior puede ser fijo o depender de la variable exterior.",
+      "recuerda": "Conexión con el repo: rectángulo, triángulo y tablas de multiplicar."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 8. Números aleatorios",
+      "subtitulo": "Generar dados y objetivos de juego con Random"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "La clase Random",
+      "contenido": "java.util.Random genera secuencias de números pseudoaleatorios.\nImportamos la clase y creamos un generador que podemos reutilizar.\nnextInt(limite) devuelve un entero desde cero hasta limite - 1.\nEl límite superior no se incluye y debe ser positivo.\nNo garantiza que dos ejecuciones den siempre resultados distintos."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Rangos de nextInt",
+      "encabezado_1": "Expresión",
+      "encabezado_2": "Mínimo",
+      "encabezado_3": "Máximo",
+      "fila_1_col_1": "random.nextInt(6)",
+      "fila_1_col_2": "0",
+      "fila_1_col_3": "5",
+      "fila_2_col_1": "random.nextInt(6) + 1",
+      "fila_2_col_2": "1",
+      "fila_2_col_3": "6",
+      "fila_3_col_1": "random.nextInt(100) + 1",
+      "fila_3_col_2": "1",
+      "fila_3_col_3": "100",
+      "fila_4_col_1": "random.nextInt(21) - 10",
+      "fila_4_col_2": "-10",
+      "fila_4_col_3": "10",
+      "nota": "Rango inclusivo de min a max: nextInt(max - min + 1) + min, para estos límites pequeños."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Fragmento: crear y reutilizar el generador",
+      "codigo": "Random random = new Random();\nfor (int i = 1; i <= 5; i++) {\n    int dado = random.nextInt(6) + 1;\n    suma += dado;\n}",
+      "explicacion": "Crea random una vez antes del bucle.\nCada llamada genera el siguiente valor.\nUn acumulador suma los lanzamientos.\nPrograma completo: Dados.java."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Dados.java · programa completo",
+      "codigo": "import java.util.Random;\npublic class Dados {\n    public static void main(String[] args) {\n        Random random = new Random();\n        int suma = 0;\n        for (int i = 1; i <= 5; i++) {\n            int dado = random.nextInt(6) + 1;\n            System.out.println(\"Dado: \" + dado);\n            suma += dado;\n        }\n        System.out.println(\"Total: \" + suma);\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Comprobar un resultado aleatorio",
+      "contenido": "No esperamos una secuencia concreta en Dados.java.\nCada dado debe estar entre 1 y 6.\nDeben aparecer cinco lanzamientos.\nEl total debe coincidir con su suma y quedar entre 5 y 30.\nUn valor repetido no es un fallo: la repetición es posible."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Un objetivo nuevo en cada intento cambia el juego",
+      "error": "Generar el número secreto dentro del bucle de intentos.",
+      "motivo": "El objetivo puede cambiar después de cada respuesta y las pistas dejan de referirse al mismo número.",
+      "recomendacion": "Genera el secreto una vez antes del bucle. Dentro, lee el intento y compara."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Adivina.java (1/2)",
+      "codigo": "import java.util.Random;\nimport java.util.Scanner;\npublic class Adivina {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Random random = new Random();\n        int secreto = random.nextInt(100) + 1;\n        int intentos = 0;\n        int intento;\n        do {\n            System.out.println(\"Numero de 1 a 100:\");\n            intento = Integer.parseInt(scanner.nextLine());\n            intentos++;\n            if (intento < secreto) {\n                System.out.println(\"El secreto es mayor\");\n            } else if (intento > secreto) {",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Adivina.java (2/2)",
+      "codigo": "                System.out.println(\"El secreto es menor\");\n            }\n        } while (intento != secreto);\n        System.out.println(\"Intentos: \" + intentos);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Supuestos del ejemplo Adivina",
+      "contenido": "Para concentrarnos en el juego, Adivina.java supone entradas enteras entre 1 y 100.\nTodavía no incorpora la validación completa del bloque 5.\nEl secreto se genera una vez y el contador aumenta por cada intento.\nConexión con el repo: adivina el número aleatorio y lanzamiento de dados."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 9. Lógica de juegos",
+      "subtitulo": "Validar una opción, decidir el resultado y contar partidas"
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Una ronda de piedra, papel o tijera",
+      "paso_1": "Leer la opción del jugador y limpiar espacios y mayúsculas.",
+      "paso_2": "Comprobar que sea piedra, papel o tijera.",
+      "paso_3": "Elegir la opción de la máquina con un número de 0 a 2.",
+      "paso_4": "Si coinciden, hay empate. Si no, comprobar las combinaciones ganadoras.",
+      "paso_5": "Solo una ronda válida puede aumentar los contadores de partidas."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Reglas para decidir el resultado",
+      "encabezado_1": "Jugador",
+      "encabezado_2": "Máquina",
+      "encabezado_3": "Resultado",
+      "fila_1_col_1": "Misma opción",
+      "fila_1_col_2": "Misma opción",
+      "fila_1_col_3": "Empate",
+      "fila_2_col_1": "piedra",
+      "fila_2_col_2": "tijera",
+      "fila_2_col_3": "Gana jugador",
+      "fila_3_col_1": "papel",
+      "fila_3_col_2": "piedra",
+      "fila_3_col_3": "Gana jugador",
+      "fila_4_col_1": "tijera",
+      "fila_4_col_2": "papel",
+      "fila_4_col_3": "Gana jugador",
+      "nota": "Con opciones válidas, cualquier combinación distinta de estas supone derrota del jugador."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Comparación después de normalizar",
+      "contenido": "En este juego usamos nombres de opciones simples y en minúsculas.\nPrimero aplicamos trim y toLowerCase, guardando el resultado.\nDespués comparamos mediante equals.\nEsta normalización sirve para las opciones del juego. No debe aplicarse automáticamente a cualquier dato, como una contraseña."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ronda.java (1/3)",
+      "codigo": "import java.util.Random;\nimport java.util.Scanner;\npublic class Ronda {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        Random random = new Random();\n        String jugador = scanner.nextLine().trim().toLowerCase();\n        boolean valida = jugador.equals(\"piedra\")\n            || jugador.equals(\"papel\") || jugador.equals(\"tijera\");\n        if (!valida) {\n            System.out.println(\"Opcion no valida\");\n        } else {\n            int numero = random.nextInt(3);\n            String maquina = \"piedra\";\n            if (numero == 1) {\n                maquina = \"papel\";",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ronda.java (2/3)",
+      "codigo": "            } else if (numero == 2) {\n                maquina = \"tijera\";\n            }\n            System.out.println(\"Maquina: \" + maquina);\n            boolean gana = jugador.equals(\"piedra\")\n                    && maquina.equals(\"tijera\")\n                || jugador.equals(\"papel\") && maquina.equals(\"piedra\")\n                || jugador.equals(\"tijera\") && maquina.equals(\"papel\");\n            if (jugador.equals(maquina)) {\n                System.out.println(\"Empate\");\n            } else if (gana) {\n                System.out.println(\"Ganas\");\n            } else {\n                System.out.println(\"Pierdes\");\n            }\n        }",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ronda.java (3/3)",
+      "codigo": "        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Por qué se valida antes de decidir el resultado",
+      "contenido": "Si aceptamos cualquier texto y tratamos el resto como derrota, una opción inválida contaría como partida perdida.\nRonda.java separa esa situación.\nEn la condición gana, && se evalúa antes que || y agrupa cada pareja ganadora.\nPodemos añadir paréntesis alrededor de cada pareja para hacer esa agrupación más visible."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Una ronda y varias rondas",
+      "izquierda_titulo": "Estado de una ronda",
+      "izquierda_contenido": "Opción del jugador.\nOpción de la máquina.\nResultado de esta ronda.\nEstos valores se calculan de nuevo.",
+      "derecha_titulo": "Estado de la sesión",
+      "derecha_contenido": "Partidas, victorias y empates.\nSus contadores se inicializan antes del bucle de rondas.\nSolo aumentan cuando la ronda es válida."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Juegos construidos con herramientas conocidas",
+      "idea_1": "La validación distingue una opción inválida de una derrota.",
+      "idea_2": "Las reglas separan empate, victoria y derrota.",
+      "idea_3": "Al repetir, conserva fuera del bucle los contadores de toda la sesión.",
+      "recuerda": "Conexión con el repo: piedra, papel o tijera y cara o cruz."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 10. break y continue",
+      "subtitulo": "Controlar una salida anticipada o saltar un dato"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos efectos diferentes",
+      "izquierda_titulo": "break",
+      "izquierda_contenido": "Termina el bucle más cercano.\nLa ejecución continúa después de ese bucle.\nEjemplo: salir al leer el centinela.",
+      "derecha_titulo": "continue",
+      "derecha_contenido": "Omite lo que queda de la vuelta actual.\nContinúa con la siguiente iteración.\nEjemplo: ignorar un número negativo."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Fragmento: break termina el recorrido",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) break;\n    System.out.print(i + \" \");\n}",
+      "resultado": "1 2 "
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Fragmento: continue salta una vuelta",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "for (int i = 1; i <= 5; i++) {\n    if (i == 3) continue;\n    System.out.print(i + \" \");\n}",
+      "resultado": "1 2 4 5 "
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Qué ocurre en cada tipo de bucle",
+      "contenido": "En for, continue pasa a la actualización y después se comprueba la condición.\nEn while, continue vuelve a comprobar la condición.\nEn do-while, continue pasa a la comprobación del final.\nSi la actualización o la lectura quedó por debajo del continue en un while, puede no ejecutarse."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Saltos.java · programa completo",
+      "codigo": "public class Saltos {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 5; i++) {\n            if (i == 3) break;\n            System.out.print(i + \" \");\n        }\n        System.out.println();\n        for (int i = 1; i <= 5; i++) {\n            if (i == 3) continue;\n            System.out.print(i + \" \");\n        }\n        System.out.println();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "while (true) necesita una salida explícita",
+      "contenido": "Una condición true mantiene el bucle activo.\nEn el siguiente ejemplo, break permite salir al leer cero.\nCada vuelta empieza leyendo otro número: así, continue no reutiliza indefinidamente el dato anterior.\nUsamos este patrón solo si facilita entender la salida y los datos descartados."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "NumerosValidos.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class NumerosValidos {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int suma = 0;\n        int cantidad = 0;\n        while (true) {\n            int numero = Integer.parseInt(scanner.nextLine());\n            if (numero == 0) {\n                break;\n            }\n            if (numero < 0) {\n                continue;\n            }\n            suma += numero;\n            cantidad++;",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "NumerosValidos.java (2/2)",
+      "codigo": "        }\n        System.out.println(\"Cantidad: \" + cantidad);\n        System.out.println(\"Suma: \" + suma);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Qué datos procesa NumerosValidos",
+      "encabezado_1": "Entrada",
+      "encabezado_2": "Instrucción",
+      "encabezado_3": "Efecto",
+      "fila_1_col_1": "-2",
+      "fila_1_col_2": "continue",
+      "fila_1_col_3": "No cuenta y no suma",
+      "fila_2_col_1": "3",
+      "fila_2_col_2": "Procesamiento normal",
+      "fila_2_col_3": "Cantidad 1 y suma 3",
+      "fila_3_col_1": "5",
+      "fila_3_col_2": "Procesamiento normal",
+      "fila_3_col_3": "Cantidad 2 y suma 8",
+      "fila_4_col_1": "0",
+      "fila_4_col_2": "break",
+      "fila_4_col_3": "Termina sin procesarlo",
+      "nota": "El ejemplo supone enteros válidos. La validación del formato es una responsabilidad adicional."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "break y bucles anidados",
+      "contenido": "Un break sin etiqueta termina el bucle más cercano que lo contiene.\nSi está dentro del bucle interior, el exterior puede continuar.\nEn un switch clásico, break termina el switch, no el bucle que lo rodea.\nLos case con flecha no necesitan ese break para evitar pasar al siguiente caso."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Los saltos deben facilitar la lectura",
+      "error": "Encadenar muchos break y continue hasta que resulte difícil seguir el programa.",
+      "motivo": "La condición de salida y las actualizaciones pueden quedar repartidas en demasiados lugares.",
+      "recomendacion": "Prefiere condiciones claras y usa saltos para situaciones especiales fáciles de identificar."
+    },
+    {
+      "tipo": "portada",
+      "titulo": "Bloque 11. Integración y depuración",
+      "subtitulo": "Planificar programas que combinan menús, validación y estado"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una máquina expendedora combina varios conceptos",
+      "situacion": "Un menú permite elegir un producto, añadir su precio al total y terminar la compra.",
+      "problema": "El total debe sobrevivir a cada vuelta. Una opción inválida no debe aumentar ni el total ni la cantidad de productos.",
+      "pregunta": "¿Qué variables se inicializan una vez y cuáles se leen en cada vuelta?"
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Diseño de un programa integrador",
+      "paso_1": "Escribir qué entradas acepta y qué resultados debe mostrar.",
+      "paso_2": "Identificar el estado que se conserva: cantidad, total u otros contadores.",
+      "paso_3": "Elegir la condición que termina el menú o el recorrido.",
+      "paso_4": "Separar leer, validar y procesar. Actualizar el estado solo con datos aceptados.",
+      "paso_5": "Probar primero un caso sencillo y después entradas límite."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Precios en los ejemplos iniciales",
+      "contenido": "Usaremos double para practicar operaciones, aunque puede introducir pequeñas aproximaciones binarias.\nPara una compra con importes exactos, otra opción inicial es acumular céntimos con int.\nPor ejemplo, 150 representa 1,50 euros.\nBigDecimal permite otras soluciones, pero queda fuera de esta unidad."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Compra.java (1/2)",
+      "codigo": "import java.util.Scanner;\npublic class Compra {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        int totalCentimos = 0;\n        int cantidad = 0;\n        int opcion;\n        do {\n            System.out.println(\"1. Agua 150 ct | 2. Zumo 200 ct | 0. Fin\");\n            opcion = Integer.parseInt(scanner.nextLine());\n            switch (opcion) {\n                case 1 -> {\n                    totalCentimos += 150;\n                    cantidad++;\n                }\n                case 2 -> {",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Compra.java (2/2)",
+      "codigo": "                    totalCentimos += 200;\n                    cantidad++;\n                }\n                case 0 -> System.out.println(\"Compra terminada\");\n                default -> System.out.println(\"Opcion no valida\");\n            }\n        } while (opcion != 0);\n        System.out.println(\"Productos: \" + cantidad);\n        System.out.println(\"Total en centimos: \" + totalCentimos);\n        scanner.close();\n    }\n}",
+      "lenguaje": "Java 21"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Lectura del ejemplo Compra",
+      "contenido": "El ejemplo supone opciones con formato entero. La opción 9 se interpreta como número, pero no es una opción del menú.\nEl default no modifica el total ni la cantidad.\nEl cero termina sin añadir un producto.\nLos acumuladores están fuera del do-while.\nLa validación de texto no numérico puede incorporarse con el patrón del bloque 5."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Casos límite antes de dar por terminado el programa",
+      "encabezado_1": "Caso",
+      "encabezado_2": "Qué revisar",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "Ningún dato",
+      "fila_1_col_2": "No dividir ni inventar resultados",
+      "fila_1_col_3": "Centinela como primera entrada",
+      "fila_2_col_1": "Límite del rango",
+      "fila_2_col_2": "Aceptar o rechazar correctamente",
+      "fila_2_col_3": "Edad 0, 120, -1 y 121",
+      "fila_3_col_1": "Texto vacío",
+      "fila_3_col_2": "Evitar posiciones inexistentes",
+      "fila_3_col_3": "charAt(0) tras entrada vacía",
+      "fila_4_col_1": "Dato inválido",
+      "fila_4_col_2": "No contar ni acumular",
+      "fila_4_col_3": "Opción de menú desconocida",
+      "nota": "Probar resultados esperados ayuda a distinguir fallos de entrada, de lógica y de estado."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Depuración con variables visibles",
+      "paso_1": "Reproducir el fallo con una entrada pequeña y conocida.",
+      "paso_2": "Comprobar el valor que se acaba de leer.",
+      "paso_3": "Mostrar el contador y el acumulador antes y después de actualizarlos.",
+      "paso_4": "Revisar la condición de repetición y la actualización que permite avanzar.",
+      "paso_5": "Retirar los mensajes de seguimiento cuando el comportamiento sea correcto."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Conexión con los proyectos del repositorio",
+      "contenido": "Máquina expendedora: menú, selección y total de compra.\nAparcamiento: validación de horas, cálculo de tarifa y recaudación.\nEntradas de cine: condiciones por edad, ventas y totales.\nEstos proyectos combinan las técnicas de los bloques anteriores.\nLos enunciados y las soluciones de los ejercicios permanecen fuera de la presentación."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Parte 1: decisiones y texto",
+      "idea_1": "Un contador cuenta ocurrencias. Un acumulador conserva una suma entre iteraciones.",
+      "idea_2": "switch selecciona acciones. String permite consultar y transformar texto sin modificar el original.",
+      "idea_3": "equals compara contenido. Los recorridos y las condiciones permiten analizar respuestas y caracteres.",
+      "recuerda": "Antes de programar, identifica entradas, estado que conservar y condición de salida."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Parte 2: programas con más control",
+      "idea_1": "Valida formato y rango. Excluye del cálculo los datos rechazados y los centinelas.",
+      "idea_2": "Inicializa los extremos con el primer dato real y contempla el caso sin datos.",
+      "idea_3": "Coordina bucles, reutiliza Random y usa break o continue cuando aclaren la lógica.",
+      "recuerda": "Cada bloque puede estudiarse por separado y retomarse al trabajar con el repositorio."
+    }
+  ]
+}
