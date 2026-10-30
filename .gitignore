@@ -51,7 +51,7 @@ examples/template.pptx
 *.pptx
 !tests/fixtures/*.pptx
 !plantillas/**/*.pptx
-.venv/
+.venv*/
 .package-check/
 salida/*
 !salida/.gitkeep

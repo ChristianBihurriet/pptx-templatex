@@ -22,6 +22,21 @@ python -m venv .venv
 .\.venv\Scripts\pptgen.exe contenidos/programacion/herencia.json --tema dam_oscuro --nombre "Herencia en Java"
 ```
 
+También puedes preparar y verificar automáticamente un clon nuevo con el script
+correspondiente al sistema operativo:
+
+```powershell
+.\scripts\setup-windows.ps1
+```
+
+```bash
+./scripts/setup-ubuntu.sh
+```
+
+Cada sistema debe crear su propio `.venv`; los entornos virtuales no se comparten
+entre Windows y Ubuntu. `.gitattributes` y `.editorconfig` mantienen estables los
+finales de línea del código y tratan los PPTX como archivos binarios.
+
 Resultado: `salida/Herencia en Java.pptx`. Si existe, elige otro nombre o directorio;
 no se sobrescribe. Para uso ordinario basta `pip install -e .`; `[dev]` añade pruebas
 y lint. También puedes usar `python -m pptgen.cli`. En Linux/macOS activa
