@@ -1,0 +1,99 @@
+{
+  "titulo": "Repaso: tres tipos de merge en Git",
+  "modulo": "Entornos de Desarrollo",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Repaso: tres tipos de merge en Git",
+      "subtitulo": "Fast-forward, merge de tres vías y squash merge\nEntornos de Desarrollo · 1.º DAM"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una funcionalidad ya está lista",
+      "situacion": "Hemos trabajado en la rama mejora y queremos llevar sus commits a main.",
+      "problema": "El resultado depende de si main también ha avanzado y de cómo queremos conservar el historial.",
+      "pregunta": "¿Qué tipo de integración producirá Git y qué commits veremos después?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Un merge integra una rama en otra",
+      "contenido": "Primero nos situamos en la rama que recibe los cambios, normalmente main. Después ejecutamos git merge seguido de la rama de origen. Git compara los historiales y decide si puede avanzar una referencia o necesita combinar dos líneas de trabajo."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Punto de partida de cualquier merge",
+      "paso_1": "Comprueba con git status que no quedan cambios sin confirmar.",
+      "paso_2": "Cambia a la rama receptora: git switch main.",
+      "paso_3": "Integra la rama: git merge mejora.",
+      "paso_4": "Revisa el resultado con git log --oneline --graph --all.",
+      "paso_5": "Prueba el proyecto antes de borrar una rama que ya no necesites."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "1. Fast-forward: solo una rama avanzó",
+      "contenido": "Desde que se creó mejora, main no tiene commits nuevos. El historial sigue siendo una línea y Git puede adelantar main hasta el último commit de mejora. No crea un commit adicional de merge.",
+      "ejemplo": "A---B  main\n     \\\n      C  mejora\n\nmain avanza hasta C"
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Fast-forward en la terminal",
+      "comandos": "git switch main\ngit merge mejora",
+      "salida": "Updating B..C\nFast-forward\n archivo.txt | 1 +",
+      "nota": "La salida exacta cambia según los commits y archivos del repositorio."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "2. Tres vías: las dos ramas avanzaron",
+      "contenido": "main y mejora tienen commits propios desde el antecesor común. Git compara ese antecesor con las dos versiones actuales y combina los cambios. Si puede hacerlo, crea un commit de merge con dos padres.",
+      "ejemplo": "    C  main\n   / \\\nA---B---D  mejora\n     \\\n      M  merge"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Un merge normal puede crear un commit",
+      "codigo": "git switch main\ngit merge mejora",
+      "explicacion": "Mismo comando que fast-forward. Si los historiales han divergido, Git crea un commit de merge. Si los cambios se combinan sin ayuda, termina automáticamente. Un conflicto es una situación, no un tipo."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "3. Squash: un único commit final",
+      "contenido": "Squash toma el resultado de todos los cambios de mejora y lo prepara como un único cambio en main. No conserva los commits individuales de mejora en el historial de main. Después debemos crear el commit manualmente.",
+      "ejemplo": "mejora: C---D---E\n\nmain: A---B---S\n            ^\n     S resume C, D y E"
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Squash requiere confirmar después",
+      "comandos": "git switch main\ngit merge --squash mejora\ngit commit -m \"Integra mejora\"",
+      "salida": "Squash commit -- not updating HEAD\nChanges to be committed:\n modified: archivo.txt",
+      "nota": "El mensaje y los archivos dependen del repositorio; revisa git status antes del commit."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Elegir el resultado del merge",
+      "encabezado_1": "Tipo",
+      "encabezado_2": "Cuándo ocurre o se usa",
+      "encabezado_3": "Historial resultante",
+      "fila_1_col_1": "Fast-forward",
+      "fila_1_col_2": "main no ha avanzado",
+      "fila_1_col_3": "Una sola línea; sin commit extra",
+      "fila_2_col_1": "Tres vías",
+      "fila_2_col_2": "Las ramas han divergido",
+      "fila_2_col_3": "Commit de merge con dos padres",
+      "fila_3_col_1": "Squash",
+      "fila_3_col_2": "Queremos resumir una rama",
+      "fila_3_col_3": "Un commit nuevo en main",
+      "fila_4_col_1": "Conflicto",
+      "fila_4_col_2": "Cambios incompatibles",
+      "fila_4_col_3": "Situación, no tipo de merge",
+      "nota": "Git puede necesitar nuestra decisión para terminar un merge de tres vías o squash."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Tres formas de integrar, una misma idea",
+      "idea_1": "Fast-forward adelanta la rama receptora cuando no hay caminos que combinar.",
+      "idea_2": "El merge de tres vías combina dos líneas de trabajo y deja un commit de merge.",
+      "idea_3": "Squash integra el resultado de una rama como un solo commit que confirmamos después.",
+      "recuerda": "Antes de hacer merge, sitúate en la rama que debe recibir los cambios."
+    }
+  ]
+}
