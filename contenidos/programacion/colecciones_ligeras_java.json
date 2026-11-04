@@ -1,0 +1,127 @@
+{
+  "titulo": "Colecciones ligeras en Java",
+  "modulo": "Programación",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Colecciones ligeras en Java",
+      "subtitulo": "List con ArrayList, Map con HashMap y Set con HashSet\nProgramación · 1.º DAM · Java 21"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una app de clase guarda muchos datos",
+      "situacion": "Una aplicación registra asistentes, sus notas y los grupos en los que participan.",
+      "problema": "Un array exige decidir su tamaño antes de conocer todos los datos. Además, no todas las necesidades son una secuencia.",
+      "pregunta": "¿Necesitamos posiciones, claves o evitar elementos repetidos?"
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "Una colección guarda varios valores",
+      "concepto": "Elige por la necesidad",
+      "explicacion": "Java ofrece estructuras distintas. La pregunta importante es cómo queremos recuperar y organizar los datos.",
+      "apoyo_1": "List\nOrden y posiciones",
+      "apoyo_2": "Map\nClave y valor",
+      "apoyo_3": "Set\nSin repetidos"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Antes: el tipo entre < >",
+      "contenido": "Una colección declara qué tipo de valores guardará. Por ejemplo, List<String> solo acepta textos. String es el tipo genérico entre < y >. Así el compilador detecta errores antes de ejecutar. Con números enteros usamos Integer, no int, porque las colecciones guardan objetos."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "List: una secuencia con posiciones",
+      "contenido": "List conserva el orden en que añadimos los elementos. Podemos consultar una posición con get. Las posiciones empiezan en 0 y List permite valores repetidos. ArrayList es una implementación habitual de List.",
+      "ejemplo": "0     1     2\nAna | Leo | Ana"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "ArrayList añade y consulta",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "List<String> lista = new ArrayList<>();\nlista.add(\"Ana\");\nlista.add(\"Leo\");\nlista.add(\"Ana\");\nSystem.out.println(lista.get(1));",
+      "resultado": "Leo"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "List no es un array",
+      "error": "Usar lista.length o pedir get(lista.size()).",
+      "motivo": "List usa size() y su último índice es size() - 1. Una posición fuera de rango provoca una excepción.",
+      "recomendacion": "Usa size() para contar y consulta índices desde 0 hasta size() - 1."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Map: buscar mediante una clave",
+      "contenido": "Map relaciona una clave con un valor. No tiene posiciones: pedimos el valor con su clave. HashMap es una implementación habitual. Cada clave aparece una sola vez; un put con la misma clave reemplaza el valor anterior.",
+      "ejemplo": "\"ana\" → 8\n\"leo\" → 7"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "HashMap recupera por clave",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "Map<String, Integer> notas = new HashMap<>();\nnotas.put(\"ana\", 8);\nnotas.put(\"ana\", 9);\nnotas.put(\"leo\", 7);\nSystem.out.println(notas.get(\"ana\"));",
+      "resultado": "9"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Una clave repetida no crea otra entrada",
+      "error": "Esperar que put con una clave existente añada una segunda nota.",
+      "motivo": "Map conserva una asociación por clave. El segundo put sustituye el valor que estaba asociado.",
+      "recomendacion": "Elige una clave que identifique el dato y usa containsKey antes de consultar si puede faltar."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Set: elementos sin repetir",
+      "contenido": "Set guarda elementos únicos. Es útil para códigos, etiquetas o personas que no deben aparecer dos veces. HashSet es una implementación común. No tiene get por índice y no garantiza el orden de inserción.",
+      "ejemplo": "rojo\nazul\nrojo  → no se añade"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "HashSet rechaza el duplicado",
+      "lenguaje": "Java 21 · fragmento",
+      "codigo": "Set<String> grupos = new HashSet<>();\nSystem.out.println(grupos.add(\"DAM\"));\nSystem.out.println(grupos.add(\"DAM\"));",
+      "resultado": "true\nfalse"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "La misma información, tres necesidades",
+      "encabezado_1": "Necesito...",
+      "encabezado_2": "Usaría",
+      "encabezado_3": "Operación típica",
+      "fila_1_col_1": "Orden y posiciones",
+      "fila_1_col_2": "List / ArrayList",
+      "fila_1_col_3": "get(0), add(valor)",
+      "fila_2_col_1": "Buscar por identificador",
+      "fila_2_col_2": "Map / HashMap",
+      "fila_2_col_3": "get(clave), put(clave, valor)",
+      "fila_3_col_1": "Evitar repetidos",
+      "fila_3_col_2": "Set / HashSet",
+      "fila_3_col_3": "add(valor), contains(valor)",
+      "fila_4_col_1": "Tamaño fijo",
+      "fila_4_col_2": "Array",
+      "fila_4_col_3": "array[indice]",
+      "nota": "HashMap y HashSet no prometen un orden concreto al mostrarse."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "ColeccionesDemo.java · programa completo",
+      "lenguaje": "Java 21",
+      "codigo": "import java.util.*;\npublic class ColeccionesDemo {\n    public static void main(String[] args) {\n        List<String> nombres = new ArrayList<>();\n        nombres.add(\"Ana\");\n        nombres.add(\"Leo\");\n        Map<String, Integer> notas = new HashMap<>();\n        notas.put(\"Ana\", 8);\n        Set<String> grupos = new HashSet<>();\n        grupos.add(\"DAM\");\n        System.out.println(nombres.get(0));\n        System.out.println(notas.get(\"Ana\"));\n        System.out.println(grupos.contains(\"DAM\"));\n    }\n}"
+    },
+    {
+      "tipo": "terminal",
+      "titulo": "Compilar y ejecutar",
+      "comandos": "javac ColeccionesDemo.java\njava ColeccionesDemo",
+      "salida": "Ana\n8\ntrue",
+      "nota": "Guarda el programa completo en un archivo llamado ColeccionesDemo.java."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Qué colección elegir",
+      "idea_1": "Usa List con ArrayList cuando importen el orden, las posiciones o los repetidos.",
+      "idea_2": "Usa Map con HashMap cuando una clave permita localizar un valor rápidamente.",
+      "idea_3": "Usa Set con HashSet cuando cada elemento deba aparecer una sola vez.",
+      "recuerda": "No elijas por el nombre: elige por la operación que necesitas hacer."
+    }
+  ]
+}

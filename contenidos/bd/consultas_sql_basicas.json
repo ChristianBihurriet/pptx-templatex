@@ -1,0 +1,175 @@
+{
+  "titulo": "Consultas SQL básicas",
+  "modulo": "Bases de Datos",
+  "curso": "1.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Consultas SQL básicas",
+      "subtitulo": "Leer filas y columnas con SELECT\nFiltrar resultados con WHERE · 1.º DAM"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "La tabla tiene más datos de los necesarios",
+      "situacion": "La academia guarda todos sus alumnos en una tabla llamada alumnos.",
+      "problema": "A veces queremos ver solo algunos datos; otras, solo las filas que cumplen una condición.",
+      "pregunta": "¿Cómo pedimos exactamente las columnas y filas que necesitamos?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Repaso: tablas, filas y columnas",
+      "contenido": "Una tabla organiza datos sobre un mismo tema, por ejemplo alumnos. Cada fila o registro representa un alumno. Cada columna describe un dato de todos ellos, como nombre o edad. La intersección de una fila y una columna contiene un valor."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Repaso: cada columna tiene un tipo",
+      "encabezado_1": "Columna",
+      "encabezado_2": "Tipo",
+      "encabezado_3": "Ejemplo de valor",
+      "fila_1_col_1": "id",
+      "fila_1_col_2": "INTEGER",
+      "fila_1_col_3": "1",
+      "fila_2_col_1": "nombre",
+      "fila_2_col_2": "VARCHAR(100)",
+      "fila_2_col_3": "Ana",
+      "fila_3_col_1": "edad",
+      "fila_3_col_2": "INTEGER",
+      "fila_3_col_3": "18",
+      "fila_4_col_1": "fecha_alta",
+      "fila_4_col_2": "DATE",
+      "fila_4_col_3": "2026-11-04",
+      "nota": "El tipo define qué clase de valores admite cada columna."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Repaso: claves para identificar y relacionar",
+      "izquierda_titulo": "PRIMARY KEY",
+      "izquierda_contenido": "Identifica de forma única cada fila de su tabla.\nNo se repite ni puede ser NULL.\nEjemplo: alumnos.id.",
+      "derecha_titulo": "FOREIGN KEY",
+      "derecha_contenido": "Guarda una referencia a una fila de otra tabla.\nEjemplo: cursos.profesor_id.\nDebe apuntar a una clave existente."
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Datos de partida: tabla alumnos",
+      "encabezado_1": "id",
+      "encabezado_2": "nombre",
+      "encabezado_3": "edad",
+      "fila_1_col_1": "1",
+      "fila_1_col_2": "Ana",
+      "fila_1_col_3": "18",
+      "fila_2_col_1": "2",
+      "fila_2_col_2": "Luis",
+      "fila_2_col_3": "20",
+      "fila_3_col_1": "3",
+      "fila_3_col_2": "Marta",
+      "fila_3_col_3": "17",
+      "fila_4_col_1": "4",
+      "fila_4_col_2": "Pablo",
+      "fila_4_col_3": "18",
+      "nota": "Cada fila es un alumno; cada columna describe uno de sus datos."
+    },
+    {
+      "tipo": "concepto_visual",
+      "titulo": "Una consulta decide qué queremos ver",
+      "concepto": "SELECT ... FROM ...",
+      "explicacion": "SELECT elige las columnas y FROM indica la tabla de la que leemos las filas.",
+      "apoyo_1": "SELECT\nQué columnas",
+      "apoyo_2": "FROM\nQué tabla",
+      "apoyo_3": "WHERE\nQué filas"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Primera consulta: todas las columnas",
+      "codigo": "SELECT *\nFROM alumnos;",
+      "explicacion": "SELECT inicia la consulta. * significa todas las columnas. FROM alumnos indica la tabla. El punto y coma termina la instrucción. Devuelve las cuatro filas y sus tres columnas."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Pedir solo las columnas necesarias",
+      "codigo": "SELECT nombre, edad\nFROM alumnos;",
+      "explicacion": "Después de SELECT escribimos los nombres de las columnas, separados por comas. No aparece id porque no lo hemos pedido. Las cuatro filas siguen estando: solo cambia qué columnas mostramos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Columnas y filas son decisiones distintas",
+      "izquierda_titulo": "SELECT: columnas",
+      "izquierda_contenido": "SELECT nombre, edad\nFROM alumnos;\n\nMuestra dos datos de cada alumno.",
+      "derecha_titulo": "WHERE: filas",
+      "derecha_contenido": "SELECT *\nFROM alumnos\nWHERE edad >= 18;\n\nMuestra solo alumnos mayores de edad."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "WHERE filtra las filas",
+      "contenido": "WHERE añade una condición a la consulta. Solo aparecen las filas para las que esa condición es verdadera. La consulta no modifica ni borra datos: únicamente decide qué resultados vemos. Podemos combinar WHERE con columnas concretas en SELECT."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Filtrar con una comparación numérica",
+      "lenguaje": "SQL · PostgreSQL",
+      "codigo": "SELECT nombre, edad\nFROM alumnos\nWHERE edad > 18;",
+      "resultado": "Luis | 20"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Filtrar un texto",
+      "lenguaje": "SQL · PostgreSQL",
+      "codigo": "SELECT id, nombre\nFROM alumnos\nWHERE nombre = 'Ana';",
+      "resultado": "1 | Ana"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Los textos se escriben entre comillas simples",
+      "error": "Escribir WHERE nombre = Ana sin comillas.",
+      "motivo": "SQL interpreta Ana como un identificador, por ejemplo, una columna, no como un texto.",
+      "recomendacion": "Escribe los textos como 'Ana'. Los números se escriben sin comillas: edad >= 18."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Dos condiciones: AND",
+      "lenguaje": "SQL · PostgreSQL",
+      "codigo": "SELECT nombre, edad\nFROM alumnos\nWHERE edad >= 18\n  AND nombre = 'Ana';",
+      "resultado": "Ana | 18"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "AND y OR no significan lo mismo",
+      "contenido": "AND exige que las dos condiciones sean verdaderas en la misma fila. OR acepta una fila si al menos una condición es verdadera. Empieza con condiciones sencillas y léelas como una frase antes de ejecutar la consulta.",
+      "ejemplo": "AND: edad >= 18\n     y nombre = 'Ana'\n\nOR: edad = 17\n    o edad = 20"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Dos alternativas: OR",
+      "lenguaje": "SQL · PostgreSQL",
+      "codigo": "SELECT nombre, edad\nFROM alumnos\nWHERE edad = 17\n   OR edad = 20;",
+      "resultado": "Luis | 20\nMarta | 17"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": "Operadores para los filtros de hoy",
+      "encabezado_1": "Operador",
+      "encabezado_2": "Significa",
+      "encabezado_3": "Ejemplo",
+      "fila_1_col_1": "=",
+      "fila_1_col_2": "Igual a",
+      "fila_1_col_3": "nombre = 'Ana'",
+      "fila_2_col_1": ">",
+      "fila_2_col_2": "Mayor que",
+      "fila_2_col_3": "edad > 18",
+      "fila_3_col_1": ">=",
+      "fila_3_col_2": "Mayor o igual que",
+      "fila_3_col_3": "edad >= 18",
+      "fila_4_col_1": "AND / OR",
+      "fila_4_col_2": "Unir condiciones",
+      "fila_4_col_3": "edad = 17 OR edad = 20",
+      "nota": "Usaremos otros filtros y ordenaciones más adelante."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Consultar es elegir",
+      "idea_1": "SELECT indica las columnas que queremos mostrar y FROM indica la tabla.",
+      "idea_2": "SELECT * muestra todas las columnas; pedir nombres concretos hace la consulta más precisa.",
+      "idea_3": "WHERE filtra filas mediante comparaciones y condiciones con AND u OR.",
+      "recuerda": "Primero decide las columnas; después decide qué filas deben aparecer."
+    }
+  ]
+}
