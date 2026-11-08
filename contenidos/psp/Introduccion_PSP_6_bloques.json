@@ -1,0 +1,187 @@
+{
+  "titulo": "Introducción a PSP: procesos y ProcessBuilder",
+  "modulo": "Programación de Servicios y Procesos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Introducción a Programación de Servicios y Procesos",
+      "subtitulo": "2.º DAM · UD01 · Procesos, JVM y ProcessBuilder"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Puede Java ejecutar otro programa?",
+      "situacion": "Nuestro programa necesita iniciar una herramienta externa.",
+      "problema": "Primero debemos distinguir un programa almacenado de un proceso en ejecución.",
+      "pregunta": "¿Qué crea el sistema operativo al ejecutar java Main?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "1 · Programa frente a proceso",
+      "contenido": "Programa: instrucciones almacenadas, como Main.class.\nProceso: instancia en ejecución, gestionada por el sistema operativo.\nUn mismo programa puede originar varios procesos.\nCada ejecución tiene su propio estado y recursos."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Un programa, dos procesos",
+      "contenido": "[PEGAR SVG: 01_programa_procesos.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · Dos contadores",
+      "contenido": "Ejecutamos dos veces el mismo programa Java. Cada instancia declara int contador = 0.\nSi el primer proceso incrementa su contador hasta 100, ¿cuánto vale el contador del segundo? ¿Por qué?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "2 · PID y aislamiento",
+      "contenido": "Cada proceso recibe un identificador: PID.\nEl sistema operativo gestiona su memoria virtual, hilos y recursos.\nDos procesos Java independientes no comparten automáticamente sus variables.\nConocer el PID de otro proceso no permite leer directamente sus variables."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Consultar el PID desde Java",
+      "lenguaje": "Java 21",
+      "codigo": "public class Main {\n    public static void main(String[] args) {\n        long pid = ProcessHandle.current().pid();\n        System.out.println(\"Mi PID es: \" + pid);\n    }\n}"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Cada proceso tiene su memoria",
+      "contenido": "[PEGAR SVG: 02_aislamiento_memoria.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · ¿B puede leer A?",
+      "contenido": "El proceso A tiene una variable contador y el proceso B conoce el PID de A.\n¿Puede B acceder directamente a esa variable? ¿Qué recursos externos podrían compartir ambos procesos?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "3 · Concurrencia y paralelismo",
+      "izquierda_titulo": "Concurrencia",
+      "izquierda_contenido": "Varias tareas progresan en un mismo intervalo.\nPueden alternarse en un único núcleo.",
+      "derecha_titulo": "Paralelismo",
+      "derecha_contenido": "Varias tareas se ejecutan simultáneamente.\nRequiere recursos de ejecución simultánea."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Concurrencia ≠ paralelismo",
+      "contenido": "[PEGAR SVG: 03_concurrencia_paralelismo.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · Un solo núcleo",
+      "contenido": "Un procesador con un único núcleo ejecuta alternativamente tres procesos Java.\n¿Hay concurrencia, paralelismo o ambas?\nMatiz: SMT y núcleos lógicos no equivalen a tener más núcleos físicos."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "4 · ¿Qué ocurre al ejecutar Java?",
+      "contenido": "javac transforma Main.java en Main.class (bytecode).\njava Main inicia un proceso que ejecuta una JVM.\nLa JVM carga y ejecuta el bytecode; puede usar interpretación y compilación JIT.\nLa JVM es específica de plataforma, pero el bytecode es portable entre JVM compatibles."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Del código Java a la CPU",
+      "contenido": "[PEGAR SVG: 04_pipeline_java.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Inspeccionar la JVM y el proceso",
+      "lenguaje": "Java 21",
+      "codigo": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"PID: \" + ProcessHandle.current().pid());\n        System.out.println(\"JVM: \" + System.getProperty(\"java.vm.name\"));\n        System.out.println(\"Java: \" + System.getProperty(\"java.version\"));\n    }\n}"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · Portabilidad",
+      "contenido": "Compilamos Main.java en Windows y copiamos Main.class a Linux con una JVM compatible.\n¿Necesitamos recompilar?\n¿Significa eso que cualquier comando externo usado por el programa funcionará en ambos sistemas?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "JIT · Optimización durante la ejecución",
+      "contenido": "La JVM puede compilar a código nativo las partes del programa que se ejecutan frecuentemente.\nEl JIT utiliza información de ejecución para optimizar.\nPor eso algunas aplicaciones Java necesitan un tiempo de calentamiento antes de alcanzar su rendimiento habitual."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "5 · ¿Para qué sirve ProcessBuilder?",
+      "contenido": "ProcessBuilder configura un programa externo y sus argumentos.\nEl constructor no inicia ningún proceso.\nstart() solicita su creación y devuelve un objeto Process.\nCada llamada a start() inicia una ejecución independiente."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Lanzar java -version desde Java",
+      "lenguaje": "Java 21",
+      "codigo": "public class Main {\n    public static void main(String[] args) throws Exception {\n        ProcessBuilder pb = new ProcessBuilder(\"java\", \"-version\");\n        pb.inheritIO();\n        Process hijo = pb.start();\n        System.out.println(\"PID hijo: \" + hijo.pid());\n    }\n}"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "ProcessBuilder crea procesos hijos",
+      "contenido": "[PEGAR SVG: 05_processbuilder.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · Dos start()",
+      "contenido": "ProcessBuilder pb = new ProcessBuilder(\"java\", \"-version\");\nProcess p1 = pb.start();\nProcess p2 = pb.start();\n\n¿Cuántos procesos nuevos se crean? ¿p1 y p2 representan el mismo proceso?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué ejecuta ProcessBuilder?",
+      "contenido": "Ejecuta programas disponibles y autorizados por el sistema operativo.\nNo interpreta por sí mismo alias, tuberías (|), redirecciones (>) ni comandos internos del shell.\nPara utilizar esas funciones debemos invocar el intérprete correspondiente.\nEl ejecutable y sus argumentos se pasan por separado."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Terminal frente a ProcessBuilder",
+      "izquierda_titulo": "PowerShell",
+      "izquierda_contenido": "sleep 3 puede funcionar como alias de Start-Sleep.\nEl shell interpreta el nombre.",
+      "derecha_titulo": "ProcessBuilder",
+      "derecha_contenido": "new ProcessBuilder(\"sleep\", \"3\") intenta encontrar un ejecutable llamado sleep.\nEn Windows puede fallar."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "Error real · sleep en Windows",
+      "codigo_error": "new ProcessBuilder(\"sleep\", \"3\").start();",
+      "codigo_correcto": "new ProcessBuilder(\"powershell.exe\",\n    \"-NoProfile\", \"-Command\",\n    \"Start-Sleep -Seconds 3\").start();",
+      "explicacion": "IOException: Windows no encuentra el ejecutable sleep. PowerShell sí conoce Start-Sleep."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "inheritIO() y los tres canales",
+      "contenido": "stdin: entrada estándar del proceso.\nstdout: salida estándar normal.\nstderr: salida estándar de errores.\ninheritIO() conecta los tres canales del hijo con los del padre.\nNo convierte automáticamente la salida en un String de Java."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "6 · El objeto Process",
+      "contenido": "Process representa una ejecución concreta.\npid(): devuelve el identificador.\nisAlive(): indica si sigue ejecutándose.\nwaitFor(): bloquea el hilo llamante hasta que termina y devuelve el código de salida.\nexitValue(): devuelve el código sin esperar; si sigue activo, lanza IllegalThreadStateException."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Ciclo de control del proceso",
+      "contenido": "[PEGAR SVG: 06_control_process.svg]\nEliminar este marcador al insertar el gráfico."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Controlar un proceso en Windows",
+      "lenguaje": "Java 21",
+      "codigo": "public class Main {\n    public static void main(String[] args) throws Exception {\n        Process p = new ProcessBuilder(\"powershell.exe\",\n            \"-NoProfile\", \"-Command\",\n            \"Start-Sleep -Seconds 3\").start();\n        System.out.println(\"PID: \" + p.pid());\n        System.out.println(\"Vivo: \" + p.isAlive());\n        int codigo = p.waitFor();\n        System.out.println(\"Vivo: \" + p.isAlive());\n        System.out.println(\"Salida: \" + codigo);\n    }\n}"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "waitFor() frente a await",
+      "izquierda_titulo": "Process.waitFor()",
+      "izquierda_contenido": "Espera bloqueando el hilo actual.\nEl proceso hijo continúa su ejecución.",
+      "derecha_titulo": "JavaScript await",
+      "derecha_contenido": "Suspende la función asíncrona sin bloquear el hilo del event loop mientras espera la promesa."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · ¿Cuándo aparece B?",
+      "contenido": "Process hijo = pb.start();\nSystem.out.println(\"A\");\nhijo.waitFor();\nSystem.out.println(\"B\");\n\nSi el hijo tarda 10 segundos, ¿cuándo se imprime B? ¿Qué hace el hijo durante la espera?"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación · Tres procesos",
+      "contenido": "Iniciamos tres procesos con start() y, solo después, llamamos a waitFor() para cada uno.\n¿Pueden ejecutarse concurrentemente o el segundo debe esperar a que termine el primero?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Resumen · Primera clase de PSP",
+      "idea_1": "Programa ≠ proceso. Cada proceso tiene PID y memoria virtual propia.",
+      "idea_2": "Concurrencia no implica paralelismo. Java ejecuta bytecode mediante una JVM.",
+      "idea_3": "ProcessBuilder configura y lanza; Process consulta y controla la ejecución.",
+      "recuerda": "start() no espera. waitFor() sí bloquea el hilo llamante."
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "titulo": "Introducción a Acceso a Datos",
+  "modulo": "Acceso a Datos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Acceso a Datos",
+      "subtitulo": "2.º DAM · Del dato temporal a la persistencia en aplicaciones reales"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una aplicación que olvida",
+      "situacion": "Una academia registra alumnos, cursos y matrículas.",
+      "problema": "El programa funciona, pero al cerrarlo desaparecen los registros que estaban en memoria.",
+      "pregunta": "¿Cómo conseguirías que mañana siguieran ahí?"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué datos necesitan sobrevivir?",
+      "contenido": "Pensá en una tienda online: usuarios, carrito, pedidos, pagos y catálogo.\n¿Qué información puede perderse al cerrar la aplicación y cuál sería imprescindible conservar?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Persistencia: datos que sobreviven",
+      "contenido": "Persistir significa almacenar información para recuperarla después, incluso si el proceso termina.\nNo implica necesariamente una base de datos: un fichero también puede persistir información."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Memoria frente a almacenamiento",
+      "izquierda_titulo": "RAM",
+      "izquierda_contenido": "Acceso rápido durante la ejecución.\nVariables y objetos viven aquí.\nAl terminar el proceso, su estado no queda guardado automáticamente.",
+      "derecha_titulo": "Almacenamiento persistente",
+      "derecha_contenido": "Ficheros y bases de datos.\nLos datos pueden recuperarse en otra ejecución.\nNecesita operaciones explícitas de lectura y escritura."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Guardar no basta",
+      "contenido": "Si guardamos alumnos en un fichero, ¿cómo encontramos uno concreto?\n¿Cómo modificamos su teléfono?\n¿Y qué ocurre si dos personas intentan cambiarlo al mismo tiempo?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Acceder a datos es más que guardar",
+      "contenido": "Una aplicación necesita crear, leer, actualizar y eliminar información.\nTambién debe gestionar errores, formatos, integridad y acceso concurrente.\nEstas necesidades condicionan la tecnología elegida."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "El viaje de un dato",
+      "contexto": "Ejemplo: una matrícula registrada desde una aplicación.",
+      "etapa_1": "Entrada\nusuario",
+      "etapa_2": "Validar\nreglas",
+      "etapa_3": "Guardar\ndatos",
+      "etapa_4": "Recuperar\ny mostrar",
+      "conclusion": "La persistencia conecta la lógica de la aplicación con su almacenamiento."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué es un formato de datos?",
+      "contenido": "Un formato establece cómo se representa la información.\nEl mismo alumno puede guardarse como texto, CSV, JSON, XML o filas de una tabla.\nElegir formato afecta la lectura y el intercambio."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Texto plano y datos estructurados",
+      "izquierda_titulo": "Texto plano",
+      "izquierda_contenido": "Flexible y fácil de inspeccionar.\nNo define por sí solo campos ni tipos.\nEjemplo: una nota o un registro de eventos.",
+      "derecha_titulo": "Formato estructurado",
+      "derecha_contenido": "Define reglas para representar campos.\nFacilita interpretar los datos.\nEjemplo: CSV, JSON y XML."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "CSV: sencillo, pero con reglas",
+      "contenido": "Representa registros en filas y campos separados por un delimitador.\nEs útil para exportar tablas, pero hay que gestionar comillas, delimitadores y saltos de línea.",
+      "ejemplo": "id,nombre\n1,Ana\n2,Juan"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "JSON: objetos y colecciones",
+      "contenido": "Permite representar pares clave-valor, listas y estructuras anidadas.\nEs habitual en APIs y configuraciones.\nJava necesita interpretar el texto para convertirlo en objetos.",
+      "ejemplo": "{ \"id\": 1,\n  \"nombre\": \"Ana\" }"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "XML: documentos con estructura",
+      "contenido": "Usa etiquetas para describir elementos y atributos.\nPermite validación mediante esquemas y sigue presente en integraciones empresariales.",
+      "ejemplo": "<alumno id=\"1\">\n  <nombre>Ana</nombre>\n</alumno>"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Fichero frente a base de datos",
+      "izquierda_titulo": "Fichero",
+      "izquierda_contenido": "Control directo del contenido.\nAdecuado para documentos, exportaciones y configuraciones.\nBuscar o actualizar registros puede requerir más trabajo.",
+      "derecha_titulo": "Base de datos",
+      "derecha_contenido": "Gestiona registros y consultas.\nFacilita integridad y acceso concurrente.\nRequiere aprender su modelo y sus herramientas."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Cuándo usarías cada solución?",
+      "contenido": "Un archivo de configuración, un historial de ventas, una foto de perfil y una agenda compartida.\n¿Guardarías todo de la misma manera? Justificá cada elección."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Una base de datos relacional",
+      "contenido": "Organiza datos en tablas con filas y columnas.\nLas claves relacionan registros y las restricciones ayudan a conservar su integridad.\nSQL permite consultar y modificar esos datos."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "De Java a una base de datos",
+      "contexto": "El programa no necesita construir manualmente un fichero de tablas.",
+      "etapa_1": "Código\nJava",
+      "etapa_2": "API\nJDBC",
+      "etapa_3": "Controlador\nBD",
+      "etapa_4": "Motor\nSQL",
+      "conclusion": "JDBC es una API de Java para trabajar con bases de datos relacionales."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "JDBC: hablar SQL desde Java",
+      "contenido": "JDBC permite abrir conexiones, preparar consultas, enviar parámetros y recorrer resultados.\nLa aplicación sigue siendo responsable de escribir SQL y gestionar recursos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "JDBC y ORM no son lo mismo",
+      "izquierda_titulo": "JDBC",
+      "izquierda_contenido": "Trabajamos con consultas SQL y resultados.\nControl explícito sobre las operaciones.\nMás código de conversión entre filas y objetos.",
+      "derecha_titulo": "JPA / Hibernate",
+      "derecha_contenido": "Mapeamos entidades Java a tablas.\nEl ORM gestiona parte de la conversión.\nNo elimina la necesidad de entender SQL."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "JPA y Hibernate: ¿qué papel cumplen?",
+      "contenido": "JPA define una especificación de persistencia de objetos Java.\nHibernate es una implementación habitual.\nNos permiten trabajar con entidades y relaciones, con límites que estudiaremos."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "Arquitectura: separar responsabilidades",
+      "contexto": "Una aplicación mantenible no mezcla todas las decisiones en main.",
+      "etapa_1": "Interfaz\nusuario",
+      "etapa_2": "Lógica\nnegocio",
+      "etapa_3": "Acceso\na datos",
+      "etapa_4": "Fichero\no BD",
+      "conclusion": "Cambiar la persistencia no debería obligar a reescribir todas las reglas del negocio."
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Qué puede salir mal al guardar?",
+      "situacion": "Una aplicación guarda un pedido y se queda sin permisos de escritura.",
+      "problema": "La operación puede fallar: el directorio no existe, el disco está lleno o el formato es inválido.",
+      "pregunta": "¿Cómo informa del error sin perder el contexto?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Los errores también son parte del diseño",
+      "contenido": "La entrada/salida puede fallar por causas externas al código.\nEn Java muchas operaciones de fichero declaran IOException.\nHay que decidir cuándo recuperar, informar o propagar el error."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Nuestro recorrido por Acceso a Datos",
+      "paso_1": "Trabajar con rutas, ficheros y flujos de entrada/salida.",
+      "paso_2": "Conectar Java con una base de datos usando JDBC.",
+      "paso_3": "Persistir objetos mediante JPA e Hibernate.",
+      "paso_4": "Leer y generar documentos XML y JSON."
+    }
+  ]
+}

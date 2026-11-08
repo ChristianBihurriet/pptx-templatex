@@ -1,0 +1,120 @@
+{
+  "titulo": "Introducción a Acceso a Datos",
+  "modulo": "Acceso a Datos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Acceso a Datos",
+      "subtitulo": "De los objetos en memoria a la información persistente"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una aplicación que olvida",
+      "situacion": "Una tienda registra clientes en una lista Java.",
+      "problema": "Al cerrar el programa, la lista desaparece. Al abrirlo, tenemos que introducir todo de nuevo.",
+      "pregunta": "¿Cómo conservar los datos entre ejecuciones?"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Dónde están los datos?",
+      "contenido": "Tenemos un ArrayList con 200 clientes. ¿Qué sucede si cerramos Java? ¿Y si apagamos el ordenador?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Persistencia de datos",
+      "contenido": "Persistir significa conservar información más allá de la ejecución que la creó.\nLa RAM mantiene el estado mientras funciona el programa.\nEl almacenamiento permite recuperarlo posteriormente."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Memoria y almacenamiento",
+      "izquierda_titulo": "RAM",
+      "izquierda_contenido": "Acceso rápido durante la ejecución.\nLos objetos viven en la memoria del proceso.\nAl finalizar, se pierde ese estado.",
+      "derecha_titulo": "Disco / SSD",
+      "derecha_contenido": "Conserva archivos entre ejecuciones.\nLos datos deben guardarse y leerse explícitamente.\nLa persistencia requiere gestionar errores."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "El ciclo de los datos",
+      "contexto": "Una aplicación guarda y recupera información.",
+      "etapa_1": "Usuario",
+      "etapa_2": "Objeto Java",
+      "etapa_3": "Archivo / BD",
+      "etapa_4": "Nueva ejecución",
+      "conclusion": "Guardar y recuperar son operaciones explícitas."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "No existe una única forma de persistir",
+      "contenido": "Un archivo de texto es sencillo y portable.\nCSV y JSON representan datos estructurados.\nUna base de datos permite consultas, relaciones y acceso concurrente.\nLa elección depende del problema."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Ficheros frente a bases de datos",
+      "izquierda_titulo": "Ficheros",
+      "izquierda_contenido": "Control directo del formato.\nAdecuados para registros simples, exportaciones y configuración.\nBuscar y actualizar puede requerir recorrer datos.",
+      "derecha_titulo": "Bases de datos",
+      "derecha_contenido": "Consultas y operaciones estructuradas.\nÍndices, restricciones y transacciones.\nÚtiles para datos relacionados y multiusuario."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Nuestro recorrido en el módulo",
+      "paso_1": "Empezar con rutas, archivos y excepciones en Java.",
+      "paso_2": "Leer y escribir texto, CSV y JSON.",
+      "paso_3": "Conectar Java con PostgreSQL mediante JDBC.",
+      "paso_4": "Mapear entidades mediante JPA/Hibernate.",
+      "paso_5": "Aplicar persistencia a una aplicación completa."
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Cómo identifica Java un fichero?",
+      "situacion": "Queremos guardar los alumnos en datos/alumnos.txt.",
+      "problema": "Antes de escribir necesitamos representar la ubicación. Una ruta puede existir o no existir todavía.",
+      "pregunta": "¿Representar una ruta equivale a crear el archivo?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Path representa una ruta",
+      "contenido": "Path es una interfaz de java.nio.file.\nPath.of() devuelve un objeto que representa una ubicación.\nNo crea carpetas ni archivos.\nLas rutas pueden ser relativas o absolutas."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Una ruta no crea nada",
+      "codigo": "Path ruta = Path.of(\"datos\", \"alumnos.txt\");\nSystem.out.println(ruta.getFileName());\nSystem.out.println(ruta.getParent());",
+      "explicacion": "getFileName() devuelve alumnos.txt.\ngetParent() devuelve datos.\nEl fichero puede no existir todavía."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Files realiza operaciones",
+      "contenido": "Files es una clase final de utilidades en java.nio.file.\nSus métodos estáticos crean, comprueban, leen y escriben archivos.\nMuchas operaciones pueden lanzar IOException."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Guardar y recuperar texto",
+      "codigo": "Path ruta = Path.of(\"alumnos.txt\");\ntry {\n    Files.writeString(ruta, \"Ana\\n\");\n    System.out.println(Files.readString(ruta));\n} catch (IOException e) {\n    System.out.println(e.getMessage());\n}",
+      "explicacion": "writeString crea o sobrescribe por defecto.\nreadString recupera todo el texto.\nEl catch trata errores de entrada/salida."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Sobrescribir no es añadir",
+      "error": "Llamar dos veces a writeString sin opciones y esperar dos registros.",
+      "motivo": "La segunda escritura sustituye el contenido anterior.",
+      "recomendacion": "Para agregar, utilizar CREATE y APPEND; verificar el resultado."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "La carpeta no aparece sola",
+      "codigo_error": "Path p = Path.of(\"datos/a.txt\");\nFiles.writeString(p, \"Hola\");",
+      "codigo_correcto": "Path dir = Path.of(\"datos\");\nFiles.createDirectories(dir);\nFiles.writeString(dir.resolve(\"a.txt\"), \"Hola\");",
+      "explicacion": "writeString crea el archivo, pero no los directorios padre que faltan."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "De la idea al primer programa",
+      "idea_1": "La persistencia conserva datos entre ejecuciones.",
+      "idea_2": "Path representa rutas; Files actúa sobre archivos y directorios.",
+      "idea_3": "Las operaciones de entrada/salida pueden fallar y debemos gestionarlo.",
+      "recuerda": "Primero entender el problema; después elegir la herramienta."
+    }
+  ]
+}

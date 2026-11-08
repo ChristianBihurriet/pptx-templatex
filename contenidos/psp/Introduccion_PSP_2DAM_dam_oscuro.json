@@ -1,0 +1,263 @@
+{
+  "titulo": "Introducción a Programación de Servicios y Procesos",
+  "modulo": "Programación de Servicios y Procesos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Programación de Servicios y Procesos",
+      "subtitulo": "2.º DAM · Cómo ejecutar tareas, coordinar procesos y comunicar aplicaciones de forma segura"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una aplicación que no puede esperar",
+      "situacion": "Una aplicación recibe peticiones mientras genera informes y consulta servicios externos.",
+      "problema": "Si hace cada tarea una detrás de otra, las demás esperan. Si varias trabajan a la vez, pueden interferir.",
+      "pregunta": "¿Cómo diseñarías una aplicación que responda y coordine tareas?"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Dónde aparece PSP en la vida real?",
+      "contenido": "Un servidor web atiende varios clientes. Una aplicación ejecuta una herramienta externa. Un chat intercambia mensajes por red. Un servicio protege las comunicaciones.\n¿Qué tienen en común?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué estudia este módulo?",
+      "contenido": "PSP estudia cómo ejecutar y coordinar procesos e hilos, comunicar programas a través de redes y proteger servicios.\nNo se trata solo de ejecutar código: importa cuándo, dónde y con quién se ejecuta."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Una tarea frente a varias tareas",
+      "izquierda_titulo": "Ejecución secuencial",
+      "izquierda_contenido": "Una tarea comienza después de terminar la anterior.\nEl flujo es fácil de seguir.\nUna operación lenta retrasa las siguientes.",
+      "derecha_titulo": "Ejecución concurrente",
+      "derecha_contenido": "Varias tareas pueden progresar en intervalos solapados.\nMejora la capacidad de respuesta.\nExige coordinar recursos y errores."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Proceso: un programa en ejecución",
+      "contenido": "Un proceso es una instancia de programa en ejecución, gestionada por el sistema operativo.\nTiene recursos y un espacio de memoria propio.\nUna aplicación Java puede iniciar y supervisar otros procesos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Proceso e hilo no son lo mismo",
+      "izquierda_titulo": "Proceso",
+      "izquierda_contenido": "Unidad de ejecución aislada por el sistema operativo.\nTiene su propio espacio de direcciones.\nComunicarse con otro proceso requiere mecanismos específicos.",
+      "derecha_titulo": "Hilo",
+      "derecha_contenido": "Unidad de ejecución dentro de un proceso.\nComparte memoria y recursos con otros hilos del proceso.\nCompartir facilita colaborar, pero introduce riesgos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Concurrencia y paralelismo",
+      "izquierda_titulo": "Concurrencia",
+      "izquierda_contenido": "Varias tareas progresan en un mismo período.\nPueden alternarse incluso en un solo núcleo.\nEs una forma de organizar el trabajo.",
+      "derecha_titulo": "Paralelismo",
+      "derecha_contenido": "Varias tareas se ejecutan literalmente al mismo tiempo.\nDepende de recursos de ejecución disponibles.\nPuede acelerar determinados trabajos."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Más hilos significa más velocidad?",
+      "contenido": "Un programa crea 100 hilos para sumar números. Otro crea 4.\n¿El de 100 terminará necesariamente antes?\nPensá en núcleos de CPU, coordinación, bloqueos y coste de crear tareas."
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "De una petición al resultado",
+      "contexto": "Una aplicación de servidor atiende una solicitud.",
+      "etapa_1": "Recibir\npetición",
+      "etapa_2": "Asignar\ntrabajo",
+      "etapa_3": "Procesar\ntarea",
+      "etapa_4": "Enviar\nrespuesta",
+      "conclusion": "En PSP aprenderemos a controlar las tareas y sus interacciones."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "El sistema operativo también participa",
+      "contenido": "El sistema operativo planifica la ejecución, gestiona procesos, memoria y recursos.\nJava ofrece APIs para solicitar operaciones, pero no controla directamente todas las decisiones del planificador."
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Dos tareas, un mismo dato",
+      "situacion": "Dos hilos intentan actualizar simultáneamente el saldo de una cuenta.",
+      "problema": "Ambos pueden leer el mismo valor y escribir resultados incompatibles. Una actualización se pierde.",
+      "pregunta": "¿Cómo garantizarías que el saldo final sea correcto?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Sincronizar es coordinar accesos",
+      "contenido": "Cuando varias tareas comparten recursos, el orden de sus operaciones puede importar.\nLa sincronización ayuda a proteger estados compartidos y a coordinar el trabajo.\nPero también puede introducir esperas y bloqueos."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Comunicación dentro y fuera del proceso",
+      "izquierda_titulo": "Entre hilos",
+      "izquierda_contenido": "Comparten memoria dentro de un proceso.\nNecesitan controlar accesos concurrentes.\nEjemplo: cola de tareas compartida.",
+      "derecha_titulo": "Entre procesos",
+      "derecha_contenido": "No comparten memoria de forma ordinaria.\nIntercambian información mediante canales definidos.\nEjemplo: entrada y salida estándar."
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Dos ordenadores necesitan hablar",
+      "situacion": "Un cliente quiere consultar el estado de un pedido almacenado en un servidor.",
+      "problema": "No basta con invocar un método local: los programas están en equipos distintos y pueden fallar por separado.",
+      "pregunta": "¿Cómo se conectan, intercambian datos y detectan errores?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Cliente-servidor: dos responsabilidades",
+      "contenido": "El cliente inicia una comunicación y solicita una operación.\nEl servidor escucha, recibe solicitudes y responde.\nLa red introduce latencia, desconexiones y problemas que no aparecen en una llamada local."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "TCP y UDP: dos formas de comunicar",
+      "izquierda_titulo": "TCP",
+      "izquierda_contenido": "Comunicación orientada a conexión.\nEntrega ordenada y fiable de bytes o informa de fallo.\nNo delimita mensajes por sí mismo.",
+      "derecha_titulo": "UDP",
+      "derecha_contenido": "Envía datagramas sin establecer una conexión TCP.\nNo garantiza entrega ni orden.\nÚtil cuando el protocolo de aplicación tolera pérdidas."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué pasa si un cliente se desconecta?",
+      "contenido": "Un servidor recibe una solicitud, pero el cliente cierra la conexión antes de recibir la respuesta.\n¿Qué debería hacer el servidor?\n¿Y qué ocurre con los demás clientes?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Un servicio no es solo un socket",
+      "contenido": "Un servicio de red debe definir qué mensajes acepta, qué responde, cómo gestiona errores y cómo atiende varias solicitudes.\nTambién importan la disponibilidad, los límites de recursos y el comportamiento ante fallos."
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Y si alguien intercepta los mensajes?",
+      "situacion": "Una aplicación envía credenciales y datos personales a un servicio por la red.",
+      "problema": "Sin protección, un tercero podría leer o modificar información durante el tránsito.",
+      "pregunta": "¿Qué mecanismos ayudan a proteger la comunicación y el acceso?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Seguridad: proteger datos y operaciones",
+      "contenido": "Estudiaremos criptografía, funciones hash, control de acceso, roles, TLS y sockets seguros.\nAutenticación: ¿quién eres?\nAutorización: ¿qué puedes hacer?\nCifrado: ¿quién puede leer el contenido?"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Hash y cifrado cumplen funciones distintas",
+      "izquierda_titulo": "Función hash",
+      "izquierda_contenido": "Calcula una huella de longitud definida.\nNo está diseñada para recuperar el dato original.\nÚtil para integridad y otras construcciones seguras.",
+      "derecha_titulo": "Cifrado",
+      "derecha_contenido": "Transforma información usando una clave.\nPermite recuperarla con la clave adecuada.\nProtege confidencialidad si se aplica correctamente."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Seguridad no es inventar un algoritmo",
+      "error": "Diseñar cifrados caseros o guardar contraseñas como texto plano.",
+      "motivo": "Las soluciones improvisadas suelen introducir vulnerabilidades difíciles de detectar.",
+      "recomendacion": "Usar protocolos y bibliotecas contrastados; distinguir hash de contraseñas, cifrado y TLS."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "El recorrido del módulo",
+      "paso_1": "UD01 · Ejecutar y comunicar procesos externos.",
+      "paso_2": "UD02 · Crear y gestionar hilos.",
+      "paso_3": "UD03 · Coordinar tareas y recursos compartidos.",
+      "paso_4": "UD04–05 · Comunicar clientes y construir servicios de red.",
+      "paso_5": "UD06 · Proteger comunicaciones y accesos."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD01 · Programación multiproceso",
+      "contenido": "RA1 · Criterios a), c), d), e), f), g), h).\nProcesos del sistema operativo; concurrencia y paralelismo; ProcessBuilder; comunicación y sincronización entre procesos.\nMeta: lanzar y controlar procesos desde Java."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD01: herramienta externa",
+      "contenido": "Una aplicación Java necesita ejecutar una utilidad del sistema, recoger su salida y comprobar si terminó correctamente.\nProcessBuilder permite iniciar procesos y configurar su entorno.",
+      "ejemplo": "Java → ProcessBuilder\n→ proceso externo\n→ salida / estado"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD02 · Programación multihilo",
+      "contenido": "RA2 · Criterios a), b), c), d), i), j).\nThread, Runnable, creación y gestión de hilos, ciclo de vida y estados.\nMeta: distinguir tareas, hilos y ejecución concurrente dentro de una aplicación."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD02: interfaz que responde",
+      "contenido": "Una aplicación debe seguir atendiendo al usuario mientras realiza un cálculo lento.\nSeparar el trabajo permite mantener la capacidad de respuesta, siempre que coordinemos el resultado.",
+      "ejemplo": "Hilo principal: responde\nHilo de trabajo: calcula"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD03 · Sincronización y concurrencia",
+      "contenido": "RA2 · Criterios e), f), k).\nRecursos compartidos, condiciones de carrera, synchronized, locks, ExecutorService y Future.\nMeta: ejecutar tareas de forma coordinada y evitar resultados inconsistentes."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD03: stock compartido",
+      "contenido": "Dos compras intentan descontar la última unidad de un producto.\nLa solución debe impedir que ambas confirmen la venta sobre el mismo stock.",
+      "ejemplo": "Stock inicial: 1\nCompra A: -1\nCompra B: -1"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD04 · Comunicaciones en red",
+      "contenido": "RA3 · Criterios a), b), c), d), e), f), g), h), j).\nArquitectura cliente-servidor, TCP/UDP, Socket, ServerSocket e intercambio de mensajes.\nMeta: construir programas que se comuniquen por red."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD04: chat sencillo",
+      "contenido": "Un servidor acepta una conexión y recibe mensajes de un cliente.\nEl cliente envía texto y espera una respuesta.\nAprenderemos a definir el intercambio y tratar desconexiones.",
+      "ejemplo": "Cliente → mensaje → Servidor\nCliente ← respuesta ← Servidor"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD05 · Desarrollo de servicios en red",
+      "contenido": "RA3: i) · RA4: a), b), c), d), e), f), g).\nProtocolos estándar, clientes y servidores, servicios concurrentes y disponibilidad.\nMeta: desarrollar servicios capaces de atender solicitudes de forma robusta."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD05: servicio concurrente",
+      "contenido": "Varios clientes consultan un servicio a la vez.\nEl servidor debe responder sin bloquear innecesariamente a los demás y gestionar fallos parciales.",
+      "ejemplo": "Cliente A ↘\nCliente B → Servidor\nCliente C ↗"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "UD06 · Programación segura",
+      "contenido": "RA5 · Criterios a), b), c), d), e), f), g).\nCriptografía, funciones hash, control de acceso, roles, TLS y sockets seguros.\nMeta: proteger datos y comunicaciones de una aplicación."
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Ejemplo de UD06: conexión protegida",
+      "contenido": "Un cliente necesita enviar información sensible a un servidor.\nTLS protege la comunicación en tránsito; la aplicación sigue necesitando comprobar identidades y permisos.",
+      "ejemplo": "Cliente ⇄ TLS ⇄ Servidor\nAcceso según rol"
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Acceso a Datos y PSP: dos perspectivas",
+      "izquierda_titulo": "Acceso a Datos",
+      "izquierda_contenido": "¿Dónde y cómo guardamos información?\nFicheros, bases de datos y formatos.\nPersistencia y recuperación.",
+      "derecha_titulo": "PSP",
+      "derecha_contenido": "¿Cómo ejecutamos y conectamos tareas?\nProcesos, hilos, redes y seguridad.\nCoordinación y comunicación."
+    },
+    {
+      "tipo": "caso_practico",
+      "titulo": "Proyecto integrador: servicio de consultas",
+      "contexto": "Un programa cliente consulta información de un servicio que atiende varias solicitudes.",
+      "requisitos": "Definir mensajes y respuestas.\nAtender clientes sin bloquear el servicio.\nGestionar errores y desconexiones.\nProteger los accesos cuando corresponda.",
+      "objetivo": "El servicio responde correctamente a varias solicitudes y gestiona los fallos previstos."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué conocimientos vamos a reutilizar?",
+      "contenido": "Clases, objetos, interfaces, excepciones, colecciones, métodos y depuración.\nNo necesitamos conocer todas las APIs de memoria: necesitamos entender sus contratos, probar hipótesis y leer errores."
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Tres ideas para empezar PSP",
+      "idea_1": "Un proceso y un hilo son unidades distintas de ejecución.",
+      "idea_2": "La concurrencia permite progresar en varias tareas, pero obliga a coordinarlas.",
+      "idea_3": "Los servicios se comunican por red y necesitan gestionar fallos y seguridad.",
+      "recuerda": "Diseñar servicios implica pensar en ejecución, comunicación y protección."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Primera parada: UD01",
+      "contenido": "Imaginá que Java necesita ejecutar otro programa y leer lo que imprime.\n¿Quién crea el proceso? ¿Cómo recibe Java la salida? ¿Cómo sabe si terminó bien?\nCon esas preguntas comenzaremos Programación multiproceso."
+    }
+  ]
+}

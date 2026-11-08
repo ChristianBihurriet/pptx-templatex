@@ -1,0 +1,132 @@
+{
+  "titulo": "Path y Files — Java 21",
+  "modulo": "Acceso a Datos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Path y Files",
+      "subtitulo": "Acceso a Datos · UD01 · Java 21\nDe representar una ruta a guardar información"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Cómo hacemos que los datos sobrevivan?",
+      "contenido": "Una lista de alumnos existe mientras se ejecuta el programa.\n¿Qué ocurre cuando lo cerramos? ¿Cómo podemos recuperarla mañana?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Dos responsabilidades",
+      "contenido": "Path → DÓNDE está un recurso.\nFiles → QUÉ hacemos con ese recurso.\nPath no crea ni comprueba nada por sí solo."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Path es una interfaz",
+      "contenido": "Path ruta = Path.of(\"datos\", \"alumnos.txt\");\n\nPath.of() es una factoría estática. No crea el archivo.\nDevuelve una implementación adecuada al sistema de archivos."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Un código, tres sistemas",
+      "contenido": "Path ruta = Path.of(\"datos\", \"alumnos.txt\");\nSystem.out.println(System.getProperty(\"os.name\"));\nSystem.out.println(ruta.getClass().getName());\nSystem.out.println(ruta);\nSystem.out.println(ruta.toAbsolutePath());"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué veremos en clase?",
+      "contenido": "Windows (habitual OpenJDK): sun.nio.fs.WindowsPath · separador \\\nLinux: sun.nio.fs.UnixPath · separador /\nmacOS: sun.nio.fs.UnixPath · separador /\n\nLa implementación concreta es un detalle interno del JDK."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Quién decide la implementación?",
+      "contenido": "Path.of(\"datos\")\n   ↓\nFileSystems.getDefault().getPath(\"datos\")\n   ↓\nProveedor del sistema de archivos → Path concreto\n\nProgramamos contra la interfaz, no contra la clase concreta."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Inspeccionar una ruta",
+      "contenido": "Path p = Path.of(\"datos\", \"alumnos.txt\");\n\np.getFileName();      // alumnos.txt\np.getParent();        // datos\np.isAbsolute();       // false (en este ejemplo)\np.toAbsolutePath();   // según directorio de trabajo"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Combinar rutas con resolve",
+      "contenido": "Path carpeta = Path.of(\"datos\");\nPath archivo = carpeta.resolve(\"alumnos.txt\");\n// datos/alumnos.txt\n\nresolve() combina componentes; no consulta el disco."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Rutas hermanas y normalización",
+      "contenido": "Path p = Path.of(\"datos\", \"alumnos.txt\");\np.resolveSibling(\"notas.txt\"); // datos/notas.txt\n\nPath.of(\"datos\", \"2026\", \"..\", \"a.txt\")\n    .normalize(); // datos/a.txt"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Calcular rutas relativas",
+      "contenido": "Path origen = Path.of(\"datos\");\nPath destino = Path.of(\"datos\", \"2026\", \"a.txt\");\n\norigen.relativize(destino); // 2026/a.txt\n\nAmbas rutas deben ser compatibles."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Files sí trabaja con el disco",
+      "contenido": "import java.nio.file.Files;\n\nFiles.exists(p);\nFiles.isDirectory(p);\nFiles.isRegularFile(p);\n\nA diferencia de Path, estas operaciones consultan el sistema de archivos."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Crear carpetas",
+      "contenido": "Path carpeta = Path.of(\"datos\", \"2026\", \"DAM\");\n\nFiles.createDirectory(carpeta);\n// Falla si faltan padres o ya existe\n\nFiles.createDirectories(carpeta);\n// Crea padres necesarios; tolera directorios existentes"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Crear un fichero vacío",
+      "contenido": "Path archivo = Path.of(\"datos\", \"alumnos.txt\");\nFiles.createDirectories(archivo.getParent());\nFiles.createFile(archivo);\n\ncreateFile() falla si el fichero ya existe.\nNo crea directorios intermedios."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Guardar texto",
+      "contenido": "Path archivo = Path.of(\"datos\", \"alumnos.txt\");\nFiles.writeString(archivo, \"Ana\\nPedro\\nLucía\\n\");\n\nSi no existe, lo crea.\nSi existe, reemplaza el contenido por defecto."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Leer todo como String",
+      "contenido": "String texto = Files.readString(archivo);\nSystem.out.println(texto);\n\nreadString() devuelve todo el contenido,\nincluidos los saltos de línea."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Leer como lista de líneas",
+      "contenido": "List<String> alumnos = Files.readAllLines(archivo);\nfor (String alumno : alumnos) {\n    System.out.println(alumno);\n}\n\nUn elemento por línea. La lista no se actualiza sola."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Añadir sin sobrescribir: APPEND",
+      "contenido": "Files.writeString(archivo, \"Marcos\\n\",\n    StandardOpenOption.APPEND);\n\nAPPEND añade al final.\nEl salto de línea hay que escribirlo explícitamente."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Opciones de apertura",
+      "contenido": "CREATE → crear si no existe\nAPPEND → añadir al final\nCREATE_NEW → fallar si ya existe\nTRUNCATE_EXISTING → vaciar al abrir para escritura\n\nSe combinan; no tienen un orden de prioridad."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Crear, escribir y leer",
+      "contenido": "Path carpeta = Path.of(\"datos\");\nPath archivo = carpeta.resolve(\"alumnos.txt\");\nFiles.createDirectories(carpeta);\nFiles.writeString(archivo, \"Ana\\nPedro\\nLucía\\n\");\nList<String> alumnos = Files.readAllLines(archivo);\nfor (String a : alumnos) System.out.println(a);"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Añadir y volver a leer",
+      "contenido": "Files.writeString(archivo, \"Marcos\\n\",\n    StandardOpenOption.APPEND);\n\nalumnos = Files.readAllLines(archivo);\nfor (String a : alumnos) System.out.println(a);\n\nLa segunda lectura recupera los datos actualizados."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "IOException y try/catch",
+      "contenido": "try {\n    Files.writeString(archivo, \"Hola\");\n} catch (IOException e) {\n    System.err.println(e.getMessage());\n}\n\nEjemplos: NoSuchFileException, FileAlreadyExistsException."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "¿Qué pasa al ejecutar dos veces?",
+      "contenido": "Primero: writeString() reemplaza los nombres iniciales.\nDespués: APPEND añade Marcos.\n\nPor eso no se acumulan Marcos entre ejecuciones de este ejemplo."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Reto: registro persistente",
+      "contenido": "1. Crear la carpeta datos.\n2. Guardar tres alumnos en alumnos.txt.\n3. Leer e imprimir los tres nombres.\n4. Añadir un cuarto alumno con APPEND.\n5. Leer otra vez y comprobar el resultado."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Qué debemos recordar",
+      "contenido": "Path representa rutas y permite operarlas.\nFiles consulta, crea, lee y escribe.\nwriteString reemplaza por defecto; APPEND añade.\nLas operaciones de E/S pueden lanzar IOException.\n\nPróxima clase: copiar, mover, eliminar y explorar directorios."
+    }
+  ]
+}
