@@ -1,0 +1,219 @@
+{
+  "titulo": "Acceso a Datos · Operaciones con ficheros y directorios",
+  "modulo": "Acceso a Datos",
+  "curso": "2.º DAM",
+  "diapositivas": [
+    {
+      "tipo": "portada",
+      "titulo": "Acceso a Datos · Operaciones con ficheros",
+      "subtitulo": "2.º DAM · UD01 · Copiar, mover, eliminar y recorrer directorios"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "Una carpeta que crece sin control",
+      "situacion": "Una empresa guarda informes, facturas y fotografías en documentos/.",
+      "problema": "Los archivos se acumulan y necesitamos clasificarlos sin hacerlo uno por uno.",
+      "pregunta": "¿Cómo puede Java localizar y organizar estos ficheros?"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Antes de continuar: ¿qué recordamos?",
+      "contenido": "¿Path.of() crea un archivo?\n¿Qué diferencia hay entre ruta relativa y absoluta?\n¿Para qué sirven getParent(), resolve() y createDirectories()?\n¿En qué se diferencian WRITE y APPEND?"
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Una ruta no es un fichero creado",
+      "lenguaje": "Java 21",
+      "codigo": "Path ruta = Path.of(\"datos\", \"a.txt\");\nSystem.out.println(Files.exists(ruta));",
+      "resultado": "false"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "¿Dónde se crean las rutas relativas?",
+      "error": "Suponer que datos/ está junto a Main.java.",
+      "motivo": "La ruta relativa depende del directorio de trabajo del proceso.",
+      "recomendacion": "Consultar System.getProperty(\"user.dir\") y toAbsolutePath()."
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Copiar: conservar el original",
+      "contenido": "Files.copy(origen, destino) crea una copia en otra ruta.\nEl archivo original permanece donde estaba.\nEl origen debe existir y la carpeta padre del destino también.\nPor defecto, un destino existente provoca un error."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · Crear una copia de seguridad",
+      "lenguaje": "Java 21",
+      "codigo": "import java.nio.file.*;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args)\n            throws IOException {\n        Path origen = Path.of(\"datos\", \"notas.txt\");\n        Path copia = Path.of(\"backup\", \"notas.txt\");\n        Files.createDirectories(copia.getParent());\n        Files.copy(origen, copia);\n        System.out.println(\"Copia realizada\");\n    }\n}"
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Qué ocurre al copiar dos veces?",
+      "contenido": "El archivo backup/notas.txt ya existe.\nVolvemos a ejecutar el mismo programa.\n¿Se sobrescribe? ¿Se ignora? ¿Se produce una excepción?\n¿Qué comportamiento sería más seguro por defecto?"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Reemplazar una copia existente",
+      "codigo": "Files.copy(\n    origen,\n    copia,\n    StandardCopyOption.REPLACE_EXISTING\n);",
+      "explicacion": "REPLACE_EXISTING permite sustituir el destino.\nSolo debemos usarlo cuando queremos perder la versión anterior.\nNo crea carpetas padre."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Copiar frente a mover",
+      "izquierda_titulo": "Files.copy()",
+      "izquierda_contenido": "Crea otra entrada con el contenido.\nEl origen permanece.\nÚtil para copias de seguridad.",
+      "derecha_titulo": "Files.move()",
+      "derecha_contenido": "Traslada o renombra el archivo.\nEl origen deja de estar en esa ruta.\nÚtil para clasificar documentos."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · Renombrar un fichero",
+      "lenguaje": "Java 21",
+      "codigo": "import java.nio.file.*;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args)\n            throws IOException {\n        Path origen = Path.of(\"datos\", \"notas.txt\");\n        Path destino = Path.of(\"datos\", \"notas_old.txt\");\n        Files.move(origen, destino);\n        System.out.println(\"Renombrado\");\n    }\n}"
+    },
+    {
+      "tipo": "explicacion",
+      "titulo": "Mover también permite cambiar de carpeta",
+      "contenido": "El destino puede tener otro directorio y otro nombre.\nAntes de mover, creamos su carpeta padre si no existe.\nSi el destino ya existe, la operación normalmente falla sin REPLACE_EXISTING.",
+      "ejemplo": "Path destino = Path.of(\n    \"historico\", \"notas.txt\");\nFiles.createDirectories(\n    destino.getParent());"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "Eliminar: una operación irreversible",
+      "contenido": "Files.delete(ruta) elimina el elemento o lanza una excepción si no existe.\nFiles.deleteIfExists(ruta) devuelve true si lo eliminó y false si no existía.\nNo eliminan automáticamente directorios con contenido.\nAntes de borrar, conviene comprobar qué ruta estamos utilizando."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "¿Qué devuelve deleteIfExists()?",
+      "lenguaje": "Java 21",
+      "codigo": "Path ruta = Path.of(\"datos\", \"viejo.txt\");\nboolean borrado = Files.deleteIfExists(ruta);\nSystem.out.println(borrado);",
+      "resultado": "true"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Y si el fichero no existe?",
+      "situacion": "La aplicación intenta copiar un informe que otro usuario ha borrado.",
+      "problema": "La operación no puede completarse y Java informa del fallo mediante una excepción.",
+      "pregunta": "¿Cómo explicamos el error sin cerrar el programa de forma inesperada?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "IOException y errores específicos",
+      "contenido": "IOException representa problemas de entrada/salida.\nNoSuchFileException: falta un fichero o ruta necesaria.\nFileAlreadyExistsException: el destino ya existe.\nDirectoryNotEmptyException: intentamos borrar un directorio no vacío.\nAccessDeniedException: acceso denegado por el sistema."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · Capturar el error adecuado",
+      "lenguaje": "Java 21",
+      "codigo": "import java.nio.file.*;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args) {\n        Path a = Path.of(\"datos\", \"a.txt\");\n        Path b = Path.of(\"backup\", \"a.txt\");\n        try {\n            Files.copy(a, b);\n        } catch (NoSuchFileException e) {\n            System.out.println(\"Falta una ruta\");\n        } catch (FileAlreadyExistsException e) {\n            System.out.println(\"Destino existente\");\n        } catch (IOException e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}"
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "El orden de los catch importa",
+      "error": "Capturar IOException antes que NoSuchFileException.",
+      "motivo": "El catch general ya cubre las excepciones específicas: los siguientes quedan inalcanzables.",
+      "recomendacion": "Primero las excepciones específicas; al final, IOException."
+    },
+    {
+      "tipo": "error_correccion",
+      "titulo": "No ocultes los errores",
+      "codigo_error": "try {\n    Files.copy(origen, destino);\n} catch (IOException e) {\n}",
+      "codigo_correcto": "try {\n    Files.copy(origen, destino);\n} catch (IOException e) {\n    System.out.println(e.getMessage());\n}",
+      "explicacion": "Un catch vacío oculta el fallo. Muestra un mensaje útil y decide cómo continuar."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "¿Basta con comprobar exists()?",
+      "contenido": "Comprobamos que notas.txt existe.\nUn instante después, otro proceso lo elimina.\n¿Qué ocurrirá al intentar copiarlo?\n¿Por qué seguimos necesitando try-catch?"
+    },
+    {
+      "tipo": "problema",
+      "titulo": "¿Cómo encontramos todos los archivos?",
+      "situacion": "documentos/ contiene informe.txt, ventas.csv y foto.png.",
+      "problema": "No queremos escribir una variable Path distinta por cada fichero.",
+      "pregunta": "¿Cómo recorrer el contenido de una carpeta usando un for-each?"
+    },
+    {
+      "tipo": "definicion",
+      "titulo": "DirectoryStream: recorrer una carpeta",
+      "contenido": "Files.newDirectoryStream(carpeta) abre un recorrido de sus elementos directos.\nDirectoryStream<Path> se puede usar con for-each.\nDevuelve rutas de archivos y directorios, no solo archivos.\nSe cierra con try-with-resources.\nNo recorre automáticamente subdirectorios."
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Main.java · Mostrar los elementos",
+      "lenguaje": "Java 21",
+      "codigo": "import java.nio.file.*;\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args)\n            throws IOException {\n        Path carpeta = Path.of(\"documentos\");\n        try (DirectoryStream<Path> rutas =\n                Files.newDirectoryStream(carpeta)) {\n            for (Path ruta : rutas) {\n                System.out.println(ruta.getFileName());\n            }\n        }\n    }\n}"
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Distinguir archivos de carpetas",
+      "codigo": "for (Path ruta : rutas) {\n    if (Files.isRegularFile(ruta)) {\n        System.out.println(\n            \"Archivo: \" + ruta.getFileName());\n    }\n}",
+      "explicacion": "DirectoryStream puede incluir subdirectorios.\nisRegularFile() evita tratarlos como ficheros normales.\nEl orden de recorrido no está garantizado."
+    },
+    {
+      "tipo": "comparacion",
+      "titulo": "Dos endsWith() diferentes",
+      "izquierda_titulo": "String.endsWith()",
+      "izquierda_contenido": "Comprueba los caracteres finales.\n\"informe.txt\" termina en \".txt\".\nAdecuado para extensiones simples.",
+      "derecha_titulo": "Path.endsWith()",
+      "derecha_contenido": "Comprueba componentes finales de una ruta.\nPuede terminar en \"informe.txt\".\nNo sirve igual para comprobar \".txt\"."
+    },
+    {
+      "tipo": "codigo_resultado",
+      "titulo": "Obtener el nombre y su extensión",
+      "lenguaje": "Java 21",
+      "codigo": "Path p = Path.of(\"docs\", \"informe.txt\");\nString nombre = p.getFileName().toString();\nSystem.out.println(nombre.endsWith(\".txt\"));",
+      "resultado": "true"
+    },
+    {
+      "tipo": "diagrama_flujo",
+      "titulo": "Cómo funciona nuestro organizador",
+      "contexto": "Para cada fichero encontrado en documentos/.",
+      "etapa_1": "Leer ruta",
+      "etapa_2": "Obtener nombre",
+      "etapa_3": "Elegir carpeta",
+      "etapa_4": "Mover archivo",
+      "conclusion": "Primero identificamos el tipo; después construimos el destino y realizamos la operación."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Elegir una carpeta con condicionales",
+      "codigo": "String nombre = ruta.getFileName()\n    .toString();\nString carpeta = \"otros\";\nif (nombre.endsWith(\".txt\")) {\n    carpeta = \"textos\";\n} else if (nombre.endsWith(\".csv\")) {\n    carpeta = \"datos\";\n}",
+      "explicacion": "El nombre es un String; endsWith comprueba su extensión.\nEl if selecciona una carpeta.\nLuego construiremos el Path de destino."
+    },
+    {
+      "tipo": "codigo_explicado",
+      "titulo": "Construir el destino sin concatenar rutas",
+      "codigo": "Path destino = carpetaBase\n    .resolve(carpeta)\n    .resolve(nombre);\nFiles.createDirectories(\n    destino.getParent());\nFiles.move(ruta, destino);",
+      "explicacion": "resolve() une componentes de ruta.\ncreateDirectories() prepara el directorio.\nmove() traslada el fichero; el destino no debe existir."
+    },
+    {
+      "tipo": "advertencia",
+      "titulo": "Cuidado al mover durante el recorrido",
+      "error": "Modificar la misma carpeta mientras DirectoryStream la recorre.",
+      "motivo": "Los resultados del recorrido pueden variar según el sistema de archivos.",
+      "recomendacion": "Primero recoger las rutas; cerrar el recorrido y después moverlas. O copiar en una primera versión."
+    },
+    {
+      "tipo": "pasos",
+      "titulo": "Demostración: del directorio al archivo",
+      "paso_1": "Comprueba que documentos/ existe y contiene archivos.",
+      "paso_2": "Recorre sus elementos con DirectoryStream y for-each.",
+      "paso_3": "Ignora carpetas con Files.isRegularFile().",
+      "paso_4": "Identifica la extensión mediante String.endsWith().",
+      "paso_5": "Construye el destino y copia o mueve con control de errores."
+    },
+    {
+      "tipo": "pregunta",
+      "titulo": "Comprobación final",
+      "contenido": "¿Qué diferencia hay entre copy() y move()?\n¿Qué ocurre si el destino ya existe?\n¿Por qué NoSuchFileException debe capturarse antes que IOException?\n¿Qué devuelve DirectoryStream y cómo lo recorremos?\n¿Por qué getFileName().toString() antes de endsWith(\".txt\")?"
+    },
+    {
+      "tipo": "resumen",
+      "titulo": "Hoy ampliamos Path y Files",
+      "idea_1": "copy() conserva el origen; move() lo cambia de ruta; deleteIfExists() permite eliminar.",
+      "idea_2": "Las operaciones pueden fallar: las excepciones específicas explican mejor la causa.",
+      "idea_3": "DirectoryStream y for-each permiten recorrer archivos sin utilizar la API de Streams.",
+      "recuerda": "Identifica la ruta, comprueba el caso y gestiona el error."
+    }
+  ]
+}
